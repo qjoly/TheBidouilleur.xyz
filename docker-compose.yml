@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  thebidouilleur:
+    # docker buildx build --platform=linux/amd64,linux/arm64 -t registry.thebidouilleur.xyz/thebidouilleur:latest . --push
+    build:
+        context: .
+        dockerfile: Dockerfile
+    image: registry.thebidouilleur.xyz/thebidouilleur:latest
+    container_name: thebidouilleur 
+    ports:
+      - 8080:80

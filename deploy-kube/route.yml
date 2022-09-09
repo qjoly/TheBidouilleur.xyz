@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ir-thebidouilleur
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+  - match: Host(`thebidouilleur.perso.une-tasse-de.cafe`)
+    kind: Rule
+    services:
+    - name: srvc-thebidouilleur
+      port: 80
+
+  - match: Host(`thebidouilleur.xyz`)
+    kind: Rule
+    services:
+    - name: srvc-thebidouilleur
+      port: 80
+  tls:
+    certResolver: letsencrypt 
+

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-thebidouilleur
+  labels: 
+    version: 4.3.4
+  annotations:
+    #    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook: PostSync
+    #  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: deploy-thebidouilleur
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: deploy-thebidouilleur 
+    spec:
+      containers:
+      - name: thebidouilleur
+        image: registry.thebidouilleur.xyz/thebidouilleur:latest
+        imagePullPolicy: Always
+        env:
+        - name: RUN_MODE
+          value: "production"
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          tcpSocket:
+            host: 127.0.0.1
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
+      imagePullSecrets:
+      - name: regcred
