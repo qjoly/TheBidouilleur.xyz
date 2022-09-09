@@ -1,3 +1,7 @@
+---
+title: Installation de la stack Loki
+---
+
 # Loki
 # Introduction 
 
