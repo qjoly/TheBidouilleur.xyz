@@ -1,0 +1,33 @@
+---
+slug: nixos
+title: "NixOS, Ma nouvelle distribution"
+authors:
+  name: TheBidouilleur
+  title: Adorateur de trucs merdiques
+  url: https://git.thoughtless.eu
+  image_url: https://git.thoughtless.eu/avatars/05bed00fb8cb64b8e3b222f797bcd3d8
+tags: [NixOS, "devops"]
+---
+
+## Introduction 
+
+NixOS est une distribution Linux sortie initialement en 2003 par un chercheur ([Eelco Dolstra](https://www.linkedin.com/in/edolstra)). 
+Celle-ci se base sur le gestionnaire de paquet **Nix** qui permet de gérer la configuration du système à l'aide de fichiers Nix (un langage de programmation similaire au Haskell). 
+
+Ainsi si je souhaite installer et configurer Git sur mon système, je peux écrire ceci dans mon fichier *configuration.nix* (qui est la base de la configuration à l'installation) 
+```nix
+  programs = {
+    git = {
+    enable = true;
+    userName = "QJoly";
+    userEmail = "qjoly@users.noreply.github.com";
+    ignores =  [
+      "*~"
+      "*.swp"
+     ];
+    };
+   };
+ ```
+ 
+ Ainsi, je peux définir de nombreux paramètres pour déployer des logiciels et les paramètres qui vont avec. 
+ 
