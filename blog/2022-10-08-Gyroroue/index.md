@@ -72,7 +72,8 @@ N'ayant jamais été sur la moindre moto, je trouve ce casque un peu lourd mais 
 
 
 ## Assurance
-Pour rouler sur route, je souhaite avoir une assurance pour protéger les gens et me protéger. Comme de nombreux Wheelers, je pense me tourner vers Wizza 
-
+Pour rouler sur route, je souhaite avoir une assurance pour protéger les gens et me protéger. Comme de nombreux Wheelers, ~~je pense me tourner vers Wizza~~
 ![mes tarifs](./assurance.png)
-à suivre..
+
+En contactant la MAIF (avec laquelle je possède un contrat), j'ai remarqué qu'ils avaient également une offre pour les EDPMs, et donc les gyroroues. 
+Le prix est d'environ 5€/mois.
