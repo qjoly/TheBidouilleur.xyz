@@ -9,25 +9,111 @@ authors:
 tags: [NixOS, "devops"]
 ---
 
-## Introduction 
-
+## Introduction à Nix et NixOS
 NixOS est une distribution Linux sortie initialement en 2003 par un chercheur ([Eelco Dolstra](https://www.linkedin.com/in/edolstra)). 
 Celle-ci se base sur le gestionnaire de paquet **Nix** qui permet de gérer la configuration du système à l'aide de fichiers Nix (un langage de programmation similaire au Haskell). 
 
-Ainsi si je souhaite installer et configurer Git sur mon système, je peux écrire ceci dans mon fichier *configuration.nix* (qui est la base de la configuration à l'installation) 
+Ainsi si je souhaite créer un utilisateur *kiko* sur mon système, je peux écrire ceci dans mon fichier *configuration.nix* (qui est le fichier de configuration de l'OS initial) 
+
 ```nix
-  programs = {
-    git = {
-    enable = true;
-    userName = "QJoly";
-    userEmail = "qjoly@users.noreply.github.com";
-    ignores =  [
-      "*~"
-      "*.swp"
-     ];
-    };
-   };
+  users.users.kiko = {
+    isNormalUser = true;
+    description = "kiko";
+    extraGroups = [ "networkmanager" "wheel" "sudo" ];
+    packages = with pkgs; [
+      firefox
+      vim
+      neovim
+      kubectl
+      terraform
+    ];
+  };
  ```
  
- Ainsi, je peux définir de nombreux paramètres pour déployer des logiciels et les paramètres qui vont avec. 
+ Ou si je veux installer des programmes dans le système, je peux écrire ça : 
  
+ ```nix
+   environment.systemPackages = with pkgs; [
+    vim
+    wget
+    htop
+  ];
+ ```
+ 
+Et là, si vous êtes habitués aux gestionnaires de paquets normaux : vous êtes un peu perdu en voyant que je peux installer des programmes sur mon systeme.. ou uniquement sur un utilisateur précis. 
+C'est l'un des points forts de Nix ! Des environnements éphémères, des librairies contradictoires qui peuvent cohabiter, et des utilisateurs entièrements indépendants. 
+ 
+Nix *(nous parlons du gestionnaire de paquets)* autorise chaque utilisateur à avoir son propre PATH (ex: `/run/wrappers/bin:/home/kiko/.nix-profile/bin:/etc/profiles/per-user/kiko/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
+`). Mais il ne se limite pas qu'à ça : on peut créer des environnements temporaires assez rapidement pour ne pas avoir à installer un programme et pouvoir s'en servir ponctuellement. 
+
+
+```bash
+❯ cowsay
+The program 'cowsay' is not in your PATH. It is provided by several packages.
+You can make it available in an ephemeral shell by typing one of the following:
+  nix-shell -p cowsay
+  nix-shell -p neo-cowsay
+
+~ 
+❯ nix-shell -p cowsay
+this path will be fetched (0.01 MiB download, 0.05 MiB unpacked):
+  /nix/store/9647mfqndy0aa8qkniqa05qc9yi575ny-cowsay-3.04
+copying path '/nix/store/9647mfqndy0aa8qkniqa05qc9yi575ny-cowsay-3.04' from 'https://cache.nixos.org'...
+
+~ via ❄️  impure (shell) 
+❯ cowsay "J'aime la bidouille"
+ _____________________ 
+< J'aime la bidouille >
+ --------------------- 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+~ via ❄️  impure (shell) 
+❯ exit
+exit
+
+~ took 44s 
+❯ cowsay
+The program 'cowsay' is not in your PATH. It is provided by several packages.
+You can make it available in an ephemeral shell by typing one of the following:
+  nix-shell -p cowsay
+  nix-shell -p neo-cowsay
+
+```
+
+Nous avons créé un environnement similaire au notre.. mais avec le binaire cowsay. 
+
+Mais nous avons parlé d'environnement, alors créons un réel nix-shell plus complet...
+
+## Nix-Shell 
+Créons 2 fichiers. 
+```nix
+# default.nix
+with (import <nixpkgs> {});
+let
+  my-python-packages = python-packages: with python-packages; [
+    pandas
+    requests
+  ];
+  python-with-my-packages = python3.withPackages my-python-packages;
+in
+mkShell {
+  buildInputs = [
+    python-with-my-packages
+  ];
+}
+```
+```python app.py
+# app.py
+import requests
+response = requests.get('http://perdu.com')
+print(response.content)
+```
+Le fichier app.py est notre *très complèxe* application tandis que le fichier *default.nix* décrit l'environnement requis. 
+
+
+Les gens comparent ça aux virtualenvs de Python, ou à Docker sans isolation. 
+
