@@ -16,6 +16,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   favicon: 'img/favicon.ico',
   organizationName: 'QJoly', // Usually your GitHub org/user name.
   projectName: 'TheBidouilleur', // Usually your repo name.
+  plugins: [
+    'docusaurus-plugin-matomo',
+  ],
+
   i18n: 
   {
        defaultLocale: 'fr',
@@ -48,6 +52,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+
+     matomo: {
+      matomoUrl: 'https://matomo.thoughtless.eu/',
+      siteId: '2',
+      phpLoader: 'matomo.php',
+      jsLoader: 'matomo.js',
+    },
       navbar: {
         title: 'TheBidouilleur',
         logo: {
