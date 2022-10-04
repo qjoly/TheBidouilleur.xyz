@@ -41,7 +41,12 @@ Vous pouvez passer par la méthode via le binaire pour obtenir une version offic
 ```bash
 pacman -S kubectl
 ```
+### Nix
 
+Kubectl est présent sur les dépots officiels de Nix, vous pouvez créer une session temporaire avec nix-shell: 
+```bash
+nix-shell -p kubectl
+```
 :::note Pas de sudo pour kubectl !
 Il ne nécéssite aucune permission particulière, manier cette commande avec votre utilisateur personnel.
 :::
