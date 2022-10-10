@@ -17,12 +17,12 @@ jobs:
         image: tonistiigi/binfmt:latest
         platforms: arm64,arm
 
-    - name: Login to DockerHub
+    - name: Login to personal registry
       uses: docker/login-action@v2 
       with:
         registry: ${{ secrets.REGISTRY }}
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
       if: github.event_name != 'pull_request'
 
     - name: Set up Docker Buildx
@@ -36,6 +36,8 @@ jobs:
          push: true
          tags: ${{ secrets.REGISTRY }}/thebidouilleur:latest
       if: github.event_name != 'pull_request'
+    - name: Docker Push
+      uses: opspresso/action-docker@v0.4.0
       
     - name: Build only (PR)
       uses: docker/build-push-action@v3
