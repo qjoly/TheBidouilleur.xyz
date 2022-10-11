@@ -11,7 +11,11 @@ tags: [gyroroue, "vie quotidienne"]
 J'ai eu l'occasion de tester de nombreux moyens de transport alternatifs pour des déplacements quotidiens en ville *(Trottinettes, Vélo électrique)* mais aucun ne m'a jamais autant tenté que la **gyroroue** ! 
 Depuis que j'ai découvert ce véhicule via les vidéos de *Thomas*(**[Mr.Flex sur YouTube](https://www.youtube.com/c/MonsieurFlex)**), je fantasme sur l'idée de pouvoir m'en servir pour mes déplacements en plus de pouvoir prendre le train, bus ou tram.
 
-<center><iframe src="https://yewtu.be/embed/Gig7h5CKy4k" sandbox/></center>
+<center>
+<video>
+<source src="https://yewtu.be/embed/gig7h5cky4k" autoplay="false"></source>
+</video>
+</center>
 
 Jusque-là, je me déplaçais exclusivement en *vélo électrique (avec environ ~10 km pour arriver au travail)*, seuls les deux-roues m'intéressaient.
 Puis, pendant mes vacances d'étés de 2022, et étant donné que j'avais beaucoup de temps libre : je me suis dit "**Pourquoi pas ?**".
