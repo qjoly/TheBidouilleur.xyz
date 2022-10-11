@@ -1,0 +1,34 @@
+version: v1beta11
+
+images:
+  thebidouilleur:
+    image: qjoly/thebidouilleur.xyz
+    dockerfile: Dockerfile
+    context: .
+    createPullSecret: true
+    build:
+      kaniko: 
+        cache: true
+        snapshotMode: time
+
+deployments:
+- name: thebidouilleur
+  helm:
+    componentChart: true
+    values:
+      containers:
+      - image: qjoly/thebidouilleur.xyz
+        name: thebidouilleur
+      service:
+        ports:
+        - containerPort: 80
+          port: 8080
+          protocol: TCP
+
+dev:
+  ports:
+  - labelSelector:
+      app.kubernetes.io/component: thebidouilleur
+    forward:
+    - port: 8080
+      remotePort: 80
