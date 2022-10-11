@@ -51,7 +51,7 @@ jobs:
          context: .
          platforms: linux/amd64,linux/arm64
          push: true
-         tags: ${{ secrets.REGISTRY }}/thebidouilleur:latest
+         tags: qjoly/thebidouilleur.xyz:latest
       if: github.event_name != 'pull_request'
       
     - name: Build only (PR)
@@ -60,7 +60,7 @@ jobs:
          context: .
          platforms: linux/amd64
          push: false
-         tags: ${{ secrets.REGISTRY }}/thebidouilleur:latest
+         tags: qjoly/thebidouilleur.xyz
       if: github.event_name == 'pull_request'    
       
       
