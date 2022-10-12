@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: thebidouilleur
-        image: registry.thebidouilleur.xyz/thebidouilleur:latest
+        image: qjoly/thebidouilleur.xyz:latest
         imagePullPolicy: Always
         env:
         - name: RUN_MODE
@@ -33,5 +33,5 @@ spec:
             port: 80
           initialDelaySeconds: 180
           periodSeconds: 3
-      imagePullSecrets:
-      - name: regcred
+#      imagePullSecrets:
+#      - name: regcred
