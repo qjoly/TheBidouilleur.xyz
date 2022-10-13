@@ -6,7 +6,7 @@ title: Accueil
 
 ## Français
 
-Bienvenue sur mon site, ici je partge mes inspirations, mes projets, et mes documentations. 
+Bienvenue sur mon site, ici je partage mes inspirations, mes projets, et mes documentations. 
 Mon objectif est de permettre à tous de découvrir des technologies ou des méthodes de travails pour faciliter l'administration système/devops !
 n'hésitez pas à me faire parvenir votre retour sur le site ! 
 
