@@ -16,9 +16,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   favicon: 'img/favicon.ico',
   organizationName: 'QJoly', // Usually your GitHub org/user name.
   projectName: 'TheBidouilleur', // Usually your repo name.
-  plugins: [
-    'docusaurus-plugin-matomo',
-  ],
+  scripts: ['/heap.js'],
 
   i18n: 
   {
@@ -53,13 +51,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
 
-     matomo: {
-      matomoUrl: 'https://matomo.thoughtless.eu/',
-      siteId: '2',
-      phpLoader: 'matomo.php',
-      jsLoader: 'matomo.js',
-    },
-      navbar: {
+        navbar: {
         title: 'TheBidouilleur',
         logo: {
           alt: 'TheBidouilleur',
@@ -79,7 +71,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/blog/archive', label: 'Archives', position: 'right'},
           {
-            href: 'https://git.thoughtless.eu/Cinabre',
+            href: 'https://github.com/qjoly',
             label: 'Git',
             position: 'right',
           },
@@ -123,7 +115,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
               },
               {
                 label: 'Git',
-                href: 'https://git.thoughtless.eu',
+                href: 'https://github.com/qjoly',
               },
             ],
           },
