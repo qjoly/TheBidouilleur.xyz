@@ -16,7 +16,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   favicon: 'img/favicon.ico',
   organizationName: 'QJoly', // Usually your GitHub org/user name.
   projectName: 'TheBidouilleur', // Usually your repo name.
-  scripts: ['/heap.js'],
+  scripts: [{src: 'https://stats.192168128.xyz/js/script.js', defer: true, 'data-domain': 'thebidouilleur.xyz'}],
 
   i18n: 
   {
