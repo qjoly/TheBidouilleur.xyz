@@ -25,3 +25,9 @@ J'ai donc acheté [*The Tablette*](https://fr.aliexpress.com/item/10050028402529
 Et ce jouet de 5€ m'a sauvé la vie plusieurs fois durant les projets à plusieurs. C'était suffisant pour éviter l'achat de papier durant ces 8 mois. 
 
 Je garde toujours cette tablette sur mon bureau, mais j'aimerai bien un système similaire mais gardant en mémoire mes écrits/dessins. 
+
+C'est ainsi que j'ai acheté...
+
+## La Remarkable
+
+Ayant un collègue avec ce même bijou, j'ai pu me renseigner à l'avance *(et même tester)* cette *liseuse*. C'est une tablette basée sous Linux permettant de lire des PDF, et de prendre des notes via un stylet en imitant le plus possible la sensation du papier. 
