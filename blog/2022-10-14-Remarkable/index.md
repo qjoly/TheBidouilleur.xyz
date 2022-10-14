@@ -9,6 +9,10 @@ authors:
 tags: [quotidien]
 ---
 
+:::danger WIP!
+Cet article est encore en cours d’écriture ! 
+:::
+
 ## Introduction
 
 Récemment, j'ai suivi une formation de ~8 mois durant laquelle je n'avais qu'un clavier pour prendre des notes. Pour moi : aucun problème, je ne demande que ça : un support que j'utilise personnellement et professionnellement. 
@@ -31,3 +35,27 @@ C'est ainsi que j'ai acheté...
 ## La Remarkable
 
 Ayant un collègue avec ce même bijou, j'ai pu me renseigner à l'avance *(et même tester)* cette *liseuse*. C'est une tablette basée sous Linux permettant de lire des PDF, et de prendre des notes via un stylet en imitant le plus possible la sensation du papier. 
+
+La prise en main demande un peu d’entraînement mais après quelques heures on peut se rendre compte de la puissance du jouet entre ses mains.
+
+On peut mettre des pdf de son ordinateur vers la tablette via USB ou directement en déposant les fichiers sur le cloud Remarkable. 
+
+:::info autres méthodes 
+Je crois qu’il également possible de déposer ses fichiers en wifi directement … jamais testé
+:::
+
+Mais si vous utilisez une tablette remarkable, n’oubliez pas que celle-ci va constamment se synchroniser avec les serveurs AWS de la marque en embarquant vos PDF.
+
+C’est tout de même fâcheux …
+
+### Remarkable Fake Cloud 
+
+Dans son fonctionnement, la remarkable est un **Linux** avec un daemon systemd (nommé xochtl) qui va gérer l’écran e-ink. Et une fois le mot de passe root obtenu dans les paramètres (après avoir lu que remarkable adore l’open-source, d’ailleurs c’est agréable qu’ils aient laissés le plein-pouvoir sur la tablette) on peut s’amuser à faire pleins de choses…
+
+La tablette peut donc acquérir de nouvelles fonctionnalités et également héberger quelques petites applications. 
+
+Et moi ce qui m’a intéressé là-dedans : c’est la possibilité d’avoir son propre cloud remarkable pour que ses fichiers restent à la maison !
+
+Si ça en intéressent certains, voici le [lien du GitHub avec le lien vers la documentation](https://github.com/ddvk/rmfakecloud).
+
+
