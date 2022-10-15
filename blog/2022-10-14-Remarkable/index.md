@@ -34,6 +34,8 @@ C'est ainsi que j'ai acheté...
 
 ## La Remarkable
 
+![Remarkable 2](https://cdn.pocket-lint.com/r/s/1201x/assets/images/154912-tablets-review-remarkable-2-paper-tablet-review-image7-f7asoviowy.JPG)
+
 Ayant un collègue avec ce même bijou, j'ai pu me renseigner à l'avance *(et même tester)* cette *liseuse*. C'est une tablette basée sous Linux permettant de lire des PDF, et de prendre des notes via un stylet en imitant le plus possible la sensation du papier. 
 
 La prise en main demande un peu d’entraînement mais après quelques heures on peut se rendre compte de la puissance du jouet entre ses mains.
@@ -46,16 +48,40 @@ Je crois qu’il également possible de déposer ses fichiers en wifi directemen
 
 Mais si vous utilisez une tablette remarkable, n’oubliez pas que celle-ci va constamment se synchroniser avec les serveurs AWS de la marque en embarquant vos PDF.
 
-C’est tout de même fâcheux …
+C’est tout de même fâcheux … Si seulement on avait une solution ! 
 
 ### Remarkable Fake Cloud 
 
-Dans son fonctionnement, la remarkable est un **Linux** avec un daemon systemd (nommé xochtl) qui va gérer l’écran e-ink. Et une fois le mot de passe root obtenu dans les paramètres (après avoir lu que remarkable adore l’open-source, d’ailleurs c’est agréable qu’ils aient laissés le plein-pouvoir sur la tablette) on peut s’amuser à faire pleins de choses…
+Dans son fonctionnement, la remarkable est un **Linux** avec un daemon systemd (nommé xochtl) qui va gérer l’écran e-ink. Et une fois le mot de passe root obtenu dans les paramètres *(après avoir lu que remarkable adore l’open-source, d’ailleurs c’est agréable qu’ils aient laissés le plein-pouvoir sur la tablette)* on peut s’amuser à faire pleins de choses…
 
-La tablette peut donc acquérir de nouvelles fonctionnalités et également héberger quelques petites applications. 
-
+La tablette peut donc acquérir de nouvelles fonctionnalités et également héberger quelques petites applications *(dans la limite du raisonnable)*. 
 Et moi ce qui m’a intéressé là-dedans : c’est la possibilité d’avoir son propre cloud remarkable pour que ses fichiers restent à la maison !
 
 Si ça en intéressent certains, voici le [lien du GitHub avec le lien vers la documentation](https://github.com/ddvk/rmfakecloud).
+
+![RMFakeCloud](./rmfakecloud.png)
+
+L'UI me permet d'uploader des PDF qui sont synchronisés dès que la tablette est sur le WiFi. Et je peux même envoyer des fichiers depuis mon propre smtp (chose impossible nativement).
+
+:::info Pour trouver, il faut chercher
+P'tite parenthèse sur l'(auteur (DDVK))[https://github.com/ddvk] du projet. 
+Il publie régulièrement des programmes pour rendre sa tablette + performante, + ergonomique mais il est très peu actif sur les forums / reddit, je vous invite à lui laisser une étoile pour être informé de ses nouveaux projets.
+:::
+
+## Conclusion
+
+On a commencé à aborder la prise de note de manière différente à la sortie des iPads qui proposaient une expérience entre le PC et le smartphone. Remarkable a créé un produit incroyable en proposant une remise à plat de cette fonctionnalité : pas de clavier, pas de souris.. juste un stylet et un écran *"papier"*. 
+Et comme la tablette est sous Linux, je suis sûr que nous n'avons pas fini d'exploiter son potentiel en la bidouillant. 
+
+
+<details open>
+<summary>Post-scriptum</summary>
+<br>
+J'ai volontairement pas parlé du prix.. Désolé si ça en découragent certains :) 
+</details>
+
+
+*(Attention, j'ai pas parlé du prix.. restez accroché si vous voulez vous l'acheter)*
+
 
 
