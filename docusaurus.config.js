@@ -75,6 +75,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             label: 'Git',
             position: 'right',
           },
+          {
+            href: 'https://twitter.com/thebidouilleur',
+            label: 'Twitter',
+            position: 'right',
+          },        
         ],
       },
       footer: {
