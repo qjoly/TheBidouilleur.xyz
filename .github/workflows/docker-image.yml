@@ -31,7 +31,7 @@ jobs:
         username: qjoly
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         readme: ./README.md
-        repository: "thebidouilleur.xyz"
+        repository: "qjoly/thebidouilleur.xyz"
       if: github.event_name != 'pull_request'
       
     - name: Set up Docker Buildx
