@@ -74,14 +74,8 @@ On a commencé à aborder la prise de note de manière différente à la sortie 
 Et comme la tablette est sous Linux, je suis sûr que nous n'avons pas fini d'exploiter son potentiel en la bidouillant. 
 
 
-<details open>
-<summary>Post-scriptum</summary>
-<br>
-J'ai volontairement pas parlé du prix.. Désolé si ça en découragent certains :) 
-</details>
 
-
+:::note
 *(Attention, j'ai pas parlé du prix.. restez accroché si vous voulez vous l'acheter)*
-
-
+:::
 
