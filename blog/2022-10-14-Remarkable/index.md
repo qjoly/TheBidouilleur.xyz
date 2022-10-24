@@ -9,10 +9,6 @@ authors:
 tags: [quotidien]
 ---
 
-:::danger WIP!
-Cet article est encore en cours d’écriture ! 
-:::
-
 ## Introduction
 
 Récemment, j'ai suivi une formation de ~8 mois durant laquelle je n'avais qu'un clavier pour prendre des notes. Pour moi : aucun problème, je ne demande que ça : un support que j'utilise personnellement et professionnellement. 
