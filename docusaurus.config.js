@@ -38,7 +38,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           blogSidebarCount: 'ALL',
           // Please change this to your repo.
           editUrl:
-            'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/blog',
+            'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
