@@ -60,7 +60,7 @@ Si ça en intéressent certains, voici le [lien du GitHub avec le lien vers la d
 L'UI me permet d'uploader des PDF qui sont synchronisés dès que la tablette est sur le WiFi. Et je peux même envoyer des fichiers depuis mon propre smtp (chose impossible nativement).
 
 :::info Pour trouver, il faut chercher
-P'tite parenthèse sur l'(auteur (DDVK))[https://github.com/ddvk] du projet. 
+P'tite parenthèse sur l'auteur (DDVK) du projet. 
 Il publie régulièrement des programmes pour rendre sa tablette + performante, + ergonomique mais il est très peu actif sur les forums / reddit, je vous invite à lui laisser une étoile pour être informé de ses nouveaux projets.
 :::
 
