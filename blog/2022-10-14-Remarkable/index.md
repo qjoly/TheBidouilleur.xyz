@@ -77,6 +77,7 @@ Hate de voir une remarkable dans un cluster Kubernetes !
 :::caution Sécurité
 (Edit le 24/10) 
 Attention à ne rien stocker de confidentiel, la tablette n'est pas chiffrée ! Bien que les accès ne soient pas évident (Il faudrait démonter et dump la carte eMMC), il est possible de retrouver vos fichiers assez facilement. 
+Si le sujet vous interesse, voici un article qui en parle et porpose même une solution : https://blog.redteam-pentesting.de/2021/remarkable-encryption/
 :::
 
 :::note
