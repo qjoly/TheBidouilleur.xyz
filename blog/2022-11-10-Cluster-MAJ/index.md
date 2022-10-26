@@ -55,7 +55,7 @@ labels:
 
 Même si je ne m'en sers pas, j'ai eu une époque où j'utilisais Zabbix et où j'avais le besoin d'être notifié sur mon Zabbix. *(qui lui me notifiait par Mail/Gotify)*
 
-Papamica précise qu'il compte ajouter le support de registre privé *(pour le moment que le github registry ou dockerhub)* ainsi que d'autres supports de mise à jour. 
+Papamica précise qu'il compte ajouter le support de registre privé *(pour le moment que le github registry ou dockerhub)* ainsi que d'autres méthodes de notification.
 
 ## Solutions pour Swarm
 
