@@ -41,7 +41,7 @@ Et parmis ces méthodes, vous n'avez pas que des solutions propriétaires, libre
 
 WatchTower scannera les mises à jours de manière régulière *(configurable)*.
 
-### container-updater (de [@PAPAMICA](https://github.com/PAPAMICA)
+### container-updater (de [@PAPAMICA](https://github.com/PAPAMICA))
 
 La solution la plus fournie/complexe n'est pas toujours la meilleure. Papamica a mis en place un script bash répondant à ses besoins précis *(que beaucoup d'autres personnes doivent avoir)* : un système de mise à jour le notifiant par Discord et Zabbix. 
 
