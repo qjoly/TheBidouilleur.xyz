@@ -24,7 +24,7 @@ En relançant un de mes pods, je suis tombé sur une sale erreur:
 │ ess-wb5vg[]: timed out waiting for the condition       
 ```
 
-Ce volume *(géré par longhorn)* montre des traces de corruption et il semblene pas réussir à lancer fsck.
+Ce volume *(géré par longhorn)* montre des traces de corruption et il ne semble pas réussir à lancer fsck.
 Dans les étapes à faire : 
 - Se connecter sur le node hébergeant l'application
 - Lancer la commande suivante : 
@@ -36,3 +36,4 @@ fsck.ext4 -y /dev/longhorn/pvc-1a7be3fc-e477-454a-ae0e-c42e41ec53dd
 kubectl delete pods <pod> --grace-period=0 --force
 ```
 
+Une fois relancé, le pod démarre tranquillement. 
