@@ -1,6 +1,6 @@
 ---
-title: Réparer Longhorn volume  
-slug: k3s-terraform
+title: Réparer Longhorn Fsck
+slug: longhorn-fsck
 ---
 
 En relançant un de mes pods, je suis tombé sur une sale erreur: 
@@ -35,3 +35,4 @@ fsck.ext4 -y /dev/longhorn/pvc-1a7be3fc-e477-454a-ae0e-c42e41ec53dd
 ```bash
 kubectl delete pods <pod> --grace-period=0 --force
 ```
+
