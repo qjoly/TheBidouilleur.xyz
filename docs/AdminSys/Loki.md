@@ -109,7 +109,8 @@ Après seulement 2-3 minutes de configuration, notre Loki est déjà disponible 
 
 
 On peut dès maintenant l'ajouter en tant que *datasource* sur notre Grafana :
-!()[https://i.imgur.com/G3tWx1r.png]
+
+![](https://i.imgur.com/G3tWx1r.png)
 
 *(J'utilise localhost car la machine possédant le grafana héberge également le Loki)*
 
