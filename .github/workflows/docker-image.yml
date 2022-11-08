@@ -24,7 +24,16 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_TOKEN }}
       if: github.event_name != 'pull_request'
-
+      
+    - name: Dockerhub Readme
+      uses: ms-jpq/sync-dockerhub-readme@v1
+      with:
+        username: qjoly
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        readme: ./README.md
+        repository: "qjoly/thebidouilleur.xyz"
+      if: github.event_name != 'pull_request'
+      
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
        
@@ -61,6 +70,6 @@ jobs:
          platforms: linux/amd64
          push: false
          tags: qjoly/thebidouilleur.xyz
-      if: github.event_name == 'pull_request'    
+      if: github.event_name == 'pull_request'  
       
-      
+

@@ -7,7 +7,9 @@ metadata:
   annotations:
     #    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/hook: PostSync
-    #  namespace: default
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 3m"
 spec:
   selector:
     matchLabels:
