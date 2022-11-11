@@ -19,6 +19,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
 # Ignore DevSpace cache and log folder
 .devspace/
+
+# Ignore vscode's settings
+.vscode/settings.json
