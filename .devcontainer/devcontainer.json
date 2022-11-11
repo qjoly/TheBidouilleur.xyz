@@ -1,0 +1,14 @@
+{
+    "name": "TheBidouilleur.xyz codespace",
+    "extensions": [
+        "coenraads.bracket-pair-colorizer-2",
+        "cschleiden.vscode-github-actions",
+        "davidlday.languagetool-linter",
+        "rulyotano.tree-extended",
+        "DavidAnson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "piotrpalarz.vscode-gitignore-generator",
+        "visualstudioexptteam.vscodeintellicode"
+    ],
+    "dockerFile": "Dockerfile"
+}
