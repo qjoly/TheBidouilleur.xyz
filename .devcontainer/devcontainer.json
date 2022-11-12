@@ -9,6 +9,5 @@
         "yzhang.markdown-all-in-one",
         "piotrpalarz.vscode-gitignore-generator",
         "visualstudioexptteam.vscodeintellicode"
-    ],
-    "dockerFile": "Dockerfile"
+    ]
 }
