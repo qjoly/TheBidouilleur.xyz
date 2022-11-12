@@ -9,5 +9,10 @@
         "yzhang.markdown-all-in-one",
         "piotrpalarz.vscode-gitignore-generator",
         "visualstudioexptteam.vscodeintellicode"
-    ]
+    ],
+    "features": {
+       "ghcr.io/devcontainers/features/docker-in-docker:1": {
+            "version": "latest"
+        }
+    }
 }
