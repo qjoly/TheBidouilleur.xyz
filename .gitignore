@@ -23,4 +23,4 @@ yarn-error.log*
 .devspace/
 
 # Ignore vscode's settings
-.vscode/settings.json
+.vscode/
