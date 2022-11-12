@@ -5,7 +5,8 @@ title: Utilisation d'un registre privé
 Dès qu'on s'amuse avec des conteneurs et qu'on commence à créer les siens, il est nécessaire d'avoir son propre registre. *(Par simplicité, optimisation, efficacité)*
 ## Création du secret 
 ### En CLI
-Voici la commande `kubectl`  permettant de créer un secret contenant les informations requises pour se connecter à un registre privé. 
+Voici la commande `kubectl` permettant de créer un secret contenant les informations requises pour se connecter à un registre privé.
+
 ```bash
 NAMESPACE=thebidouilleur
 kubectl --namespace $NAMESPACE create secret docker-registry regcred --docker-server=https://registry.thebidouilleur.xyz --docker-username=admin --docker-password=admin --docker-email=kube@kube
@@ -13,11 +14,14 @@ kubectl --namespace $NAMESPACE create secret docker-registry regcred --docker-se
 
 ### En YAML
 Nous allons faire cet exemple avec les identifiants suivants: `user:pass`
-Il faudra convertir cette combinaison en **base64**. Je passe par mon terminal Linux pour réaliser cette conversion. 
+Il faudra convertir cette combinaison en **base64**. Je passe par mon terminal Linux pour réaliser cette conversion.
+
 ```bash
 echo -n "user:pass" | base64 # dXNlcjpwYXNz
 ```
-On va ensuite créer notre fichier de configuration en format **JSON** *(qui est le format accepté par docker pour le fichier *~/.docker/config*
+
+On va ensuite créer notre fichier de configuration en format **JSON** *(qui est le format accepté par docker pour le fichier `~/.docker/config`)*
+
 ```json
 {
 "auths": 
@@ -28,13 +32,16 @@ On va ensuite créer notre fichier de configuration en format **JSON** *(qui est
 	}
 }
 ```
-*Pensez à remplacer l'url du registre*. 
 
-Il faudra mettre notre json sur **une ligne** et l'encoder en **base64** pour créer notre manifest final. 
+*Pensez à remplacer l'url du registre*.
+Il faudra mettre notre JSON sur **une ligne** et l'encoder en **base64** pour créer notre manifest final.
+
 ```bash
 echo -n '{"auths":{"registry.thebidouilleur.xyz":{"auth":"dXNlcjpwYXNz"}}}' | base64 # eyJhdXRocyI6eyJyZWdpc3RyeS50aGViaWRvdWlsbGV1ci54eXoiOnsiYXV0aCI6ImRYTmxjanB3WVhOeiJ9fX0=
 ```
-On peut enfin créer notre yaml qu'on donnera à kubectl. 
+
+On peut enfin créer notre yaml qu'on donnera à kubectl.
+
 ```yaml
 apiVersion: v1 
 data: 
@@ -86,9 +93,3 @@ spec:
       imagePullSecrets:
       - name: regcred
 ```
-
-
-
-
-
-

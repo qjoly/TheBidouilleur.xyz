@@ -2,21 +2,25 @@
 title: Kubectl sur machine cliente
 ---
 
-Pour administrer votre cluster, vous pouvez vous connecter à une machine *"maitre" (avec le role **control-plane**)* et gérer votre cluster via l'utilitaire **kubectl**. 
-C'est une pratique qui fonctionne mais qui devient très vite limité lorsque l'on veut faire du tunneling vers un pods. 
+Pour administrer votre cluster, vous pouvez vous connecter à une machine *"maitre" (avec le rôle **control-plane**)* et gérer votre cluster via l'utilitaire **kubectl**.
+C'est une pratique qui fonctionne, mais qui devient très vite limité lorsque l'on veut faire du tunneling vers un pod.
 
-Exemple: 
+Exemple :
+
+```bash
   kubectl port-forward pod-vaultwarden 8080:80 # va faire un tunnel en utilisant le port 80 du conteneur vers le port 8080 local
+```
 
-Dans ce cas, si la commande *kubectl port-forward* est éxecuté sur un noeud du cluster, ça n'a que très peu d'interet *(puisque les noeuds ont directement accès aux pods)*. 
-C'est pour cela qu'on a besoin d'éxecuter cette commande *sur notre poste local* et non sur un noeud. 
+Dans ce cas, si la commande *kubectl port-forward* est exécuté sur un nœud du cluster, ça n'a que très peu d'intérêt*(puisque les nœuds ont directement accès aux pods)*.
+C'est pour cela qu'on a besoin d'exécuter cette commande *sur notre poste local* et non sur un nœud.
 
 ## Installation de Kubectl
 
 Vous trouverez la documentation officielle [ici](https://kubernetes.io/fr/docs/tasks/tools/install-kubectl/).
 
 ### Pour installer via le binaire (toutes distributions)
-Je recommande plutot de passer par les dépots officiels pour que kubectl soit rapide et facile à mettre à jour 
+
+Je recommande plutôt de passer par les dépôts officiels pour que kubectl soit rapide et facile à mettre à jour
 
 ```bash
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -37,24 +41,29 @@ sudo apt-get install -y kubectl
 
 ### Arch Linux
 
-Vous pouvez passer par la méthode via le binaire pour obtenir une version officielle. Sinon les dépots communautaires permettent d'obtenir une version à jour: 
+Vous pouvez passer par la méthode via le binaire pour obtenir une version officielle. Sinon les dépôts communautaires permettent d'obtenir une version à jour :
+
 ```bash
 pacman -S kubectl
 ```
+
 ### Nix
 
-Kubectl est présent sur les dépots officiels de Nix, vous pouvez créer une session temporaire avec nix-shell: 
+Kubectl est présent sur les dépôts officiels de Nix, vous pouvez créer une session temporaire avec nix-shell :
+
 ```bash
 nix-shell -p kubectl
 ```
+
 :::note Pas de sudo pour kubectl !
-Il ne nécéssite aucune permission particulière, manier cette commande avec votre utilisateur personnel.
+Il ne nécessite aucune permission particulière, manier cette commande avec votre utilisateur personnel.
 :::
 
 ## Récupérer le kube/config
 
-En vous connectant via ssh sur un des noeuds masters, vous pourrez visionner le fichier suivant **/root/.kube/config** qui contient les accès pour administrer le cluster complet. 
-En voici un exemple : 
+En vous connectant via ssh sur un des nœuds masters, vous pourrez visionner le fichier suivant **/root/.kube/config** qui contient les accès pour administrer le cluster complet. 
+En voici un exemple :
+
 ```yaml
 apiVersion: v1
 clusters:
@@ -77,16 +86,19 @@ users:
     client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUd6UUxqbWY2Q3NlZ3Bybk05ZXRTeGF0cnY4Q1RVZE5qNjdHSUpVM0o4YUhvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFdTNvWE5vM2xQTURod3BZNmdEcVpIWVN1MTZNejhTaEdma0J4a0NrN3J1Vll2eDZKOFUrUAplaHFUdDJkRDdoOENLUTRsNnV0REtxdnRIL0FKUytyZXlBPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
 ```
 
-Vous pourrez le télécharger et le placer ici : */home/$USER/.kube/config*. 
+Vous pourrez le télécharger et le placer ici : `/home/$USER/.kube/config`.
 
-Mais en lançant une quelconque commande avec *kubectl*, on obtient le message d'erreur suivant: 
-```
+Mais en lançant une quelconque commande avec *kubectl*, on obtient le message d'erreur suivant :
+
+```none
 [thebidouilleur@bertha ~]$ kubectl get nodes
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
 ```
-C'est à cause du fichier qui contient "127.0.0.1" par défaut. Il faudra donc éditer l'ip pour mettre celle du master. 
 
-Une fois éditer, la commande fonctionnera: 
+C'est à cause du fichier qui contient "127.0.0.1" par défaut. Il faudra donc éditer l'IP pour mettre celle du master.
+
+Une fois édité, la commande fonctionnera :
+
 ```bash
 [thebidouilleur@bertha ~]$ kubectl get nodes
 NAME              STATUS   ROLES                  AGE   VERSION

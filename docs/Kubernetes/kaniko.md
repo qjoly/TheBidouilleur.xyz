@@ -3,10 +3,11 @@ slug: kaniko
 title: Build une image docker sur un cluster kubernetes
 ---
 
-Pour build une image sur un cluster Kubernetes, j'ai trouvé la solution de [**Kaniko**](https://github.com/GoogleContainerTools/kaniko). 
-Il permet de lancer un build à partir d'un manifest yaml tout comme on aurait lancé un pod ou un déploiement. 
+Pour build une image sur un cluster Kubernetes, j'ai trouvé la solution de [**Kaniko**](https://github.com/GoogleContainerTools/kaniko).
+Il permet de lancer un build à partir d'un manifest YAML tout comme on aurait lancé un pod ou un déploiement.
 
-Voici le manifest à déployer pour créer ce blog
+Voici le manifest à déployer pour créer ce blog :
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -32,8 +33,10 @@ spec:
             path: config.json
 ```
 
+Pour push l’image, vous aurez surement besoin d’identifiants *(Dockerhub, ou registre exposé sur Internet)*, je vous invite à lire [cette page](registre-client) qui vous présentera comment utiliser un registre privé dans Kubernetes.
 
-secret: 
+Secret :
+
 ```bash
 kubectl create secret docker-registry reg-credentials --docker-server=https://index.docker.io/v1/ --docker-username=xx --docker-password=xxxx --docker-email=xx
 ```
