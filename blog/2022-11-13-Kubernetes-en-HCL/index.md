@@ -29,7 +29,7 @@ Et même si j’adore le YAML *(Vraiment, je veux pas retourner sur du JSON…)*
 
 C’est pourquoi le HCL peut potentiellement nous ouvrir des portes en proposant des intégrations à d’autres providers.
 
-### Un petit exemple en amuse-gueule
+### Un petit exemple en amuse-bouche
 
 #### Une configmap en YAML
 
@@ -4180,7 +4180,7 @@ Dans un bon écosystème, nous déployons via Helm *(outil de template YAML simi
 
 :::info Qu’est ce que Helm ?
 
-Helm est un outil de templating YAML similaire à Jinja2, on l’utilise dans les déploiements nécéssitant de nombreux fichiers YAML (service, deploy, pvc, scaler…)
+Helm est un outil de templating YAML similaire à Jinja2, on l’utilise dans les déploiements nécéssitant de nombreux fichiers YAML *(service, deploy, pvc, scaler…)*
 
 :::
 
