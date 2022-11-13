@@ -4218,7 +4218,7 @@ resource "helm_release" "redisexample" {
 
 ```
 
-<script id="asciicast-1IkT2YDIoMiqd9dhomn4mnmDM" src="https://asciinema.org/a/1IkT2YDIoMiqd9dhomn4mnmDM.js" async></script>
+[![asciicast](https://asciinema.org/a/1IkT2YDIoMiqd9dhomn4mnmDM.svg)](https://asciinema.org/a/1IkT2YDIoMiqd9dhomn4mnmDM)
 
 Dans ce cas là, je peux injecter les variables:
 
@@ -4232,7 +4232,7 @@ Comme dit dans l’introduction de cet article : la force de terraform vient de 
 Histoire de convaincre les flemmards, voici un projet Github permettant de **convertir ses fichiers YAML vers des fichiers Terraform**.
 Les fichiers générés n'ont besoin que d’un `provider.tf` avant de pouvoir être déployés.
 
-<a href="https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc" target="_blank"><img src="https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc.svg" /></a>
+[![asciicast](https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc.svg)](https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc)
 
 ## Conclusion
 
