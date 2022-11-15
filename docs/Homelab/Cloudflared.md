@@ -23,6 +23,7 @@ En temps normal, voici ce qu'il se passe :
 
 Avantages:
 - Facile à faire
+  
 Inconvenients:
 - Mon IP est visible de tous
 - Difficultées si IP changeante 
@@ -33,6 +34,7 @@ Et voici comment fonctionne un site avec un tunnel Cloudflared.
 Avantages: 
 - Mon IP est cachée
 - Système de cache (économie de bande passante)
+
 Inconvenients: 
 - Cloudflare n'est pas forcement fiable
 - Complexe
