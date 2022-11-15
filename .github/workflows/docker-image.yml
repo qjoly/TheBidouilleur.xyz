@@ -72,4 +72,9 @@ jobs:
          tags: qjoly/thebidouilleur.xyz
       if: github.event_name == 'pull_request'  
       
-
+    - name: ntfy_action
+      uses: NiNiyas/ntfy-action@v1.0.1
+      with:
+        title: "CI $GITHUB_REPOSITORY terminé"
+        url: https://ntfy.thoughtless.eu
+        topic: github_cicd
