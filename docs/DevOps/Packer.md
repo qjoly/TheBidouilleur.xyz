@@ -1,12 +1,6 @@
 ---
 slug: packer-alpine
 title: Introduction à Packer.
-authors:
-  name: TheBidouilleur
-  title: Adorateur de trucs merdiques
-  url: https://git.thoughtless.eu
-  image_url: https://git.thoughtless.eu/avatars/05bed00fb8cb64b8e3b222f797bcd3d8
-tags: [Packer, Proxmox]
 ---
 
 # Introduction
@@ -204,10 +198,8 @@ for f in ssh/*.pub; do
 done
 
 packer build alpine-3-amd64-proxmox.json
-``` 
+```
 
 ce fichier va donner les paramètres essentiels à Packer. Les premières variables sont les identifiants pour se connecter à proxmox
 
 **si vous n'utilisez pas vault, n'hésitez pas à remplacer les commandes le concernant par le contenu des variables.**
-
-

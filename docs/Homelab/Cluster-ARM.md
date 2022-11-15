@@ -1,3 +1,8 @@
+---
+slug: cluster-arm
+title: Création d’un cluster ARM
+---
+
 Après avoir fait *mumuse* avec mon Dell R610 qui consomme 120W au repos, je me suis toujours posé la question de la consommation en électricité de mes appareils. Je m'interesse donc à un Homelab qui pourrait être le plus économe possible en énergie. 
 
 Et la solution : pas besoin de la chercher bien loin ! 
@@ -31,3 +36,10 @@ Et pour répondre à cette problématique, je m’intéresse de plus en plus aux
 
 Comme on dit en cuisine : *l'intérieur est aussi important que l'extérieur*
 Je recycle une vieille ampli Marshall pour y mettre les différentes machines au même endroit, ça permettra de pouvoir déplacer le cluster facilement (et de le soulever pour le ménage)
+
+
+:::danger Article en cours de rédaction
+
+Cette page est toujours en écriture.
+
+:::
