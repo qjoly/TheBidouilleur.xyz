@@ -54,11 +54,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       metadata: [{
         name: 'twitter:card', content: 'summary'
       }],
+      defaultMode: 'dark',
+      
       navbar: {
         title: 'TheBidouilleur',
-        defaultMode: 'dark',
-
-        
         logo: {
           alt: 'TheBidouilleur',
           src: 'img/BMO.svg',
