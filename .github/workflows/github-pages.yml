@@ -15,9 +15,17 @@ jobs:
         with:
           node-version: 18
           cache: yarn
+          
+      - name: Search and Replace
+        uses: jafin/gha-search-replace@0.1.0-alpha
+        with:
+          include: ./docusaurus.config.js
+          search: "baseUrl: '/',"
+          replace: "baseUrl: '/TheBidouilleur.xyz/'"
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        
       - name: Build website
         run: yarn build
 
