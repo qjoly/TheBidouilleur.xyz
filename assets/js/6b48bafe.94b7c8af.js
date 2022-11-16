@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[2684],{9789:e=>{e.exports=JSON.parse('{"label":"quotidien","permalink":"/blog/tags/quotidien","allTagsPath":"/blog/tags","count":1}')}}]);

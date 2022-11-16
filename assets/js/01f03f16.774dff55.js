@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[4459],{9913:e=>{e.exports=JSON.parse('{"label":"NixOS","permalink":"/TheBidouilleur.xyz/blog/tags/nix-os","allTagsPath":"/TheBidouilleur.xyz/blog/tags","count":1}')}}]);

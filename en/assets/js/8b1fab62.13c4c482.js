@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[6623],{9817:e=>{e.exports=JSON.parse('{"label":"proxmox","permalink":"/en/blog/tags/proxmox","allTagsPath":"/en/blog/tags","count":1}')}}]);

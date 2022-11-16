@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9431],{2879:e=>{e.exports=JSON.parse('{"label":"quotidien","permalink":"/TheBidouilleur.xyz/en/blog/tags/quotidien","allTagsPath":"/TheBidouilleur.xyz/en/blog/tags","count":1}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3121],{8883:e=>{e.exports=JSON.parse('{"permalink":"/TheBidouilleur.xyz/en/blog/tags/gyroroue","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

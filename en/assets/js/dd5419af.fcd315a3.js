@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[2218],{6534:e=>{e.exports=JSON.parse('{"permalink":"/TheBidouilleur.xyz/en/blog/tags/devops","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

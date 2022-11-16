@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[441],{2554:e=>{e.exports=JSON.parse('{"label":"NixOS","permalink":"/blog/tags/nix-os","allTagsPath":"/blog/tags","count":1}')}}]);
