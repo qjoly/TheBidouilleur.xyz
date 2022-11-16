@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[350],{6671:e=>{e.exports=JSON.parse('{"label":"vie quotidienne","permalink":"/en/blog/tags/vie-quotidienne","allTagsPath":"/en/blog/tags","count":1}')}}]);
