@@ -50,9 +50,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-
         navbar: {
         title: 'TheBidouilleur',
+        image: '/img/BMO.png',
+        defaultMode: 'dark',
+        metadata: [{
+          name: 'twitter:card', content: 'summary'
+        }],
+        
         logo: {
           alt: 'TheBidouilleur',
           src: 'img/BMO.svg',
