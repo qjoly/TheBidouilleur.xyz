@@ -1,6 +1,6 @@
 ---
 slug: kubernetes-hcl
-title: Kubernetes en HCL
+title: Kubernetes in HCL
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
@@ -8,32 +8,31 @@ authors:
   image_url: https://git.thoughtless.eu/avatars/05bed00fb8cb64b8e3b222f797bcd3d8
 tags: [terraform, kubernetes]
 ---
-## Introduction
 
-On parle beaucoup de Terraform comme étant *”la télécommande”* du DevOps, celui-ci possède des chiffres assez conséquents : 2626 providers et 11397 modules.
+Terraform is often referred to as the "remote control" of DevOps, and it has some pretty big numbers: 2626 providers and 11397 modules.
 
-:::note Un providers ?
-Un module est une intégration de Terraform avec un outil externe. On peut lancer un playbook, créer une instance sous AWS, ou même envoyer un message sur Slack.
+:::note A provider?
+A module is an integration of Terraform with an external tool. You can launch a playbook, create an instance on AWS, or even send a message on Slack.
 :::
 
-J’utilise activement Terraform dans mes déploiements *(création et/ou peuplement d’une VM sous Proxmox/LibVirt)*, mais depuis que mon infrastructure est basée sous Kubernetes, je me demande de la place que Terraform dans mes déploiements. *(Hors première installation du cluster)*
+I actively use Terraform in my deployments *(creating and/or populating a VM under Proxmox/LibVirt)*, but since my infrastructure is based on Kubernetes, I wonder about the place that Terraform in my deployments. *(Excluding the first cluster installation)*
 
-Je me suis donc intéressé à Terraform et Kubernetes ensembles.
+So I've been looking at Terraform and Kubernetes together.
 
-## Les avantages de Kubernetes et Terraform ?
+## The advantages of Kubernetes and Terraform?
 
-> Kubernetes fonctionne bien sans Terraform, pourquoi commencer à rajouter des outils dans l’équation ?
+> Kubernetes works fine without Terraform, why start adding tools to the equation?
 
-Kubernetes souffre d’un grand mal : le YAML.
-Et même si j’adore le YAML *(Vraiment, je veux pas retourner sur du JSON…)* : celui-ci reste un simple format et non un réel langage de programmation.
+Kubernetes suffers from a great evil: YAML.
+And even if I love YAML *(Really, I don't want to go back to JSON...)*: it remains a simple format and not a real programming language.
 
-C’est pourquoi le HCL peut potentiellement nous ouvrir des portes en proposant des intégrations à d’autres providers.
+That's why HCL can potentially open doors for us by offering integrations to other providers.
 
-### Un petit exemple en amuse-bouche
+### A small example as an appetizer
 
-#### Une configmap en YAML
+#### A YAML configmap
 
-Si jamais je souhaite créer une configmap contenant un YAML pour une application. Voici le fichier que je souhaite stocker :
+If I ever want to create a configmap containing a YAML for an application. Here is the file I want to store:
 
 ```ini
 twitter=thebidouilleur
@@ -42,7 +41,7 @@ favorite.meal=rougail
 vehicule=electricunicycle
 ```
 
-On peut créer notre fichier YAML avec la bonne entête, et indenter le contenu de notre fichier pour que YAML le reconnaisse comme un block de texte.
+We can create our YAML file with the right header, and indent the content of our file so that YAML recognizes it as a text block.
 
 ```yml
 apiVersion: v1
@@ -58,10 +57,10 @@ data:
     vehicule=electricunicycle
 ```
 
-Facile, non?
+Easy, isn't it?
 
 <details>
-  <summary>Et maintenant on tente la même chose avec ce fichier ?</summary>
+  <summary>And now we try the same thing with this file?</summary>
 
 ```json
 {
@@ -4152,12 +4151,11 @@ Facile, non?
 }
 ```
 </details>
+This is obviously not impossible, but it makes for a rather **unreadable** and difficult to maintain.
 
-Ce n’est évidemment pas impossible, mais cela donne un fichier assez **ilisible** et complexe à maintenir.
+#### A configmap in HCL
 
-#### Une configmap en HCL
-
-Maintenant.. l’avantage de Terraform est de pouvoir **séparer** le manifest des données.
+Now... the advantage of Terraform is to be able to **separate** the manifest from the data.
 
 ```hcl
 resource "kubernetes_config_map" "data_user" {
@@ -4172,19 +4170,19 @@ resource "kubernetes_config_map" "data_user" {
 }
 ```
 
-Le HCL n'a rien à envier du YAML de Kubernetes.
+The HCL is no match for Kubernetes' YAML.
 
-## Et concernant un déploiement ?
+## What about a deployment?
 
-Dans un bon écosystème, nous déployons via Helm, voyons comment Hashicorp nous présente ça.
+In a good ecosystem, we deploy via Helm, let's see how Hashicorp presents it.
 
-:::info Qu’est ce que Helm ?
+:::info What is Helm?
 
-Helm est un outil de templating YAML similaire à Jinja2, on l’utilise dans les déploiements nécéssitant de nombreux fichiers YAML *(service, deploy, pvc, scaler…)*
+Helm is a YAML templating tool similar to Jinja2, it is used in deployments requiring many YAML files *(service, deploy, pvc, scaling...)*
 
 :::
 
-Hashicorp propose également un module **Helm** :
+Hashicorp also offers a **Helm** module:
 
 ```terraform
 variable "if_clusterenabled" {
@@ -4220,28 +4218,28 @@ resource "helm_release" "redisexample" {
 
 [![asciicast](https://asciinema.org/a/1IkT2YDIoMiqd9dhomn4mnmDM.svg)](https://asciinema.org/a/1IkT2YDIoMiqd9dhomn4mnmDM)
 
-Dans ce cas là, je peux injecter les variables:
+In this case, I can inject the variables:
 
-- provenants du fichier `values.yaml`
-- présentes dans le fichier terraform
+- from the `values.yaml` file
+- file, which are present in the terraform file
 
-Comme dit dans l’introduction de cet article : la force de terraform vient de ses providers, il est donc possible de récupérer des variables depuis un serveur Vault, un bitwarden, ou même un KeePass.
+As said in the introduction of this article: the strength of terraform comes from its providers, so it is possible to get variables from a Vault server, a bitwarden, or even a KeePass.
 
-## k2tf - Migrer ses yaml vers Terraform
+## k2tf - Migrating yaml to Terraform
 
-Histoire de convaincre les flemmards, voici un projet Github permettant de **convertir ses fichiers YAML vers des fichiers Terraform**.
-Les fichiers générés n'ont besoin que d’un `provider.tf` avant de pouvoir être déployés.
+To convince the lazy ones, here is a Github project to **convert your YAML files to Terraform files**.
+The generated files only need a `provider.tf` before they can be deployed.
 
 [![asciicast](https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc.svg)](https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc)
 
 ## Conclusion
 
-Le HCL apporte de nombreux avantages dans l’administration d'un cluster Kubernetes. En intégrant les modules Terraform,on se soustrait d’une configuration statique sans alourdir le cluster. *(par exemple,l’usage des initPods qui peuvent être utilisés pour récupérer du contenu stocké ailleurs alors que Terraform peut le faire durant le déploiement)*. J’ai hâte de voir comment Terraform et Kubernetes fonctionneront à l’avenir, et quelles intégrations seront possibles.
+The HCL brings many advantages to the administration of a Kubernetes cluster. By integrating Terraform modules, we avoid a static configuration without weighing down the cluster. *(for example, the use of initPods that can be used to retrieve content stored elsewhere while Terraform can do it during deployment)*. I look forward to seeing how Terraform and Kubernetes work in the future, and what integrations will be possible.
 
 :::caution Pulumi?
 
-Mais pour vous ouvrir d’autres possibilités et vous débarasser d'un DSL, il existe un outil bien pratique nommé Pulumi qui permet de faire les mêmes choses que Terraform depuis un réel langage de programmation comme le Python, le Go, le Java etc…
+But to open up other possibilities and get rid of a DSL, there is a handy tool called Pulumi that allows you to do the same things as Terraform using a real programming language like Python, Go, Java etc...
 
 :::
 
-Merci de votre lecture!
+Thanks for reading!
