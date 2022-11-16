@@ -20,8 +20,8 @@ jobs:
         uses: jafin/gha-search-replace@0.1.0-alpha
         with:
           include: ./docusaurus.config.js
-          search: "baseUrl: '/',"
-          replace: "baseUrl: '/TheBidouilleur.xyz/'"
+          search: "'/'"
+          replace: "'/TheBidouilleur.xyz/'"
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
