@@ -1,3 +1,7 @@
+---
+title: Build Docker multi-architecture
+slug: MultiArch Build
+---
 # MultiArch Build
 Installation de mini-émulateur pour les autres architectures:
 ```bash
