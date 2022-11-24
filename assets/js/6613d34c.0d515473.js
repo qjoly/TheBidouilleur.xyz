@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7462],{3203:e=>{e.exports=JSON.parse('{"label":"kubernetes","permalink":"/TheBidouilleur.xyz/blog/tags/kubernetes","allTagsPath":"/TheBidouilleur.xyz/blog/tags","count":4}')}}]);

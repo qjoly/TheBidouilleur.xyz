@@ -69,18 +69,6 @@ Si le sujet vous interesse, voici un article qui en parle et porpose même une s
         <category label="quotidien" term="quotidien"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Programmer sous Devspace]]></title>
-        <id>devspace</id>
-        <link href="https://thebidouilleur.xyz/TheBidouilleur.xyz/blog/devspace"/>
-        <updated>2022-10-13T00:00:00.000Z</updated>
-        <author>
-            <name>TheBidouilleur</name>
-            <uri>https://git.thoughtless.eu</uri>
-        </author>
-        <category label="kubernetes" term="kubernetes"/>
-        <category label="devspace" term="devspace"/>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[NixOS, Ma nouvelle distribution]]></title>
         <id>nixos</id>
         <link href="https://thebidouilleur.xyz/TheBidouilleur.xyz/blog/nixos"/>

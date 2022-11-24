@@ -58,14 +58,6 @@ Si le sujet vous interesse, voici un article qui en parle et porpose même une s
             <category>quotidien</category>
         </item>
         <item>
-            <title><![CDATA[Programmer sous Devspace]]></title>
-            <link>https://thebidouilleur.xyz/TheBidouilleur.xyz/blog/devspace</link>
-            <guid>devspace</guid>
-            <pubDate>Thu, 13 Oct 2022 00:00:00 GMT</pubDate>
-            <category>kubernetes</category>
-            <category>devspace</category>
-        </item>
-        <item>
             <title><![CDATA[NixOS, Ma nouvelle distribution]]></title>
             <link>https://thebidouilleur.xyz/TheBidouilleur.xyz/blog/nixos</link>
             <guid>nixos</guid>
