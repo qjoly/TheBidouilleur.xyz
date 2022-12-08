@@ -16,7 +16,7 @@ On parle beaucoup de Terraform comme étant *”la télécommande”* du DevOps,
 Un module est une intégration de Terraform avec un outil externe. On peut lancer un playbook, créer une instance sous AWS, ou même envoyer un message sur Slack.
 :::
 
-J’utilise activement Terraform dans mes déploiements *(création et/ou peuplement d’une VM sous Proxmox/LibVirt)*, mais depuis que mon infrastructure est basée sous Kubernetes, je me demande de la place que Terraform dans mes déploiements. *(Hors première installation du cluster)*
+J’utilise activement Terraform dans mes déploiements *(création et/ou peuplement d’une VM sous Proxmox/LibVirt)*, mais depuis que mon infrastructure est basée sous Kubernetes, je me demande de la place que Terraform occupe dans mes déploiements. *(Hors première installation du cluster)*
 
 Je me suis donc intéressé à Terraform et Kubernetes ensembles.
 
