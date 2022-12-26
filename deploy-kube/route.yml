@@ -18,13 +18,7 @@ spec:
     services:
     - name: srvc-thebidouilleur
       port: 80
-      
-  - match: Host(`thebidouilleur.is-a.dev`)
-    kind: Rule
-    services:
-    - name: srvc-thebidouilleur
-      port: 80     
-      
+
   tls:
     certResolver: letsencrypt 
 
