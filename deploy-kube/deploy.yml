@@ -6,7 +6,6 @@ metadata:
     version: 4.3.4
   annotations:
     #    argocd.argoproj.io/sync-wave: "2"
-    argocd.argoproj.io/hook: PostSync
     keel.sh/policy: force
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 3m"
