@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[208],{8509:e=>{e.exports=JSON.parse('{"permalink":"/TheBidouilleur.xyz/en/blog/tags/helm","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
