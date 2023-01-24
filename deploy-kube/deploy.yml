@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: thebidouilleur
-        image: qjoly/thebidouilleur.xyz:latest
+        image: qjoly/thebidouilleurxyz:latest
         imagePullPolicy: Always
         env:
         - name: RUN_MODE

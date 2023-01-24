@@ -5,7 +5,7 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
-    image: qjoly/thebidouilleur
+    image: qjoly/thebidouilleurxyz
     container_name: thebidouilleur 
     ports:
       - 8080:80
