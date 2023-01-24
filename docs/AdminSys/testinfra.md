@@ -1,11 +1,7 @@
 ---
-title: Création de tests unitaires système
+title: Vérification configuration système (testinfra)
 slug: testinfra
 ---
-
-:::warning En cours d'écriture
-Attention, cette page n'est pas encore complète. 
-:::
 
 
 ## Qu'est ce qu'un test unitaire ? 
@@ -49,7 +45,7 @@ def test_passwd_file(host):
     assert passwd.group == "root"
     assert passwd.mode == 0o644 
 ```
-L'objet "host" renvoie à la machine testée. Nous vérifions que le fichier "/etc/passwd" contient bien "root", que son utilisateur/groupe propriétaires soit bien "root", et qu'il ait bien les permissions (octales) 0o644.
+L'objet "host" renvoie à la machine testée. Nous vérifions que le fichier `/etc/passwd` contient bien `root`, que son utilisateur/groupe propriétaires soit bien "root", et qu'il ait bien les permissions *(octales)* 0o644.
 
 Si on lance ce premier fichier via `py.test`, voici le résultat : 
 ```
@@ -108,6 +104,12 @@ Nous obtenons bel et bien notre erreur, et son détail (la condition renvoyée e
 
 à partir de cette base, nous pouvons tester de nombreux éléments comme les fichiers, les interfaces, les packages installés et bien d'autres.
 
+:::tip Tips: Utiliser les workers
+
+Il est possible de lancer les tests à partir de workers *(Et donc lancer plusieurs taches en une seule fois)*. 
+Il suffit d'ajouter `-n auto` *(ou remplacer auto par le nombre de workers)*. 
+
+:::
 
 [Vous pourrez retrouver la liste des modules disponibles ici](https://testinfra.readthedocs.io/en/latest/modules.html)
 
@@ -115,9 +117,9 @@ Nous obtenons bel et bien notre erreur, et son détail (la condition renvoyée e
 
 Tester notre propre machine est plutot utile, mais qu'en est-il de tester un serveur accessible par ssh ? 
 
-Pour cela il suffit de surcharger la variable "testinfra_hosts": 
+Pour cela il suffit de surcharger la variable *testinfra_hosts*: 
 ```python
-testinfra_hosts = ["127.0.0.1", "192.168.1.2", "192.168.1.3"]
+testinfra_hosts = ["root@127.0.0.1", "user@192.168.1.2", "192.168.1.3"]
 
 def test_passwd_file(host):
     passwd = host.file("/etc/passwd")
@@ -127,8 +129,26 @@ def test_passwd_file(host):
     assert passwd.mode == 0o644    
 ```
 
-Il faut bien sûr avoir un accès sans mot de passe pour que le test fonctionne. (Un peu comme Ansible) 
+Il faut bien sûr avoir un accès sans mot de passe pour que le test fonctionne. *(Un peu comme Ansible)*
 
+## Lancer le test depuis un code python
 
+Je n'apprécie que très peu le fait de lancer `py.test` sans pouvoir rebondir sur le résultat dans un Python.
 
+```python
+import pytest
+pytest.main(["-v", "--tb=native", "-rN", "-n", "auto"]) 
+```
+
+Et si on souhaite rebondir sur le résultat du test : 
+
+```python
+import pytest
+result = pytest.main(["-v", "--tb=native", "-rN", "-n", "auto"]) 
+
+if result.name == "OK":
+    print("Le test est fonctionnel")
+else:
+    print("Il y a une erreur dans le test")
+```
 
