@@ -152,3 +152,5 @@ else:
     print("Il y a une erreur dans le test")
 ```
 
+Pour l'instant, mon usage de testinfra s'arrète à ça. Je n'ai pas détaillé les fonctionnements des modules *(socket, file, docker etc..)* puisque la documentation est bien complète. 
+
