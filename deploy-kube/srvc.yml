@@ -11,5 +11,6 @@ spec:
     - name: src-thebidouilleur
       protocol: TCP
       port: 80
+      hostPort: 8080
       targetPort: 80
 

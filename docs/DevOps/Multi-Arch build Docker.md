@@ -2,8 +2,11 @@
 title: Build Docker multi-architecture
 slug: MultiArch Build
 ---
-# MultiArch Build
-Installation de mini-émulateur pour les autres architectures:
+
+J’utilise beaucoup Docker sur mes raspberry pi 4. L’inconvénient est que les images ne sont pas toujours compatibles avec une architecture ARM.
+Nous allons donc voir comment build des images ARM sous une machine Amd64.
+
+Installation de mini-émulateur pour les autres architectures :
 ```bash
  docker run --privileged --rm tonistiigi/binfmt --install all
 ```

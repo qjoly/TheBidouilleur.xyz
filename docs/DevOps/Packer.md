@@ -5,36 +5,37 @@ title: Introduction à Packer.
 
 # Introduction
 
-Bientot 7 ans que mon infra principale est sous *Proxmox*. C'est l'hyperviseur dans lequel j'ai le plus confiance, et qui est également **gratuit**. Dès que je dois déployer plus de 2 machines virtuelles et qu eje peux choisir l'environnement : Proxmox sera mon premier choix. 
-Il propose une webui complète et efficace, sans oublier l'avantage des outils en cli. 
-Je n'exclue pas qu'un jour, je puisse changer d'environnement. Et aujourd'hui, j'ai de nouveaux besoins dans mon hyperviseur : Automatiser un déploiement complet de mon infrastructure, et comme je vais pas réinstaller **chaque** machine individuellement, je dois partir d'une "*base*" qui servira de *template* pour que le système des machines soit pré-configuré comme je le souhaite. 
-Et cette fameuse template, je peux la faire à la main.... ou je peux la déployer automatiquement via **__Packer__** ! 
+Bientôt 7 ans que mon infra principale est sous *Proxmox*. C’est l’hyperviseur dans lequel j’ai le plus confiance, et qui est également **gratuit**. Dès que je dois déployer plus de 2 machines virtuelles et que j’ai le choix de l’environnement : Proxmox sera mon premier choix. 
 
-# Qu'est ce que Packer?
-Packer est un outil développé par *hashicorp (une entreprise qui fourni des programmes open-sources dans l'univers du devops)* promettant de déployer une machine virtuelle de template de manière automatique. 
+Il propose une webui complète et efficace, sans oublier l’avantage des outils en cli. 
+Je n’exclus pas qu’un jour, je puisse changer d’environnement. Et aujourd’hui, j’ai de nouveaux besoins dans mon hyperviseur : Automatiser un déploiement complet de mon infrastructure, et comme je ne vais pas réinstaller **chaque** machine individuellement, je dois partir d’une ”*base*” qui servira de *template* pour que le système des machines soit pré-configuré comme je le souhaite. 
+Et cette fameuse template, je peux la faire à la main…. Ou je peux la déployer automatiquement via **__Packer__** ! 
 
-Dans un cas pratique, Packer va se connecter à votre cloud-publique*(aws, oracle, scaleway)* / hyperviseur*(proxmox, qemu, esxi)* pour envoyer les instructions permettant d'installer la machine virtuelle 
+# Qu’est ce que Packer?
+Packer est un outil développé par *hashicorp (une entreprise qui fourni des programmes open-sources dans l’univers du devops)* promettant de déployer une machine virtuelle de template de manière automatique. 
+
+Dans un cas pratique, Packer va se connecter à votre cloud-publique*(aws, oracle, scaleway)* / hyperviseur*(proxmox, qemu, esxi)* pour envoyer les instructions permettant d’installer la machine virtuelle 
 
 Dans mon cas, je me suis amusé à déployer des templates Alpine et debian sous Qemu et Proxmox.
 
 # Comment fonctionne Packer ?
-Packer possède peu de dépendances, il a besoin d'un hyperviseur/cloud publique, d'un accès à "l'écran" de la machine virtuelle, et d'un accès *ssh* pour que Packer vérifie que l'installation s'est bien terminée (et également pour lancer un outil de gestion de config comme **ansible**. 
+Packer possède peu de dépendances, il a besoin d’un hyperviseur/cloud publique, d’un accès à “l’écran” de la machine virtuelle, et d’un accès *ssh* pour que Packer vérifie que l’installation s’est bien terminée (et également pour lancer un outil de gestion de config comme **ansible**. 
 
 ## Un peu de vocabulaire
-On appelle *Builder* l'endroit où Packer déploie la VM, dans mon cas : c'est Proxmox ! Et le terme *provisionner* désigne l'outil qui va finir la configuration de la VM après Packer (*Ex: Ansible*).
+On appelle *Builder* l’endroit où Packer déploie la VM, dans mon cas : c’est Proxmox ! Et le terme *provisionner* désigne l’outil qui va finir la configuration de la VM après Packer (*Ex: Ansible*).
 
 # Créer notre première template
 
-Avant de s'attaquer à un gros poisson comme **debian**, on va commencer par un système plus simple à installer : **Alpine**. 
-L'installateur de Alpine va poser une dizaine de questions, une à une. 
-Il existe un système de *fichier-réponse* qui va répondre automatiquement aux questions mais je n'ai pas réussi à executer ce fichier sous alpine. (Uniquement sous Alpine, le fichier réponse fonctionne sous debian).
+Avant de s’attaquer à un gros poisson comme **debian**, on va commencer par un système plus simple à installer : **Alpine**. 
+L’installateur de Alpine va poser une dizaine de questions, une à une. 
+Il existe un système de *fichier-réponse* qui va répondre automatiquement aux questions mais je n’ai pas réussi à executer ce fichier sous alpine. (Uniquement sous Alpine, le fichier réponse fonctionne sous debian).
 
-*Si le sujet vous interesse, je vous renvoie vers ce lien: [Wiki Alpine Answer-file](https://docs.alpinelinux.org/user-handbook/0.1a/Installing/setup_alpine.html).*
+*Si le sujet vous intéresse, je vous renvoie vers ce lien: [Wiki Alpine Answer-file](https://docs.alpinelinux.org/user-handbook/0.1a/Installing/setup_alpine.html).*
 
 Comme je ne peux pas utiliser de fichier réponse : nous allons répondre aux questions manuellement.
 
 :::info Retrouvez le code source
-Dans la suite de cet article, je vais présenter le fonction de ce dépot : [packer-alpine-proxmox](https://git.thoughtless.eu/Cinabre/packer-alpine-proxmox).
+Dans la suite de cet article, je vais présenter la fonction de ce dépot : [packer-alpine-proxmox](https://git.thoughtless.eu/Cinabre/packer-alpine-proxmox).
 :::
 Voici mon fichier Packer répondant aux questions: 
 ```
@@ -157,20 +158,20 @@ Voici mon fichier Packer répondant aux questions:
 ```
 
 Nous allons rapidement décortiquer la structure de ce Packer : 
-- la partie "*Variable*" concerne les variables statiques et/ou variables d'environnements *(On va voir ça un peu plus tard)* 
-- *Provisionner* designe la commande que l'on va lancer **après** la création de la template 
-- et ce qui concerne la template elle-même (paramètres, hyperviseurs...) est dans la partie *builder* 
+- la partie ”*Variable*” concerne les variables statiques et/ou variables d’environnements *(On va voir ça un peu plus tard)* 
+- *Provisionner* designe la commande que l’on va lancer **après** la création de la template 
+- et ce qui concerne la template elle-même (paramètres, hyperviseurs…) est dans la partie *builder* 
 
 et la partie *boot_command* dans *Builder* est la liste de **toutes** les entrées au clavier que Packer va taper, On y place souvent le téléchargement du Preseed de Packer vers la VM. 
 
-**petite explication sur le transfert de fichier de packer vers la template :** Packer, à son lancement, va créer un serveur web avec le contenu du dossier *http/*, si on y place des fichiers à l'interieur, on peut dire à packer de taper la commande suivante pour récupérer des fichiers. (Ex: Preseed, clés ssh etc..)
+**petite explication sur le transfert de fichier de packer vers la template :** Packer, à son lancement, va créer un serveur web avec le contenu du dossier *http/*, si on y place des fichiers à l’interieur, on peut dire à packer de taper la commande suivante pour récupérer des fichiers. (Ex: Preseed, clés ssh etc..)
 ```bash
 curl  http://{{ .HTTPIP }}:{{ .HTTPPort }}/fichier
 ```
 
-Ainsi, dans cette installation d'Alpine, je vais répondre une à une aux questions, avec des timer pré-configurés (qui se comptent en seconde).
-Et à la fin de l'installation, nous lançons le playbook **provisionning** qui me permet d'installer les dépendances utiles à mes VMs. 
-Il n'est pas necessaire d'aller très loin dans le playbook : ça reste une template. 
+Ainsi, dans cette installation d’Alpine, je vais répondre une à une aux questions, avec des timer pré-configurés (qui se comptent en seconde).
+Et à la fin de l’installation, nous lançons le playbook **provisionning** qui me permet d’installer les dépendances utiles à mes VMs. 
+Il n’est pas necessaire d’aller très loin dans le playbook : ça reste une template. 
 
 ## Build.sh, Vault, et la création de authorized_keys
 
@@ -202,4 +203,4 @@ packer build alpine-3-amd64-proxmox.json
 
 ce fichier va donner les paramètres essentiels à Packer. Les premières variables sont les identifiants pour se connecter à proxmox
 
-**si vous n'utilisez pas vault, n'hésitez pas à remplacer les commandes le concernant par le contenu des variables.**
+**si vous n’utilisez pas vault, n’hésitez pas à remplacer les commandes le concernant par le contenu des variables.**
