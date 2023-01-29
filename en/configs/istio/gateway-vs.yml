@@ -1,0 +1,42 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: thebidouilleur 
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      name: http
+      number: 80
+      protocol: HTTP
+    hosts:
+    - "istio.thebidouilleur.xyz"
+  - port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: thebidouilleur-tls
+    hosts:
+    - "istio.thebidouilleur.xyz"
+
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: my-virtual-service
+spec:
+  hosts:
+  - "istio.thebidouilleur.xyz"
+  gateways:
+  - thebidouilleur
+  http:
+  - route:
+    - destination:
+        host: srvc-thebidouilleur 
+        port:
+          number: 80
+
