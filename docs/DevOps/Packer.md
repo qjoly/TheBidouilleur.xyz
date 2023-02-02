@@ -1,6 +1,6 @@
 ---
 slug: packer-alpine
-title: Introduction à Packer.
+title: Introduction à Packer
 ---
 
 # Introduction
@@ -14,7 +14,7 @@ Et cette fameuse template, je peux la faire à la main…. Ou je peux la déploy
 # Qu’est ce que Packer?
 Packer est un outil développé par *hashicorp (une entreprise qui fourni des programmes open-sources dans l’univers du devops)* promettant de déployer une machine virtuelle de template de manière automatique. 
 
-Dans un cas pratique, Packer va se connecter à votre cloud-publique*(aws, oracle, scaleway)* / hyperviseur*(proxmox, qemu, esxi)* pour envoyer les instructions permettant d’installer la machine virtuelle 
+Dans un cas pratique, Packer va se connecter à votre cloud-publique *(aws, oracle, scaleway)* / hyperviseur *(proxmox, qemu, esxi)* pour envoyer les instructions permettant d’installer la machine virtuelle 
 
 Dans mon cas, je me suis amusé à déployer des templates Alpine et debian sous Qemu et Proxmox.
 
