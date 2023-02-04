@@ -63,4 +63,4 @@ jobs:
 
     - uses: rickstaa/action-create-tag@v1
       with:
-         tag: ${{ github.ref }}
+         tag: ${{github.sha}}
