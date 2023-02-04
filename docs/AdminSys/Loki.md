@@ -1,5 +1,5 @@
 ---
-title: Installation de la stack Loki
+title: Loki - Surveillance de logs
 ---
 
 ## Introduction 
