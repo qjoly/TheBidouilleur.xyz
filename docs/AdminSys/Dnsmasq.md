@@ -136,3 +136,10 @@ Pour désactiver la fonctionnalité “DNS” de dnsmasq, il suffit juste de pr�
 ```conf
 port=0
 ```
+
+Mais si jamais vous désactivez le DNS, il faudra bien fournir **une autre IP** au DHCP *(pour que les clients ne se retrouvent pas dépourvus de DNS)*. 
+Dans votre fichier `/etc/dnsmasq.d/dhcp.conf`, rajoutez la ligne : 
+
+```conf
+dhcp-option=6,192.168.1.211,192.168.1.1
+```
