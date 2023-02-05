@@ -58,8 +58,6 @@ dhcp-range=192.168.1.50,192.168.1.150,24h   # Plage d'adresses et durée des bau
 domain=thebidouilleur.xyz                   # domaine
 dhcp-option=1,255.255.255.0                 # masque 
 dhcp-option=3,192.168.1.1                   # passerelle
-server=192.168.1.211                        # Serveur DNS
-server=1.1.1.1                              # Serveur DNS
 ```
 
 Une fois notre fichier créé, on peut vérifier la configuration avec `dnsmasq --test`.
@@ -120,6 +118,11 @@ dhcp-host=ae:1a:60:8a:73:7a,192.168.1.29
 ### DNS
 
 Par défaut, dès que l’instruction `listen-address` est définie, le serveur DNS est actif. Pour que dnsmasq soit utilisé en tant que DNS, il faut bien qu’il soit fourni par le DHCP (ex: `server=192.168.1.211`).
+Pour spécifier des serveurs DNS à interroger lorsque *dnsmasq* reçoit une requete à résoudre, créez un fichier `/etc/dnsmasq.d/dns.conf` avec le contenu suivant: 
+```conf
+server=192.168.1.211                        
+server=1.1.1.1                              
+```
 
 #### Forcer IP sur un domaine
 
