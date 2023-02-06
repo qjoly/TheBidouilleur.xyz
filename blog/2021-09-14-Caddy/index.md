@@ -6,7 +6,7 @@ authors:
   title: Adorateur de trucs merdiques
   url: https://git.thoughtless.eu
   image_url: https://avatars.githubusercontent.com/u/82603435?v=4
-tags: [proxmox, packer, devops]
+tags: [caddy, reverse-proxy]
 ---
 
 *Changelog (janv 2022) - Aujourd'hui, j'ai remplacé Caddy par Traefik, à voir dans un futur article*
