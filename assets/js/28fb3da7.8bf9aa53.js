@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[4537],{7195:e=>{e.exports=JSON.parse('{"label":"caddy","permalink":"/TheBidouilleur.xyz/blog/tags/caddy","allTagsPath":"/TheBidouilleur.xyz/blog/tags","count":1}')}}]);

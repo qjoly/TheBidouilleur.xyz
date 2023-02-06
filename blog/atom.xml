@@ -269,9 +269,8 @@ Mais à chaque expiration de certificat, NPM m'obligeait à aller manuellement s
             <name>TheBidouilleur</name>
             <uri>https://git.thoughtless.eu</uri>
         </author>
-        <category label="proxmox" term="proxmox"/>
-        <category label="packer" term="packer"/>
-        <category label="devops" term="devops"/>
+        <category label="caddy" term="caddy"/>
+        <category label="reverse-proxy" term="reverse-proxy"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Présentation rapide de Docker-Swarm]]></title>

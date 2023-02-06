@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7615],{84:e=>{e.exports=JSON.parse('{"label":"proxmox","permalink":"/TheBidouilleur.xyz/blog/tags/proxmox","allTagsPath":"/TheBidouilleur.xyz/blog/tags","count":1}')}}]);
