@@ -100,11 +100,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             ],
           },
           {
-            title: 'Community',
+            title: 'Me Suivre',
             items: [
               {
                 label: 'Twitter',
                 href: 'https://twitter.com/TheBidouilleur',
+              },
+              {
+                label: 'Flux RSS',
+                href: 'https://thebidouilleur.xyz/blog/rss.xml',
               },
             ],
           },
