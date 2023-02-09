@@ -9,9 +9,9 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Mon-matériel]]></title>
-            <link>https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon Setup</link>
-            <guid>https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon Setup</guid>
+            <title><![CDATA[Mon matériel]]></title>
+            <link>https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon-Setup</link>
+            <guid>https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon-Setup</guid>
             <pubDate>Wed, 08 Feb 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Le déploiement, la virtualisation, le maintien d’une infrastructure Homelab sont des pratiques qui demandent du temps et également de l’argent.]]></description>
             <content:encoded><![CDATA[<p>Le déploiement, la virtualisation, le maintien d’une infrastructure Homelab sont des pratiques qui demandent du temps et également de l’argent.

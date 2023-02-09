@@ -8,9 +8,9 @@
     <subtitle>TheBidouilleur Blog</subtitle>
     <icon>https://thebidouilleur.xyz/TheBidouilleur.xyz/en/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[Mon-matériel]]></title>
-        <id>https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon Setup</id>
-        <link href="https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon Setup"/>
+        <title type="html"><![CDATA[Mon matériel]]></title>
+        <id>https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon-Setup</id>
+        <link href="https://thebidouilleur.xyz/TheBidouilleur.xyz/en/blog/Mon-Setup"/>
         <updated>2023-02-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Le déploiement, la virtualisation, le maintien d’une infrastructure Homelab sont des pratiques qui demandent du temps et également de l’argent.]]></summary>
         <content type="html"><![CDATA[<p>Le déploiement, la virtualisation, le maintien d’une infrastructure Homelab sont des pratiques qui demandent du temps et également de l’argent.
