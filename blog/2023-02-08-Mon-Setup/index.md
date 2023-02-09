@@ -1,6 +1,6 @@
 ﻿---
 slug: Mon Setup
-title: Mon matériel
+title: Mon-matériel
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
