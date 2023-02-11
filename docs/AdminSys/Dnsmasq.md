@@ -1,6 +1,10 @@
 ﻿---
 slug: dnsmasq
 title: Mettre en place un DNS / DHCP avec DNSMASQ
+tags:
+  - reseau
+  - dns
+  - infra
 ---
 
 ## Introduction

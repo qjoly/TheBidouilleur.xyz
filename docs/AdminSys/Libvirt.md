@@ -1,6 +1,8 @@
 ---
 slug: rootless-libvirt
 title: Utiliser libvirt en utilisateur non-root
+tags:
+  - virtualisation
 ---
 
 ## Qu’est-ce que libvirt ?

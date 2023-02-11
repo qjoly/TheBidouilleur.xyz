@@ -1,5 +1,9 @@
 ---
 title: Tinc - VPN de Mesh
+tags:
+  - reseau
+  - vpn
+  - infra
 ---
 
 ## Introduction
@@ -9,21 +13,21 @@ Je dispose de 3 serveurs différents:
 - Un cluster de raspberry à la maison *(4 machines)*
 - Et un serveur de redondance dans un autre DC
 
-Et juste avec ces machines, ça fait un bon nombre d'accès à gérer sur ma workstation. De plus, les machines peuvent difficilement communiquer entre elles *(en local je passe par des redirections ssh)*, et il m'est impossible de faire communiquer mes machines sans ouvrir un accès. 
+Et juste avec ces machines, ça fait un bon nombre d’accès à gérer sur ma workstation. De plus, les machines peuvent difficilement communiquer entre elles *(en local je passe par des redirections ssh)*, et il m’est impossible de faire communiquer mes machines sans ouvrir un accès. 
 
-C'est pourquoi j'étais en pleine recherche d'une solution comme Wireguard en tant que VPN Mesh ([exemple ici](https://www.scaleway.com/en/docs/tutorials/wireguard-mesh-vpn/)), et je suis tombé sur un article de ZWindler explicant sa solution autour de Tinc. 
+C’est pourquoi j’étais en pleine recherche d’une solution comme Wireguard en tant que VPN Mesh ([exemple ici](https://www.scaleway.com/en/docs/tutorials/wireguard-mesh-vpn/)), et je suis tombé sur un article de ZWindler explicant sa solution autour de Tinc. 
 
-Cette page n'est qu'une reprise de son tutoriel en réadaptant certains points. 
+Cette page n’est qu’une reprise de son tutoriel en réadaptant certains points. 
 
 ### Installation du serveur
 
-La machine hote de l'hébergeur est une VM sur mon dédié ayant Debian 11 comme distribution. 
-Tinc est directement disponible sur les dépots officiels sans aucune action (pas besoin d'ajouter les paquets unstables) 
+La machine hote de l’hébergeur est une VM sur mon dédié ayant Debian 11 comme distribution. 
+Tinc est directement disponible sur les dépots officiels sans aucune action (pas besoin d’ajouter les paquets unstables) 
 ```bash
 apt install tinc
 ```
 
-Dans mon cas, je créé "vpnforky" *(forky étant le nom de mon dédié)*, celui-ci doit être déclaré dans le fichier nets.boot **si vous utilisez sysvinit** *(sinon on pourra passer par systemd)*
+Dans mon cas, je créé “vpnforky” *(forky étant le nom de mon dédié)*, celui-ci doit être déclaré dans le fichier nets.boot **si vous utilisez sysvinit** *(sinon on pourra passer par systemd)*
 ```bash
 mkdir -p /etc/tinc/vpnforky/hosts
 echo "vpnforky" >> /etc/tinc/nets.boot # inutile si vous utilisez systemd
@@ -36,13 +40,13 @@ AddressFamily = ipv4
 Interface = tun0
 ```
 
-Puis on va créer le fichier réprésentant notre machine dans le réseau du VPN ainsi que l'endpoint (ip) accessible par toutes les machines
+Puis on va créer le fichier réprésentant notre machine dans le réseau du VPN ainsi que l’endpoint (ip) accessible par toutes les machines
 ```
 Address = 100.100.100.100
 Subnet = 10.0.0.1/32
 ```
 
-Ce fichier sera completé par génération des clés RSA permettant l'authentification des machines du réseau. 
+Ce fichier sera completé par génération des clés RSA permettant l’authentification des machines du réseau. 
 ```bash
 sudo tincd -n vpnforky -K4096
 ```
@@ -69,16 +73,16 @@ chmod 755 /etc/tinc/vpnforky/tinc-*
 ```
 
 
-Nous n'avons plus besoin de faire quoique ce soit pour configurer le serveur. (Nous reviendrons un peu plus tard pour autoriser des machines à se connecter)
+Nous n’avons plus besoin de faire quoique ce soit pour configurer le serveur. (Nous reviendrons un peu plus tard pour autoriser des machines à se connecter)
 
 On démarre le VPN
 ```bash
 sudo systemctl status tinc@vpnforky
 ```
 
-### Installation d'un client
+### Installation d’un client
 
-Maintenant, on va créer notre premier hote externe au réseau. Mon client se nomme "offsite"
+Maintenant, on va créer notre premier hote externe au réseau. Mon client se nomme “offsite”
 
 ```bash
 apt install tinc
@@ -125,7 +129,7 @@ et rendre ces scripts executales
 chmod 755 /etc/tinc/vpnforky/tinc-*
 ```
 
-Maintenant que notre client est bien configuré, nous allons copier le fichier `/etc/tinc/vpnforky/hosts/offsite` (*contenant notre IP-VPN et notre certificat*)  **vers** le dossier /etc/tinc/vpnforky/hosts **du serveur Tinc**. Cela permettra d'authentifier notre machine pour se connecter au réseau. 
+Maintenant que notre client est bien configuré, nous allons copier le fichier `/etc/tinc/vpnforky/hosts/offsite` (*contenant notre IP-VPN et notre certificat*)  **vers** le dossier /etc/tinc/vpnforky/hosts **du serveur Tinc**. Cela permettra d’authentifier notre machine pour se connecter au réseau. 
 
 Notre machine possède bien la bonne IP et on peut maintenant ping dans notre réseau. 
 ```
@@ -137,14 +141,14 @@ PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
 64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=156 ms
 ```
 
-*(Les délais sont assez élevés, je pense que c'est dû à ma VM Tinc qui n'est pas puissante, et ne possède pas un grand débit)*
+*(Les délais sont assez élevés, je pense que c’est dû à ma VM Tinc qui n’est pas puissante, et ne possède pas un grand débit)*
 
-S'il faut ajouter d'autres machines, il faudra suivre la même procédure *(Installer tinc, générer certificat et fichier hôte, ajouter le fichier sur le serveur)*. 
+S’il faut ajouter d’autres machines, il faudra suivre la même procédure *(Installer tinc, générer certificat et fichier hôte, ajouter le fichier sur le serveur)*. 
 
 
 ## Configuration Nix pour rejoindre le réseau Tinc
 
-Voici le fichier **Nix** me permettant de rejoindre le VPN avec l'ip **10.0.0.101**. 
+Voici le fichier **Nix** me permettant de rejoindre le VPN avec l’ip **10.0.0.101**. 
 ```haskell
 { config, pkgs, ... }:
 

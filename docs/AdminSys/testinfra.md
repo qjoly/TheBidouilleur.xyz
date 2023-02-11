@@ -1,13 +1,15 @@
 ---
 title: Vérification configuration système (testinfra)
 slug: testinfra
+tags:
+  - python
 ---
 
 
-## Qu'est ce qu'un test unitaire ? 
-On réserve souvent les tests unitaires pour le développement. L'idée est d'injecter des informations dans des fonctions/méthodes et d'en vérifier le traitement. 
+## Qu’est ce qu’un test unitaire ? 
+On réserve souvent les tests unitaires pour le développement. L’idée est d’injecter des informations dans des fonctions/méthodes et d’en vérifier le traitement. 
 
-Voici un exemple bref d'un test unitaire en python : 
+Voici un exemple bref d’un test unitaire en python : 
 
 ```python
 def convert_str_to_int(strvar):
@@ -19,9 +21,9 @@ def convert_str_to_int(strvar):
 assert type(convert_str_to_int("4")) == int
 ```
 
-Ainsi, on vérifie via "assert" (générant une erreur si la condition renvoie un "False") que le type de ce que retourne la fonction convert_str_to_int() est bien de type "int". 
+Ainsi, on vérifie via “assert” (générant une erreur si la condition renvoie un “False”) que le type de ce que retourne la fonction convert_str_to_int() est bien de type “int”. 
 
-Mais est-il possible de créer des tests unitaires pour vérifié qu'un système soit à la bonne version ou bien parametré ? 
+Mais est-il possible de créer des tests unitaires pour vérifié qu’un système soit à la bonne version ou bien parametré ? 
 
 Oui ! Grace à testinfra
 
@@ -45,7 +47,7 @@ def test_passwd_file(host):
     assert passwd.group == "root"
     assert passwd.mode == 0o644 
 ```
-L'objet "host" renvoie à la machine testée. Nous vérifions que le fichier `/etc/passwd` contient bien `root`, que son utilisateur/groupe propriétaires soit bien "root", et qu'il ait bien les permissions *(octales)* 0o644.
+L’objet “host” renvoie à la machine testée. Nous vérifions que le fichier `/etc/passwd` contient bien `root`, que son utilisateur/groupe propriétaires soit bien “root”, et qu’il ait bien les permissions *(octales)* 0o644.
 
 Si on lance ce premier fichier via `py.test`, voici le résultat : 
 ```
@@ -102,12 +104,12 @@ FAILED test_host.py::test_appdir[local] - AssertionError: assert False
 ```
 Nous obtenons bel et bien notre erreur, et son détail (la condition renvoyée est fausse, et nous avons la commande bash `test -e /app/dir` testée). 
 
-à partir de cette base, nous pouvons tester de nombreux éléments comme les fichiers, les interfaces, les packages installés et bien d'autres.
+à partir de cette base, nous pouvons tester de nombreux éléments comme les fichiers, les interfaces, les packages installés et bien d’autres.
 
 :::tip Tips: Utiliser les workers
 
 Il est possible de lancer les tests à partir de workers *(Et donc lancer plusieurs taches en une seule fois)*. 
-Il suffit d'ajouter `-n auto` *(ou remplacer auto par le nombre de workers)*. 
+Il suffit d’ajouter `-n auto` *(ou remplacer auto par le nombre de workers)*. 
 
 :::
 
@@ -115,7 +117,7 @@ Il suffit d'ajouter `-n auto` *(ou remplacer auto par le nombre de workers)*.
 
 ## Utiliser une machine distance (ssh)
 
-Tester notre propre machine est plutot utile, mais qu'en est-il de tester un serveur accessible par ssh ? 
+Tester notre propre machine est plutot utile, mais qu’en est-il de tester un serveur accessible par ssh ? 
 
 Pour cela il suffit de surcharger la variable *testinfra_hosts*: 
 ```python
@@ -133,7 +135,7 @@ Il faut bien sûr avoir un accès sans mot de passe pour que le test fonctionne.
 
 ## Lancer le test depuis un code python
 
-Je n'apprécie que très peu le fait de lancer `py.test` sans pouvoir rebondir sur le résultat dans un Python.
+Je n’apprécie que très peu le fait de lancer `py.test` sans pouvoir rebondir sur le résultat dans un Python.
 
 ```python
 import pytest
@@ -152,5 +154,5 @@ else:
     print("Il y a une erreur dans le test")
 ```
 
-Pour l'instant, mon usage de testinfra s'arrète à ça. Je n'ai pas détaillé les fonctionnements des modules *(socket, file, docker etc..)* puisque la documentation est bien complète. 
+Pour l’instant, mon usage de testinfra s’arrète à ça. Je n’ai pas détaillé les fonctionnements des modules *(socket, file, docker etc..)* puisque la documentation est bien complète. 
 

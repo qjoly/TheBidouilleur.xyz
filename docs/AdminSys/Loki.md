@@ -1,5 +1,8 @@
 ---
 title: Loki - Surveillance de logs
+slug: loki
+tags:
+  - infra
 ---
 
 ## Introduction 

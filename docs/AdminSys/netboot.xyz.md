@@ -1,6 +1,10 @@
 ﻿---
 slug: netbootxyz
 title: Boot PXE simplifié avec netboot 
+tags:
+  - reseau
+  - infra
+  - dns
 ---
 
 ## Qu’est-ce que le PXE ?  
