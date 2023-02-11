@@ -4,6 +4,7 @@ title: Créer ses propres packages Debian
 tags:
   - debian
   - infra
+description: Créer ses propres packages Debian n'est pas aussi compliqué qu'on peut le croire. Nous allons voir comment packager ses propres scripts/programmes de manière facile et efficace.
 ---
 
 Dans mon projet de créer une infrastructure auto-suffisante, je me retrouve parfois à installer des petits programmes sur de nombreuses machines via les *Makefile* ou une série de commandes. Puis j’ai eu l’idée de créer mes propres packages Debian. *(Notamment dans le but de créer mon propre dépôt de package)*
