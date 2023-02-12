@@ -26,7 +26,7 @@ sudo apt install build-essential binutils lintian debhelper dh-make devscripts
 
 Je vais prendre un exemple simple : [*Kompose*](https://kompose.io/)
 
-C’est un petit script **Go** permettant de convertir les *docker-composes* en fichiers **YAML* Kubernetes*. Pour l’installer, on télécharge l’exécutable compilé et on le place dans un dossier de notre `$PATH`.
+C’est un petit script **Go** permettant de convertir les *docker-composes* en fichiers *YAML Kubernetes*. Pour l’installer, on télécharge l’exécutable compilé et on le place dans un dossier de notre `$PATH`.
 
 J’aimerais donc créer un `.deb` qui contiendrait le binaire de *Kompose* qui le déposerait dans `/usr/bin`.
 La documentation officielle de Debian *([disponible ici](https://wiki.debian.org/HowToPackageForDebian))* est très claire : il faut créer un répertoire qui sera considéré comme la racine de notre système.
