@@ -4,6 +4,7 @@ title: Créer son dépot Debian
 tags:
   - debian
   - infra
+description: Lorsque nous avons de nombreux serveurs, il convient d'automatiser chacun des déploiements que nous réalisons. Et lorsque la majorité sont sous Debian, ces déploiements peuvent prendre la forme de fichiers .deb. Nous verrons donc sur cette page comment créer notre propre dépôt Debian.
 ---
 
 ## Introduction
