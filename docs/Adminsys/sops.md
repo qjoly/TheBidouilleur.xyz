@@ -150,7 +150,7 @@ Mais comme Skynet *(ou ChatGPT)* n’a pas encore remplacé les informaticiens :
 Pre-Commit est un utilitaire en Python permettant d’automatiser certaines taches avant de commit votre code. Il est ainsi possible de faire votre propre *CI* en testant vos fichiers ou … en chiffrant vos secrets.
 :::
 
-L’installation de pre-commit se fait avec `pip` *(Si vous n’êtes pas à l’aise avec Python, je vous invite à suivre [cette](documentation) pour l’installer.)*.
+L’installation de pre-commit se fait avec `pip` *(Si vous n’êtes pas à l’aise avec Python, je vous invite à suivre [cette documentation](https://pip.pypa.io/en/stable/installation/) pour l’installer.)*.
 
 ```bash
 pip install pre-commit
