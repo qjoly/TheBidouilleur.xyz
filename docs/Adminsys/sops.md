@@ -21,6 +21,13 @@ Age est un outil en Go simple et moderne. Celui-ci propose un format qui semble 
 
 ## Créer notre clé Age
 
+:::note Installer Age
+
+Vous pouvez installer Age en suivant les instructions sur le dépôt officiel [ici](https://github.com/FiloSottile/age)
+
+:::
+
+
 Nous allons donc créer notre propre clé avec age. 
 
 ```bash
@@ -45,6 +52,16 @@ export SOPS_AGE_KEY_FILE=~/.keys/ma-cle
 Maintenant, nous pouvons passer au niveau supérieur : **créer notre premier fichier de secret**.
 
 ## Sops, en pratique
+
+:::note Installer Sops
+
+Vous pouvez installer Sops sur un système Amd64 en suivant ces instructions: 
+```bash
+wget https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64 -O /usr/bin/sops
+chmod +x /usr/bin/sops
+```
+:::
+
 
 Notre système d’authentification est déjà créé : c’est notre couple de clé AGE. Ce que nous allons faire maintenant, c’est créer un secret qui sera déchiffrable uniquement par notre clé privée.
 
