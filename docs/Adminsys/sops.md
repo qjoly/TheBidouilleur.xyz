@@ -140,3 +140,104 @@ but none were.
 Pour ajouter une clé pouvant déchiffrer les fichiers, rajoutez-là dans votre `.sops.yaml`.
 
 En déchiffrant puis rechiffrant les fichiers, la nouvelle clé y aura accès.
+
+
+## Chiffrer avant de commiter
+
+Mais comme Skynet *(ou ChatGPT)* n’a pas encore remplacé les informaticiens : nous restons humains. Il est donc obligatoire de trouver un moyen pour ne **jamais** oublier de chiffrer nos secrets avant de commit. Et la solution est simple : [pre-commit](https://pre-commit.com)
+
+:::note Pre-Commit
+Pre-Commit est un utilitaire en Python permettant d’automatiser certaines taches avant de commit votre code. Il est ainsi possible de faire votre propre *CI* en testant vos fichiers ou … en chiffrant vos secrets.
+:::
+
+L’installation de pre-commit se fait avec `pip` *(Si vous n’êtes pas à l’aise avec Python, je vous invite à suivre [cette](documentation) pour l’installer.)*.
+
+```bash
+pip install pre-commit
+```
+
+:::tip
+
+Si vous avez installé `pip` mais que vous n’arrivez pas à le lancer car `commande introuvable`, c’est surement car celui-ci ne s’est pas mis dans votre `$PATH`. 
+Il faudra ajouter le dossier `~/.local/bin` dans votre fichier `.bashrc` ou `.zshrc`.
+```bash
+export PATH="$PATH:$HOME/.local/bin
+```
+:::
+
+Une fois pre-commit installé, il faudra l’activer dans un dossier gérer par *Git*:
+
+```bash
+➜  pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+```
+
+Nous allons maintenant créer le fichier `.pre-commit-config.yaml`. avec le contenu suivant:  
+
+```yml
+repos:
+- repo: local
+  hooks:
+    - id: encrypt files
+      name: encrypt files
+      entry: .pre-commit-sops.sh
+      language: script
+      pass_filenames: true
+```
+
+Cette configuration permet à **pre-commit** d’exécuter le script `.pre-commit-sops.sh` avant chaque commit. Et voici le contenu de ce fichier : 
+
+```bash
+#!/bin/bash
+filename="$1"
+if [[ "$filename" =~ ^secret\..*\.ya?ml$ ]]; then
+  echo "$filename matches pattern, encrypting..."
+  sops -e -i $filename
+  git add $filename
+else
+  echo "Filename does not match pattern"
+fi
+```
+*Donc si le fichier correspond au pattern identifiant les fichiers contenants les secrets, nous le chiffrons, et nous actualisons son contenu avant de commit.*
+
+Pensez également à rendre votre fichier exécutable.
+
+On teste ça, le fichier `secret.dev.yml` devrait être chiffré après mon commit. 
+```bash
+TheBidouilleur:~/Documents/GitOps$ cat secret.dev.yaml 
+username: bigusername
+password: bigpassword
+chiffre-pas-ça: coucou2
+TheBidouilleur:~/Documents/GitOps$ git add secret.dev.yaml 
+TheBidouilleur:~/Documents/GitOps$ git commit -m "Je veux chiffrer mes secrets"
+encrypt files............................................................Passed
+[main 7ffcf4a] Je veux chiffrer mes secrets
+ 1 file changed, 23 insertions(+), 25 deletions(-)
+ rewrite secret.dev.yaml (75%)
+kiko:~/Documents/GitOps$ cat secret.dev.yaml 
+username: ENC[AES256_GCM,data:wrK2xpPUBYE9dEo=,iv:B2KKu9Y3BeT9Cj8cgZFmxeK70ZOiJhE7wtRkYk0hY4U=,tag:MKgFQqkSOD9tCVp1PlnVOA==,type:str]
+password: ENC[AES256_GCM,data:qCTcjaUbPpzzMUc=,iv:q3vmXf2YbZtSgm1vCj5tpdu+Ug4Hby9IOo2/y7zBwQI=,tag:0TvqVAIDxxPLk1GsEDKXcQ==,type:str]
+chiffre-pas-ça: coucou2
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age14ysm820ajay8wqslnkjqcewvq4tmeucth3a88qk4a7hl0mnwkfaqmj6xx5
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByTFFQMU95dVc3dkk5Y2VB
+            TFQ3czc5WDliNXpOV001b3FaNWdGbW82ampVCitzVGFmemFvdC9kVnF4SlBNMGdi
+            Yjc3ZERiMWVKZXoveFdHbVRWU3pRc1kKLS0tIDFCOTh1U0F6QmtsaG1WTElDbjRz
+            TXdCeVpER0h6WG9XZm93bGI2Ni83SXMKCPLM5tTUYkhjirljDcNitID/2NXbOx4y
+            i5/f79+ulVkWm9hx+AmNBxdbzbopJOk+/y1UmWF64y7ovPjdFy5BSg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-02-15T21:22:28Z"
+    mac: ENC[AES256_GCM,data:2PlCiFkxCl84odqZ6Qxo74VLhAe2Tqa7pUDbYJTshpG+WKYj/mN9xvfU3Pz8NNe5vWoone2PV2nLvrLQlDQEjnM5PybLRVcSDiSPHF61VfdiI4G25DTScrHWmucSxIv7JFlagVH8JOjii43oe4Ul+coVhhSn3PClIS3X22ZqjUI=,iv:mSZ6Pl0Q7RT3hSFsP0pmF77XnzNyZ6c50G2lsIw6zOU=,tag:z6RH/DDhpRk7rtigdc3mXA==,type:str]
+    pgp: []
+    encrypted_regex: ^(username|password)$
+    version: 3.7.3
+```
+
+Et maintenant.. aucun risque d’oublier de chiffrer !
