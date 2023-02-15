@@ -256,3 +256,9 @@ aptly publish drop stable
 aptly snapshot drop stable
 aptly repo drop stable
 ```
+
+
+---
+:::note En lien avec cette page
+- [Créer ses fichiers .deb](/docs/Adminsys/creer-deb)
+:::

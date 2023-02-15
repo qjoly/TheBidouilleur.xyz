@@ -53,7 +53,7 @@ Mais même si mon attention se porte principalement sur le cluster, je voulais �
 
 ![Interface Proxmox](./proxmox-view.png)
 
-Sur cette machine, j’ai des VMs avec **Home-Assistant**, mon VPN *(Wireguard)*, mon [netboot](/docs/AdminSys/netbootxyz/) et mon [DHCP](/docs/AdminSys/dnsmasq/). Je voulais absolument avoir un hyperviseur pour continuer à manipuler Terraform.
+Sur cette machine, j’ai des VMs avec **Home-Assistant**, mon VPN *(Wireguard)*, mon [netboot](/docs/Adminsys/netbootxyz/) et mon [DHCP](/docs/Adminsys/dnsmasq/). Je voulais absolument avoir un hyperviseur pour continuer à manipuler Terraform.
 
 ## Infrastructure Cloud
 ### Proxmox OVH

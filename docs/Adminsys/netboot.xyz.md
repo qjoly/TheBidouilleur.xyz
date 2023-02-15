@@ -1,6 +1,6 @@
 ﻿---
 slug: netbootxyz
-title: Boot PXE simplifié avec netboot 
+title: Boot PXE avec netboot 
 tags:
   - reseau
   - infra
@@ -98,7 +98,7 @@ L’interface WEB est disponible sur le port 3000. (*192.168.1.137:3000*)
 ## Configurer le DHCP pour un démarrage PXE
 
 Il faudra avoir les pleins-pouvoirs sur votre DHCP. *(Je précise puisque ma pauvre livebox ne me permet pas de modifier mes options DHCP par défaut)*
-Si ce n’est pas le cas, je vous invite à suivre [cette documentation pour créer votre propre serveur DHCP avec Dnsmasq](/docs/AdminSys/dnsmasq).
+Si ce n’est pas le cas, je vous invite à suivre [cette documentation pour créer votre propre serveur DHCP avec Dnsmasq](/docs/Adminsys/dnsmasq).
 
 Sur mon DHCP, je crée le fichier `/etc/dnsmasq.d/pxe-boot.conf` qui va indiquer le fichier de démarrage et le serveur TFTP sur lequel démarrer :
 ```conf
@@ -192,3 +192,12 @@ Ainsi, pour pouvoir démarrer un clonezilla en version ubuntu depuis notre netbo
 Netboot est une solution très complète nous permettant d’installer plusieurs machines en même via un support bien plus moderne qu’une clé USB. Celui-ci propose une solution fonctionnelle sans devoir héberger quoique ce soit, mais nous laisse la possibilité de devenir indépendant en récupérant les assets sur notre serveur.
 
 Ayant déjà été dans le cas où je devais installer de nombreux postes le plus rapidement possible, je peux maintenir réitérer l’expérience sans problème *(et notamment avec l’usage de preseed/kickstart)*.
+
+
+
+
+---
+
+:::note En lien avec cette page
+- [Créer un DNS/DHCP avec DNSMASQ](/docs/Adminsys/dnsmasq)
+:::

@@ -120,3 +120,10 @@ rm debian-binary control.tar.xz data.tar.xz control.tar.zst data.tar.zst
 ---
 
 Cette page est maintenant terminée, je n’hésiterais pas à la compléter si j’approfondis le sujet.
+
+
+
+---
+:::note En lien avec cette page
+- [Héberger son dépôt Debian](/docs/Adminsys/creer-repo-debian)
+:::

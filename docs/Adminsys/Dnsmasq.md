@@ -1,6 +1,6 @@
 ﻿---
 slug: dnsmasq
-title: Mettre en place un DNS / DHCP avec DNSMASQ
+title: DNS / DHCP avec DNSMASQ
 tags:
   - reseau
   - dns
@@ -150,3 +150,9 @@ Dans votre fichier `/etc/dnsmasq.d/dhcp.conf`, rajoutez la ligne :
 ```conf
 dhcp-option=6,192.168.1.211,192.168.1.1
 ```
+
+
+---
+:::note En lien avec cette page
+- [Créer un système de Boot PXE avec Netboot](/docs/Adminsys/netbootxyz)
+:::
