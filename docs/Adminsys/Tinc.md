@@ -4,6 +4,7 @@ tags:
   - reseau
   - vpn
   - infra
+description: Lorsqu'on multiplie les infrastructures (locales, distante etc..), avoir un VPN de Mesh permet de vous faciliter la vie. Nous allons donc installer et configurer Tinc.
 ---
 
 ## Introduction
@@ -15,7 +16,7 @@ Je dispose de 3 serveurs différents:
 
 Et juste avec ces machines, ça fait un bon nombre d’accès à gérer sur ma workstation. De plus, les machines peuvent difficilement communiquer entre elles *(en local je passe par des redirections ssh)*, et il m’est impossible de faire communiquer mes machines sans ouvrir un accès. 
 
-C’est pourquoi j’étais en pleine recherche d’une solution comme Wireguard en tant que VPN Mesh ([exemple ici](https://www.scaleway.com/en/docs/tutorials/wireguard-mesh-vpn/)), et je suis tombé sur un article de ZWindler explicant sa solution autour de Tinc. 
+C’est pourquoi j’étais en pleine recherche d’une solution comme Wireguard en tant que VPN Mesh ([exemple ici](https://www.scaleway.com/en/docs/tutorials/wireguard-mesh-vpn/)), et je suis tombé sur un article de ZWindler expliquant sa solution autour de Tinc. 
 
 Cette page n’est qu’une reprise de son tutoriel en réadaptant certains points. 
 
@@ -46,7 +47,7 @@ Address = 100.100.100.100
 Subnet = 10.0.0.1/32
 ```
 
-Ce fichier sera completé par génération des clés RSA permettant l’authentification des machines du réseau. 
+Ce fichier sera complété par génération des clés RSA permettant l’authentification des machines du réseau. 
 ```bash
 sudo tincd -n vpnforky -K4096
 ```

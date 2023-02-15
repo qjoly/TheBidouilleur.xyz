@@ -1,6 +1,7 @@
 ---
 slug: kind
 title: Kubernetes INside Docker
+description: Avoir un environnement de développement est important dans tous les domaines. L'administration d'un Cluster Kubernetes n'échappe pas à la règle. Nous allons donc voir comment créer un cluster temporaire directement à partir de conteneurs Docker.
 ---
 
 ## Introduction

@@ -3,6 +3,7 @@ title: Vérification configuration système (testinfra)
 slug: testinfra
 tags:
   - python
+description: Testinfra est une librairie Python permettant de faire des tests unitaires sur des conditions systèmes. Nous allons installer Testinfra et créer 2-3 tests.
 ---
 
 

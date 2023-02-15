@@ -5,7 +5,9 @@ tags:
   - reseau
   - infra
   - dns
+description: NetBoot est un utilitaire permettant de faciliter la création d'un boot PXE. Nous allons voir comment déployer NetBoot et garder les assets en local.
 ---
+
 
 ## Qu’est-ce que le PXE ?  
 

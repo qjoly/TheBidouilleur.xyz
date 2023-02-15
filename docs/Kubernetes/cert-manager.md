@@ -1,6 +1,7 @@
 ﻿---
 title: Cert-Manager
 slug: getting-started-cert-manager
+description: Cert-Manager est un programme permettant de gérer les certificats (ainsi que leurs renouvellements) sur des clusters Kubernetes. Nous allons voir comment déployer Cert-Manager et générer nos premiers certificats.
 ---
 
 ## Introduction 
