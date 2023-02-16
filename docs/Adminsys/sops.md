@@ -214,7 +214,7 @@ encrypt files............................................................Passed
 [main 7ffcf4a] Je veux chiffrer mes secrets
  1 file changed, 23 insertions(+), 25 deletions(-)
  rewrite secret.dev.yaml (75%)
-kiko:~/Documents/GitOps$ cat secret.dev.yaml 
+TheBidouilleur:~/Documents/GitOps$ cat secret.dev.yaml 
 username: ENC[AES256_GCM,data:wrK2xpPUBYE9dEo=,iv:B2KKu9Y3BeT9Cj8cgZFmxeK70ZOiJhE7wtRkYk0hY4U=,tag:MKgFQqkSOD9tCVp1PlnVOA==,type:str]
 password: ENC[AES256_GCM,data:qCTcjaUbPpzzMUc=,iv:q3vmXf2YbZtSgm1vCj5tpdu+Ug4Hby9IOo2/y7zBwQI=,tag:0TvqVAIDxxPLk1GsEDKXcQ==,type:str]
 chiffre-pas-ça: coucou2
