@@ -4,7 +4,7 @@ title: Stocker des secrets dans un dépôt Git
 tags:
   - gitops
   - sops
-description: Sops est un utilitaire créé par Mozilla permettant de chiffrer ses secrets. Cette page présente un usage simple et rapide pour découvrir cet utilitaire créé par Mozilla.
+description: Sops est un utilitaire créé par Mozilla permettant de chiffrer ses secrets. Nous allons voir comment mettre en place SOPS et le coupler à pre-commit pour ne jamais commit sans chiffrer vos secrets.
 ---
 
 Éviter d’envoyer ses secrets sur Git, nous devons toujours être vigileant avant un quelconque Push. Et c’est justement le but de  **Sops** *(Secrets OPerationS)* qui va nous aider à stocker nos informations sur le dépôt.. mais en les chiffrant.
