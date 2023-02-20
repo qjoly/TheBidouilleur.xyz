@@ -8,6 +8,7 @@
 ![](https://img.shields.io/docker/stars/qjoly/thebidouilleur.xyz?style=flat-square)
 [![Docker Image CI](https://github.com/QJoly/TheBidouilleur.xyz/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/QJoly/TheBidouilleur.xyz/actions/workflows/docker-image.yml)
 ![Nombre de visites](https://visitor-badge.deta.dev/badge?page_id=qjoly.thebidouilleur)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz?ref=badge_shield)
 
 # TheBidouilleur
 
@@ -27,3 +28,7 @@ Un blog simple basé sur [Docusaurus](https://docusaurus.io/) dans lequel je vai
 ## Contributing
 
 Si vous voyez des erreurs ou si vous vous sentez d'écrire sur mon blog *(Pourquoi pas ?)*, n'hésitez pas à ouvrir une pull-request. 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz?ref=badge_large)
