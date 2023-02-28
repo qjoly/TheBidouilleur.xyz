@@ -12,7 +12,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   url: 'https://thebidouilleur.xyz',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'QJoly', // Usually your GitHub org/user name.
   projectName: 'TheBidouilleur', // Usually your repo name.
