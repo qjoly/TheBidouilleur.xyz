@@ -17,6 +17,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   organizationName: 'QJoly', // Usually your GitHub org/user name.
   projectName: 'TheBidouilleur', // Usually your repo name.
   scripts: [{src: 'https://stats.192168128.xyz/js/script.js', defer: true, 'data-domain': 'thebidouilleur.xyz'}],
+  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
 
   i18n: 
   {
