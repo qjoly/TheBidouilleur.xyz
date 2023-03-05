@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3182],{754:e=>{e.exports=JSON.parse('{"label":"fail2ban","permalink":"/TheBidouilleur.xyz/en/blog/tags/fail-2-ban","allTagsPath":"/TheBidouilleur.xyz/en/blog/tags","count":1}')}}]);
