@@ -11,9 +11,9 @@ description: Ne restez pas neutre face aux attaques sur vos services exposés. S
 ---
 
 Dès lors que nous exposons un service en ligne, celui-ci se fait harceler de bots et d'attaques en tout genre. 
-Ces bots ont pour objectif de trouver la moindre petite faille pour obtenir un accès à votre serveur et en tirer quelque chose de lucratif *(Minages, attaques, Ransomware)*. 
+Ces bots ont pour objectif de trouver la moindre petite faille pour obtenir un accès à votre serveur et en tirer quelque chose de lucratif *(Minages, Botnet, Ransomware)*. 
 
-La bonne pratique est donc de ne pas **pas** exposer le moindre service sensible (et mettr en place un VPN/Tunnel SSH), mais certains cas nous obligent à bafouer cette règle.
+La bonne pratique est donc de ne pas **pas** exposer les services sensibles *(et mettre en place un VPN/Tunnel SSH)*, mais certains cas nous obligent à bafouer cette règle.
 
 Par exemple, si vous hébergez des WordPress, les pages administrateurs seront cibles d'attaques, les clients les plus exigeants voudront un Proxmox accessible depuis Internet, ou votre bastion est un simple serveur SSH.
 
@@ -21,15 +21,15 @@ Vous connaissez déjà les risques d'exposer ces accès sur Internet et je ne va
 
 Le message que je souhaite vous faire passer est de **dénoncer vos attaquants**.
 
-*Et évidemment : je ne vous parle d'éplucher vos logs ligne-par-ligne pour récupérer les IPs suspectes.*
+*Et évidemment : je ne vous parle pas d'éplucher vos logs ligne-par-ligne pour récupérer les IPs suspectes.*
 
 Une solution simple et polyvalente est : **fail2ban**.
 
 ## Fail2Ban 
 
-Fail2Ban est un programme très simple en Python qui va lire vos fichiers de log, et extraire les tentatives de connection échouées via une *regex*, et agir en conséquence.
+Fail2Ban est un programme très simple en Python qui va lire vos fichiers de log, extraire les tentatives de connection échouées via une *regex*, et agir en conséquence.
 
-Par exemple, lire les tentatives d'authentifiction en SSH, et bloquer temporairement les IPs via des règles IPTables. Ou envoyer un mail lorsqu'un utilisateur se trompe de mot de passe 3 fois sur votre Drupal.
+Par exemple, lire les tentatives d'authentifiction en SSH et bloquer temporairement les IPs via des règles IPTables. Ou envoyer un mail lorsqu'un utilisateur se trompe de mot de passe 3 fois sur votre Drupal.
 
 Nativement, *Fail2Ban* peut surveiller Apache2, Postfix, proftpd et bien d'autres... 
 
@@ -44,7 +44,7 @@ failregex = pvedaemon\[.*authentication failure; rhost=<HOST> user=.* msg=.*
 ignoreregex =
 ```
 
-et enfin le fichier `/etc/fail2ban/jail.d/proxmox.conf` qui va définir les ports qui seront bloqués à l'IP suspecte, les fichiers de log à surveiller.
+et enfin le fichier `/etc/fail2ban/jail.d/proxmox.conf` qui va définir les ports qui seront bloqués à l'IP suspecte et les fichiers de log à surveiller.
 ```conf
 [proxmox]
 enabled = true
@@ -60,7 +60,7 @@ Vous pouvez vérifier la syntaxe et redémarrer *fail2ban* avec `fail2ban-client
 
 Simple, non ? Maintenant, place à la délation ! 
 
-## Dénoncer les IPs suspectes sur AbuseIPDB
+## Dénoncer les IPs suspectes
 
 Lorsqu'un numéro suspect m'appelle, j'ai souvent le reflexe (inutile?) de chercher le numéro sur Google et de voir si le numéro a déjà été signalé.
 
@@ -79,13 +79,13 @@ Et c'est justement cette API qui va nous permettre de signaler automatiquement l
 !["AbuseIPDB Badge"](https://www.abuseipdb.com/contributor/106797.svg)
 
 
-Et pour faire ce signalement automatique, il suffit de modifier vos `jail`sur *Fail2Ban* en utilisant cette `action`: 
+Et pour faire ce signalement automatique, il suffit de modifier vos `jails` sur *Fail2Ban* en ajoutant une `action` qui va faire un reporting sur AbuseIPDB: 
 ```conf
 action = %(action_)s
          %(action_abuseipdb)s[abuseipdb_apikey="VOTRE_API_ABUSEIPDB", abuseipdb_category="18,21"]
 ```
 
-*... sachant que la catégorie `18` correspond aux attaques par brute-force, et `21`aux attaques sur pages WEB.* 
+*... sachant que la catégorie `18` correspond aux attaques par brute-force, et `21` aux attaques sur pages WEB.* 
 
 ---
 
