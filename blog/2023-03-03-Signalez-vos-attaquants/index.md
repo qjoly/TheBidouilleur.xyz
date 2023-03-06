@@ -29,7 +29,7 @@ Une solution simple et polyvalente est : **fail2ban**.
 
 Fail2Ban est un programme très simple en Python qui va lire vos fichiers de log, extraire les tentatives de connection échouées via une *regex*, et agir en conséquence.
 
-Par exemple, lire les tentatives d'authentifiction en SSH et bloquer temporairement les IPs via des règles IPTables. Ou envoyer un mail lorsqu'un utilisateur se trompe de mot de passe 3 fois sur votre Drupal.
+Par exemple, lire les tentatives d'authentification en SSH et bloquer temporairement les IPs via des règles IPTables. Ou envoyer un mail lorsqu'un utilisateur se trompe de mot de passe 3 fois sur votre Drupal.
 
 Nativement, *Fail2Ban* peut surveiller Apache2, Postfix, proftpd et bien d'autres... 
 
@@ -44,7 +44,7 @@ failregex = pvedaemon\[.*authentication failure; rhost=<HOST> user=.* msg=.*
 ignoreregex =
 ```
 
-et enfin le fichier `/etc/fail2ban/jail.d/proxmox.conf` qui va définir les ports qui seront bloqués à l'IP suspecte et les fichiers de log à surveiller.
+Et enfin le fichier `/etc/fail2ban/jail.d/proxmox.conf` qui va définir les ports qui seront bloqués à l'IP suspecte et les fichiers de log à surveiller.
 ```conf
 [proxmox]
 enabled = true
@@ -62,15 +62,15 @@ Simple, non ? Maintenant, place à la délation !
 
 ## Dénoncer les IPs suspectes
 
-Lorsqu'un numéro suspect m'appelle, j'ai souvent le reflexe (inutile?) de chercher le numéro sur Google et de voir si le numéro a déjà été signalé.
+Lorsqu'un numéro suspect m'appelle, j'ai souvent le réflexe (inutile ?) de chercher le numéro sur Google et de voir si le numéro a déjà été signalé.
 
 C'est pareil avec les adresses IP ! 
 
 Une IP de Chine vient visiter votre blog ? 👀 C'est peut-être un Français habitant à l'étranger, ou un vilain robot qui cherche des adresses mails pour vous envoyer des spams/phishing.
 
-Et vérifier si l'IP a une mauvaise réputation est la première chose à faire. C'est l'intêret du site [AbuseIPDB](https://www.abuseipdb.com).
+Et vérifier si l'IP a une mauvaise réputation est la première chose à faire. C'est l'intérêt du site [AbuseIPDB](https://www.abuseipdb.com).
 
-En créant un compte, vous pourrez signalez des IPs sur le site via l'IHM, ou l'API.
+En créant un compte, vous pourrez signaler des IPs sur le site via l'IHM ou l'API.
 
 Et c'est justement cette API qui va nous permettre de signaler automatiquement les adresses IP louches.
 
@@ -89,4 +89,4 @@ action = %(action_)s
 
 ---
 
-Ce genre de configuration ne va pas directement augmenter la sécurité de vos services, il faut garder en tête que c'est une action qui a simplement pour but de rendre la vie dure aux attaquants/méchants robots.
+Ce genre de configuration ne va pas directement augmenter la sécurité de vos services, il faut garder en tête que c'est une action qui a simplement pour but de rendre la vie dure aux attaquants/méchants robots. Rendons le web plus sûr, sans se rajouter une charge de travail supplémentaire.
