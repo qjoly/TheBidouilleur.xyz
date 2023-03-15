@@ -105,7 +105,7 @@ Errors were encountered while processing:
  kompose_1.28.0-1_amd64.deb
 ```
 
-C’est parce que Debian a changé le chiffrement du package en passant du `zstd` au `xz`. Il est possible de 
+C’est parce que Debian a changé le chiffrement du package en passant du `zstd` au `xz`. Il est possible de résoudre ce soucis en extrayant le contenu du fichier `.deb`, et en le recréant en via la procédure suivante: 
 
 ```bash
 fichier=kompose_1.28.0-1_amd64.deb
