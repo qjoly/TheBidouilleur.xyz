@@ -118,5 +118,5 @@ rm debian-binary control.tar.xz data.tar.xz control.tar.zst data.tar.zst
 
 ---
 :::note Related to this page
-- [Hosting your Debian repository](/en/docs/Adminsys/creer-repo-debian)
+- [Hosting your Debian repository](/docs/Adminsys/creer-repo-debian)
 :::
