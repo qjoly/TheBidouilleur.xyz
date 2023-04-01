@@ -3,8 +3,6 @@ name: Push to Github registry
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
