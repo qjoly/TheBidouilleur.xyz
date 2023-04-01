@@ -1,11 +1,10 @@
 ---
 title: Build Docker multi-architecture
 slug: MultiArch Build
-tags:
-  - Docker
+tags: [Docker, ARM, Amd64]
 ---
 
-J’utilise beaucoup Docker sur des environnements ARM *(Notamment mon cluster de Raspberry PI)*. Le problème est que les images ne sont pas toujours compatibles avec une architecture ARM.
+J'utilise beaucoup Docker sur des environnements ARM *(Notamment mon cluster de Raspberry PI)*. Le problème est que les images ne sont pas toujours compatibles avec une architecture ARM.
 
 J'ai donc recherché comment créer des images OCI multi-architectures *(pouvant se lancer sur des postes Amd64 ou ARM)*. Nous allons donc voir comment build des images ARM sous une machine Amd64.
 
@@ -16,12 +15,14 @@ Installation d'un émulateur d'architecture :
 ```
 
 Créer un builder *(qui utilisera votre poste local ainsi que ses architectures compatibles)*, cela va créé un contexte dans lequel Docker va build vos images. Il est obligatoire de lancer cette commande avec les droits **root**, l'usage de Docker en rootless n'est pas possible à cette étape.
+
 ```bash
  docker buildx create --use
 ```
 
 Voici le résultat *(avec les émulateurs installés)*:
-```
+
+```bash
 └─▪sudo docker run --privileged --rm tonistiigi/binfmt --install all 
 Unable to find image 'tonistiigi/binfmt:latest' locally
 latest: Pulling from tonistiigi/binfmt
@@ -68,6 +69,7 @@ Les différents contextes sont visibles via `docker buildx ls` *(Vous verrez ég
 :::
 
 Et une fois les émulateurs installés, nous pouvons build notre image via `docker buildx build` en précisant les architectures:
+
 ```bash
  docker buildx build --platform=linux/arm64,linux/amd64,linux/arm/v7,linux/arm/v6 -t localhost:5000/test . --push
 ```

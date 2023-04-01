@@ -4,8 +4,8 @@ title: Gardez vos clusters à jour
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
-  url: https://github.com/qjoly/
-  image_url: https://avatars.githubusercontent.com/u/82603435?v=4
+  url: 'https://github.com/qjoly/'
+  image_url: 'https://avatars.githubusercontent.com/u/82603435?v=4'
 tags: [docker, swarm, kubernetes]
 ---
 
@@ -130,7 +130,7 @@ Comme l'usage de webhook s'est beaucoup répandu dans les systèmes de CICD, on 
 
 Les approvals, c'est la petite perle qui manquait aux autres outils. En effet, j'ai précisé que *mettre à jour des images : c'est dangereux et il faut ne pas cibler des applications sensibles dans les mises à jour automatiques*. Et c'est juste en réponse à ça que Keel a développé les *approvals*.
 
-![](https://keel.sh/img/docs/approvals.png)
+![Système d'approval de Keel](https://keel.sh/img/docs/approvals.png)
 
 L'idée est de donner l'autorisation à Keel de mettre à jour le pod. On peut de ce fait choisir le moment et vérifier manuellement.
 

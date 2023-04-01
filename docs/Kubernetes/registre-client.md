@@ -2,9 +2,12 @@
 title: Utilisation d'un registre privé
 ---
 
-Dès qu’on s’amuse avec des conteneurs et qu’on commence à créer les siens, il est nécessaire d’avoir son propre registre. *(Par simplicité, optimisation, efficacité)*
-## Création du secret 
+Dès qu'on s'amuse avec des conteneurs et qu'on commence à créer les siens, il est nécessaire d'avoir son propre registre. *(Par simplicité, optimisation, efficacité)*
+
+## Création du secret
+
 ### En CLI
+
 Voici la commande `kubectl` permettant de créer un secret contenant les informations requises pour se connecter à un registre privé.
 
 ```bash
@@ -13,6 +16,7 @@ kubectl --namespace $NAMESPACE create secret docker-registry regcred --docker-se
 ```
 
 ### En YAML
+
 Nous allons faire cet exemple avec les identifiants suivants: `user:pass`
 Il faudra convertir cette combinaison en **base64**. Je passe par mon terminal Linux pour réaliser cette conversion.
 
@@ -26,21 +30,21 @@ On va ensuite créer notre fichier de configuration en format **JSON** *(qui est
 {
 "auths": 
 {
-	"registry.thebidouilleur.xyz":
-	{ 
-		"auth": "dXNlcjpwYXNz" }
-	}
+ "registry.thebidouilleur.xyz":
+ { 
+  "auth": "dXNlcjpwYXNz" }
+ }
 }
 ```
 
-*Pensez à remplacer l’url du registre*.
-Il faudra mettre notre JSON sur **une ligne** et l’encoder en **base64** pour créer notre manifest final.
+*Pensez à remplacer l'url du registre*.
+Il faudra mettre notre JSON sur **une ligne** et l'encoder en **base64** pour créer notre manifest final.
 
 ```bash
 echo -n '{"auths":{"registry.thebidouilleur.xyz":{"auth":"dXNlcjpwYXNz"}}}' | base64 # eyJhdXRocyI6eyJyZWdpc3RyeS50aGViaWRvdWlsbGV1ci54eXoiOnsiYXV0aCI6ImRYTmxjanB3WVhOeiJ9fX0=
 ```
 
-On peut enfin créer notre yaml qu’on donnera à kubectl.
+On peut enfin créer notre yaml qu'on donnera à kubectl.
 
 ```yaml
 apiVersion: v1 
@@ -53,8 +57,9 @@ metadata:
 type: kubernetes.io/dockerconfigjson
 ```
 
-Une fois ingéré par notre cluster. Nous allons pouvoir utiliser des images provenant d’un registre privé. 
-Exemple: 
+Une fois ingéré par notre cluster. Nous allons pouvoir utiliser des images provenant d'un registre privé.
+Exemple:
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment

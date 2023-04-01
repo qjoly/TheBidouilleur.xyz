@@ -1,6 +1,7 @@
 ---
 slug: k3s-terraform
 title: Deployer un cluster k3s avec Terraform et Ansible
+hidden: true
 ---
 ## Introduction
 
@@ -27,6 +28,7 @@ resource "proxmox_vm_qemu" "pxe-minimal-example" {
     }
 }
 ```
+
 :::
 
 ## Démarrer le projet
@@ -52,15 +54,15 @@ Sans ce paramètre, vous ne récupérerez pas le code complet.
     <li> <a href="https://www.terraform.io/downloads">Terraform (>v1.1.7)</a>  </li>
     <li> <a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-debian">Ansible (>2.11.6)</a> </li>
     <li> <a href="https://pypi.org/project/j2cli/">Jinja2-Cli</a>  </li>
-   </ul> 
+   </ul>
 </details>
 
-### Configurer l’accès au Proxmox
+### Configurer l'accès au Proxmox
 
-L’accès se trouve dans le fichier `providers.tf`, c’est ce fichier que nous allons éditer. 
+L'accès se trouve dans le fichier `providers.tf`, c'est ce fichier que nous allons éditer.
 
 :::note Sécurité
-Je vous conseille vivement de créer un utilisateur “terraform” qui aura les permissions minimums pour gérer vos machines virtuelles. 
+Je vous conseille vivement de créer un utilisateur "terraform" qui aura les permissions minimums pour gérer vos machines virtuelles.
 :::
 
 ```hcl
@@ -79,9 +81,9 @@ provider "proxmox" {
 }
 ```
 
-Par défaut, j’utilise [Vault](https://vault.io) pour stocker mes identifiants. Si ce n’est pas le cas pour vous, vous devrez supprimer la fonction `vault_generic_secret` et les appels dans le provider “proxmox”.
+Par défaut, j'utilise [Vault](https://vault.io) pour stocker mes identifiants. Si ce n'est pas le cas pour vous, vous devrez supprimer la fonction `vault_generic_secret` et les appels dans le provider "proxmox".
 
-Voici à quoi devrait ressembler votre fichier `providers.tf` si jamais vous n’utilisez pas Vault :
+Voici à quoi devrait ressembler votre fichier `providers.tf` si jamais vous n'utilisez pas Vault :
 
 ```hcl
 provider "proxmox" {
@@ -93,7 +95,7 @@ provider "proxmox" {
 }
 ```
 
-:::caution Identifiants en clair
+:::danger Identifiants en clair
 On ne le répète jamais assez : évitez de garder vos identifiants dans vos codes. Pensez à passer sous Vault (pour un écosystème HashiCorp), ou à envisager une solution comme SOPS (Terraform a même un provider).
 En savoir plus :
 
@@ -102,19 +104,19 @@ En savoir plus :
 
 :::
 
-*(On verra peut-être ça dans un article prochain, c’est un sujet que j’aimerais approfondir)*
+*On verra peut-être ça dans un article prochain, c'est un sujet que j'aimerais approfondir.*
 
 ### Démarrer le déploiement
 
-Une fois le projet configuré *(avec les bons identifiants)*, il suffit de laisser Terraform faire le travail : 
+Une fois le projet configuré *(avec les bons identifiants)*, il suffit de laisser Terraform faire le travail :
 
 ```bash
-terraform plan  # voir ce que Terraform s’apprète à faire
+terraform plan  # voir ce que Terraform s'apprète à faire
 terraform apply # lancer le déploiement
 ```
 
 Une fois les machines déployées, Terraform va appeler le playbook k3s-ansible pour installer le cluster K3S. Je ne modifie aucun paramètre via terraform *(son seul rôle est de générer les inventaires avec les IPs récupérées via qemu-guest-agent)*.
 
-## Conclusion 
+## Conclusion
 
-Merci d’avoir lu cette page, bien que le projet est très brouillon et pas du tout prod-friendly, j’espère qu’il vous aidera ou vous inspirera pour d’autres idées. En amélioration, il est possible d’intégrer Terragrunt (qui a complètement sa place ici) ou même d’utiliser le provider Ansible et non une commande appelant les playbooks.  
+Merci d'avoir lu cette page, bien que le projet est très brouillon et pas du tout prod-friendly, j'espère qu'il vous aidera ou vous inspirera pour d'autres idées. En amélioration, il est possible d'intégrer Terragrunt (qui a complètement sa place ici) ou même d'utiliser le provider Ansible et non une commande appelant les playbooks.  

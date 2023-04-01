@@ -1,22 +1,19 @@
 ﻿---
 slug: netbootxyz
-title: Boot PXE avec netboot 
-tags:
-  - reseau
-  - infra
-  - dns
-description: NetBoot est un utilitaire permettant de faciliter la création d'un boot PXE. Nous allons voir comment déployer NetBoot et garder les assets en local.
+title: Boot PXE avec netboot
+tags: [reseau, infra, dns]
+description: NetBoot est un utilitaire permettant de faciliter la création d'un boot PXE. Nous allons voir comment déployer NetBoot et garder les assets en local
 ---
 
+## Qu'est-ce que le PXE ?  
 
-## Qu’est-ce que le PXE ?  
+Avant de démarrer la technique, petite explication des termes :
 
-Avant de démarrer la technique, petite explication des termes : 
-- Le **PXE** *(Preboot Execution Environment)* est une technologie permettant d’amorcer une partition de démarrage via le réseau *(et notamment via le protocole TFTP)*. 
-- L’**IPXE** est un fork de PXE proposant des fonctionnalités supplémentaires comme le chiffrement, l’usage du **SAN** / **HTTP** comme protocole, et permet d’utiliser un langage de scripting ! 
-
+- Le **PXE** *(Preboot Execution Environment)* est une technologie permettant d'amorcer une partition de démarrage via le réseau *(et notamment via le protocole TFTP)*.
+- L'**IPXE** est un fork de PXE proposant des fonctionnalités supplémentaires comme le chiffrement, l'usage du **SAN** / **HTTP** comme protocole, et permet d'utiliser un langage de scripting !
 
 Voici un exemple de fichier `.ipxe` pour démarrer sur un Debian 9 *(Source : [Dépôt Github](https://github.com/AdrianKoshka/ipxe-scripts/blob/master/boot/linux/debian.ipxe))*
+
 ```bash
 isset ${server-ip} || set server-ip 192.168.1.137
 
@@ -51,13 +48,14 @@ chain http://${server-ip}/boot/linux.ipxe
 ## NetBoot.xyz
 
 NetBoot est un site proposant de démarrer sur un menu sur lequel nous allons choisir différents systèmes sur lequel booter. (*via des scripts ipxe*)
-Cette solution est pratique lorsque nous n’avons pas moyen d’avoir une clé USB bootable et que l’on doit installer un système *from scratch*.
+Cette solution est pratique lorsque nous n'avons pas moyen d'avoir une clé USB bootable et que l'on doit installer un système *from scratch*.
 
-Sur certains systèmes, il est possible de fournir des scripts d’installations *(ex : preseed pour debian, kickstart pour rockylinux)*.
+Sur certains systèmes, il est possible de fournir des scripts d'installations *(ex : preseed pour debian, kickstart pour rockylinux)*.
 
-NetBoot permet d’utiliser plusieurs méthodes d’amorçage sur une machine *(TFTP, via ISO, IPXE, depuis GRUB)*, vous trouverez ces méthodes [ici](https://netboot.xyz/docs/category/booting-methods)
+NetBoot permet d'utiliser plusieurs méthodes d'amorçage sur une machine *(TFTP, via ISO, IPXE, depuis GRUB)*, vous trouverez ces méthodes [ici](https://netboot.xyz/docs/category/booting-methods)
 
-en IPXE voici les commandes à taper : 
+en IPXE voici les commandes à taper :
+
 ```bash
 dhcp
 chain --autofree https://boot.netboot.xyz
@@ -69,13 +67,14 @@ Cet usage peut suffire. Mais dans cette documentation, nous allons utiliser la p
 
 ### Avec Ansible
 
-NetBoot fourni un *role Ansible* pour l’installation. *(Solution que je n’ai pas utilisé)*
+NetBoot fourni un *role Ansible* pour l'installation. *(Solution que je n'ai pas utilisé)*
 
 ```bash
 git clone https://github.com/netbootxyz/netboot.xyz.git /opt/netboot.xyz
 cd /opt/netboot.xyz
 ansible-playbook -i inventory site.yml # par défaut, s'installe sur la machine directement (et non par ssh)
 ```
+
 ### Avec Docker
 
 ```yml
@@ -95,25 +94,25 @@ services:
     restart: unless-stopped
 ```
 
-L’interface WEB est disponible sur le port 3000. (*192.168.1.137:3000*)
+L'interface WEB est disponible sur le port 3000. (*192.168.1.137:3000*)
 
 ## Configurer le DHCP pour un démarrage PXE
 
 Il faudra avoir les pleins-pouvoirs sur votre DHCP. *(Je précise puisque ma pauvre livebox ne me permet pas de modifier mes options DHCP par défaut)*
-Si ce n’est pas le cas, je vous invite à suivre [cette documentation pour créer votre propre serveur DHCP avec Dnsmasq](/docs/Adminsys/dnsmasq).
+Si ce n'est pas le cas, je vous invite à suivre [cette documentation pour créer votre propre serveur DHCP avec Dnsmasq](/docs/Adminsys/dnsmasq).
 
 Sur mon DHCP, je crée le fichier `/etc/dnsmasq.d/pxe-boot.conf` qui va indiquer le fichier de démarrage et le serveur TFTP sur lequel démarrer :
+
 ```conf
 dhcp-boot=netboot.xyz.kpxe,pxeserver,192.168.1.137
 ```
 
-:::info Fichier de démarrage ? 
-Les fichiers disponibles sont expliqués sur le site : 
+:::info Fichier de démarrage ?
+Les fichiers disponibles sont expliqués sur le site :
 ![Tableau Fichiers Démarrages Disponibles](/img/netboot-filetype.png)
 :::
 
-
-Ensuite, redémarrez votre dnsmasq : 
+Ensuite, redémarrez votre dnsmasq :
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -133,7 +132,7 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 ```
 
-Maintenant, notre DHCP va bien renvoyer vers notre serveur TFTP (*netboot*). Pour vérifier que ça soit bien le cas, je vous invite à passer par un **script nmap** : 
+Maintenant, notre DHCP va bien renvoyer vers notre serveur TFTP (*netboot*). Pour vérifier que ça soit bien le cas, je vous invite à passer par un **script nmap** :
 
 ```bash
 ➜ sudo nmap --script broadcast-dhcp-discover
@@ -156,9 +155,9 @@ Pre-scan script results:
 |_    Router: 192.168.1.1
 ```
 
-On ne peut pas voir l’IP du serveur TFTP directement *(Apparemment, il manque une ligne dans le script, voici le [lien d’une réponse Stack Overflow si le sujet vous intéresse](https://serverfault.com/a/996093))*
+On ne peut pas voir l'IP du serveur TFTP directement *(Apparemment, il manque une ligne dans le script nmap, voici le [lien d'une réponse Stack Overflow si le sujet vous intéresse](https://serverfault.com/a/996093))*
 
-Maintenant, on peut démarrer en PXE sur une machine ! 
+Maintenant, on peut démarrer en PXE sur une machine !
 
 ## Usage de NetBoot
 
@@ -168,7 +167,7 @@ Pour les tests, je passe par des machines virtuelles sur mon Proxmox local.
 
 On peut démarrer sur les live-CD/systèmes proposés à partir de cette étape. Notre NetBoot va communiquer avec le dépôt GitHub du logiciel ainsi que par le site boot.netboot.xyz.
 
-Mais pour être totalement indépendant des serveurs *(& dépôt)* de NetBoot, il va falloir réaliser ces prochaines étapes : 
+Mais pour être totalement indépendant des serveurs *(& dépôt)* de NetBoot, il va falloir réaliser ces prochaines étapes :
 
 ## Utiliser ses assets locaux
 
@@ -182,24 +181,23 @@ set boot_domain 192.168.1.137
 set live_endpoint http://192.168.1.137
 ...
 ```
+
 Ainsi, netboot utilisera **notre** instance, ainsi que **nos assets**. Il est donc important de télécharger les fichiers utiles aux distributions/outils sur lequel nous voudrons amorcer nos systèmes.
 
-Dans l’onglet **Local Assets**, il suffira de cocher les fichiers à récupérer en local. 
+Dans l'onglet **Local Assets**, il suffira de cocher les fichiers à récupérer en local.
 
-Ainsi, pour pouvoir démarrer un clonezilla en version ubuntu depuis notre netboot, il faudra télécharger ces fichiers : 
+Ainsi, pour pouvoir démarrer un clonezilla en version ubuntu depuis notre netboot, il faudra télécharger ces fichiers :
 ![Local Assets pour clonezilla-ubuntu](/img/netboot-assets.png)
 
-## Conclusion 
+## Conclusion
 
-Netboot est une solution très complète nous permettant d’installer plusieurs machines en même via un support bien plus moderne qu’une clé USB. Celui-ci propose une solution fonctionnelle sans devoir héberger quoique ce soit, mais nous laisse la possibilité de devenir indépendant en récupérant les assets sur notre serveur.
+Netboot est une solution très complète nous permettant d'installer plusieurs machines en même via un support bien plus moderne qu'une clé USB. Celui-ci propose une solution fonctionnelle sans devoir héberger quoique ce soit, mais nous laisse la possibilité de devenir indépendant en récupérant les assets sur notre serveur.
 
-Ayant déjà été dans le cas où je devais installer de nombreux postes le plus rapidement possible, je peux maintenir réitérer l’expérience sans problème *(et notamment avec l’usage de preseed/kickstart)*.
-
-
-
+Ayant déjà été dans le cas où je devais installer de nombreux postes le plus rapidement possible, je peux maintenir réitérer l'expérience sans problème *(et notamment avec l'usage de preseed/kickstart)*.
 
 ---
 
 :::note En lien avec cette page
+
 - [Créer un DNS/DHCP avec DNSMASQ](/docs/Adminsys/dnsmasq)
 :::
