@@ -40,5 +40,5 @@ if __name__ == "__main__":
 
         print("Running tests in parallel using anyio")
         #anyio.run(markdown_lint.markdown_lint)        
-        anyio.run(docusaurus_build.docusaurus_build)
-        #anyio.run(docker_build.docker_image_build)
+        #anyio.run(docusaurus_build.docusaurus_build)
+        anyio.run(docker_build.docker_image_build)
