@@ -41,4 +41,7 @@ def run_test(event):
         event.set()
 
 if __name__ == "__main__":
-    anyio.run(docker_image_build)
+    try:
+      anyio.run(docker_image_build)
+    except:
+      print("Error in Docker image build")

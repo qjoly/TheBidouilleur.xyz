@@ -37,7 +37,8 @@ if __name__ == "__main__":
             print("All threads finished without errors")
     else:
         import anyio
+
         print("Running tests in parallel using anyio")
-        anyio.run(markdown_lint.markdown_lint)
+        anyio.run(markdown_lint.markdown_lint)        
         anyio.run(docusaurus_build.docusaurus_build)
         anyio.run(docker_build.docker_image_build)

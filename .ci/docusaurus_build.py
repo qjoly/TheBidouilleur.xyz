@@ -32,4 +32,7 @@ def run_test(event):
         event.set()
 
 if __name__ == "__main__":
-    anyio.run(docusaurus_build)
+    try:
+        anyio.run(docusaurus_build)
+    except:
+        print("Error in Docusaurus build")

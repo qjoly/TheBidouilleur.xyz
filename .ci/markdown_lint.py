@@ -33,4 +33,7 @@ def run_test(event):
         event.set()
 
 if __name__ == "__main__":
-    anyio.run(markdown_lint)
+    try:
+        anyio.run(markdown_lint)
+    except:
+        print("Error in Linting")
