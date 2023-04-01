@@ -4,8 +4,8 @@ title: Keep your clusters up-to-date
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
-  url: https://github.com/qjoly/
-  image_url: https://avatars.githubusercontent.com/u/82603435?v=4
+  url: "https://github.com/qjoly/"
+  image_url: "https://avatars.githubusercontent.com/u/82603435?v=4"
 tags: [docker, swarm, kubernetes]
 ---
 
@@ -120,6 +120,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 3m"
 ```
+
 But where Keel excels is that it offers **triggers** and **approvals**.
 
 A trigger is an event that will trigger the update of Keel. We can imagine a webhook coming from Github, Dockerhub, Gitea which will trigger the update of the server. *(So we avoid a regular crontab and we save resources, traffic and time)
@@ -127,7 +128,7 @@ As the use of webhook has become widespread in CICD systems, it can be coupled t
 
 The approvals are the little gem that was missing from the other tools. Indeed, I specified that *updating images is dangerous and you should not target sensitive applications in automatic updates*. And it's just in response to that that Keel developed the *approvals*.
 
-![](https://keel.sh/img/docs/approvals.png)
+![Approval system of keel](https://keel.sh/img/docs/approvals.png)
 
 The idea is to give permission to Keel to update the pod. We can choose the moment and check manually.
 

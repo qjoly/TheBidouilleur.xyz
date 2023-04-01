@@ -2,21 +2,22 @@
 title: Kubectl on client computer
 ---
 
-To manage your cluster, you can connect to a *"master" machine (with the **control-plane** role)* and manage your cluster via the **kubectl** utility. 
-This is a practice that works but becomes very quickly limited when you want to tunnel to a pod. 
+To manage your cluster, you can connect to a *"master" machine (with the **control-plane** role)* and manage your cluster via the **kubectl** utility.
+This is a practice that works but becomes very quickly limited when you want to tunnel to a pod.
 
-Example: 
+Example:
   kubectl port-forward pod-vaultwarden 8080:80 # will tunnel using container port 80 to local port 8080
 
-In this case, if the *kubectl port-forward* command is executed on a node of the cluster, it has very little interest *(since the nodes have direct access to the pods)*. 
-That's why we need to run this command *on our local machine* and not on a node. 
+In this case, if the *kubectl port-forward* command is executed on a node of the cluster, it has very little interest *(since the nodes have direct access to the pods)*.
+That's why we need to run this command *on our local machine* and not on a node.
 
 ## Installing Kubectl
 
 You can find the official documentation [here](https://kubernetes.io/fr/docs/tasks/tools/install-kubectl/).
 
 ### To install via the binary (all distributions)
-I rather recommend to use the official repositories so that kubectl is fast and easy to update 
+
+I rather recommend to use the official repositories so that kubectl is fast and easy to update
 
 ```bash
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -37,18 +38,21 @@ sudo apt-get install -y kubectl
 
 ### Arch Linux
 
-You can use the binary method to get an official version. Otherwise, you can get an updated version from the community repositories: 
-``bash
+You can use the binary method to get an official version. Otherwise, you can get an updated version from the community repositories:
+
+```bash
 pacman -S kubectl
 ```
+
 ::: note No sudo for kubectl !
 It does not require any special permission, handle this command with your personal user.
-:::    
+:::
 
 ## Récupérer le kube/config
 
-By connecting via ssh to one of the master nodes, you will be able to view the following file **/root/.kube/config** which contains the accesses to administer the whole cluster.    
+By connecting via ssh to one of the master nodes, you will be able to view the following file **/root/.kube/config** which contains the accesses to administer the whole cluster.
 Here is an example:  
+
 ```yaml
 apiVersion: v1
 clusters:
@@ -71,16 +75,18 @@ users:
     client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUd6UUxqbWY2Q3NlZ3Bybk05ZXRTeGF0cnY4Q1RVZE5qNjdHSUpVM0o4YUhvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFdTNvWE5vM2xQTURod3BZNmdEcVpIWVN1MTZNejhTaEdma0J4a0NrN3J1Vll2eDZKOFUrUAplaHFUdDJkRDdoOENLUTRsNnV0REtxdnRIL0FKUytyZXlBPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
 ```
 
-You can download it and place it here: */home/$USER/.kube/config*. 
+You can download it and place it here: */home/$USER/.kube/config*.
 
-But running any command with *kubectl*, you get the following error message: 
-```
+But running any command with *kubectl*, you get the following error message:
+
+```bash
 [thebidouilleur@bertha ~]$ kubectl get nodes
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
 ```
-This is because the file contains "127.0.0.1" by default. You will have to edit the ip to put the one of the master. 
 
-Once edited, the command will work: 
+This is because the file contains "127.0.0.1" by default. You will have to edit the ip to put the one of the master.
+
+Once edited, the command will work:
 
 ```bash
 [thebidouilleur@bertha ~]$ kubectl get nodes

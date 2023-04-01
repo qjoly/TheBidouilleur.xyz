@@ -5,8 +5,9 @@ title: Build docker image on a k3s cluster
 
 To build an image on a Kubernetes cluster, I found the solution from [**Kaniko**](https://github.com/GoogleContainerTools/kaniko).
 It allows you to launch a build from a yaml manifest just like you would have launched a pod or a deployment.
-    
+
 Here is the manifest to deploy to create this blog
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -32,8 +33,8 @@ spec:
             path: config.json
 ```
 
+secret:
 
-secret: 
 ```bash
 kubectl create secret docker-registry reg-credentials --docker-server=https://index.docker.io/v1/ --docker-username=xx --docker-password=xxxx --docker-email=xx
 ```
