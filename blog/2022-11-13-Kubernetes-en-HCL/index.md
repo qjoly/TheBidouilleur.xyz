@@ -4,30 +4,30 @@ title: Kubernetes en HCL
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
-  url: https://github.com/qjoly/
-  image_url: https://avatars.githubusercontent.com/u/82603435?v=4
+  url: 'https://github.com/qjoly/'
+  image_url: 'https://avatars.githubusercontent.com/u/82603435?v=4'
 tags: [terraform, kubernetes]
 ---
 ## Introduction
 
-On parle beaucoup de Terraform comme étant *”la télécommande”* du DevOps, celui-ci possède des chiffres assez conséquents : 2626 providers et 11397 modules.
+On parle beaucoup de Terraform comme étant *"la télécommande"* du DevOps, celui-ci possède des chiffres assez conséquents : 2626 providers et 11397 modules.
 
 :::note Un providers ?
 Un module est une intégration de Terraform avec un outil externe. On peut lancer un playbook, créer une instance sous AWS, ou même envoyer un message sur Slack.
 :::
 
-J’utilise activement Terraform dans mes déploiements *(création et/ou peuplement d’une VM sous Proxmox/LibVirt)*, mais depuis que mon infrastructure est basée sous Kubernetes, je me demande de la place que Terraform occupe dans mes déploiements. *(Hors première installation du cluster)*
+J'utilise activement Terraform dans mes déploiements *(création et/ou peuplement d'une VM sous Proxmox/LibVirt)*, mais depuis que mon infrastructure est basée sous Kubernetes, je me demande de la place que Terraform occupe dans mes déploiements. *(Hors première installation du cluster)*
 
 Je me suis donc intéressé à Terraform et Kubernetes ensembles.
 
 ## Les avantages de Kubernetes et Terraform ?
 
-> Kubernetes fonctionne bien sans Terraform, pourquoi commencer à rajouter des outils dans l’équation ?
+> Kubernetes fonctionne bien sans Terraform, pourquoi commencer à rajouter des outils dans l'équation ?
 
-Kubernetes souffre d’un grand mal : le YAML.
-Et même si j’adore le YAML *(Vraiment, je veux pas retourner sur du JSON…)* : celui-ci reste un simple format et non un réel langage de programmation.
+Kubernetes souffre d'un grand mal : le YAML.
+Et même si j'adore le YAML *(Vraiment, je veux pas retourner sur du JSON…)* : celui-ci reste un simple format et non un réel langage de programmation.
 
-C’est pourquoi le HCL peut potentiellement nous ouvrir des portes en proposant des intégrations à d’autres providers.
+C'est pourquoi le HCL peut potentiellement nous ouvrir des portes en proposant des intégrations à d'autres providers.
 
 ### Un petit exemple en amuse-bouche
 
@@ -4151,13 +4151,14 @@ Facile, non?
   }]
 }
 ```
+
 </details>
 
-Ce n’est évidemment pas impossible, mais cela donne un fichier assez **ilisible** et complexe à maintenir.
+Ce n'est évidemment pas impossible, mais cela donne un fichier assez **ilisible** et complexe à maintenir.
 
 #### Une configmap en HCL
 
-Maintenant.. l’avantage de Terraform est de pouvoir **séparer** le manifest des données.
+Maintenant.. l'avantage de Terraform est de pouvoir **séparer** le manifest des données.
 
 ```hcl
 resource "kubernetes_config_map" "data_user" {
@@ -4178,9 +4179,9 @@ Le HCL n'a rien à envier du YAML de Kubernetes.
 
 Dans un bon écosystème, nous déployons via Helm, voyons comment Hashicorp nous présente ça.
 
-:::info Qu’est ce que Helm ?
+:::info Qu'est ce que Helm ?
 
-Helm est un outil de templating YAML similaire à Jinja2, on l’utilise dans les déploiements nécéssitant de nombreux fichiers YAML *(service, deploy, pvc, scaler…)*
+Helm est un outil de templating YAML similaire à Jinja2, on l'utilise dans les déploiements nécéssitant de nombreux fichiers YAML *(service, deploy, pvc, scaler…)*
 
 :::
 
@@ -4225,22 +4226,22 @@ Dans ce cas là, je peux injecter les variables:
 - provenants du fichier `values.yaml`
 - présentes dans le fichier terraform
 
-Comme dit dans l’introduction de cet article : la force de terraform vient de ses providers, il est donc possible de récupérer des variables depuis un serveur Vault, un bitwarden, ou même un KeePass.
+Comme dit dans l'introduction de cet article : la force de terraform vient de ses providers, il est donc possible de récupérer des variables depuis un serveur Vault, un bitwarden, ou même un KeePass.
 
 ## k2tf - Migrer ses yaml vers Terraform
 
 Histoire de convaincre les flemmards, voici un projet Github permettant de **convertir ses fichiers YAML vers des fichiers Terraform**.
-Les fichiers générés n'ont besoin que d’un `provider.tf` avant de pouvoir être déployés.
+Les fichiers générés n'ont besoin que d'un `provider.tf` avant de pouvoir être déployés.
 
 [![asciicast](https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc.svg)](https://asciinema.org/a/5LzAc7Eha7w7dwrktAxcMdpIc)
 
 ## Conclusion
 
-Le HCL apporte de nombreux avantages dans l’administration d'un cluster Kubernetes. En intégrant les modules Terraform,on se soustrait d’une configuration statique sans alourdir le cluster. *(par exemple,l’usage des initPods qui peuvent être utilisés pour récupérer du contenu stocké ailleurs alors que Terraform peut le faire durant le déploiement)*. J’ai hâte de voir comment Terraform et Kubernetes fonctionneront à l’avenir, et quelles intégrations seront possibles.
+Le HCL apporte de nombreux avantages dans l'administration d'un cluster Kubernetes. En intégrant les modules Terraform,on se soustrait d'une configuration statique sans alourdir le cluster. *(par exemple,l'usage des initPods qui peuvent être utilisés pour récupérer du contenu stocké ailleurs alors que Terraform peut le faire durant le déploiement)*. J'ai hâte de voir comment Terraform et Kubernetes fonctionneront à l'avenir, et quelles intégrations seront possibles.
 
 :::caution Pulumi?
 
-Mais pour vous ouvrir d’autres possibilités et vous débarasser d'un DSL, il existe un outil bien pratique nommé Pulumi qui permet de faire les mêmes choses que Terraform depuis un réel langage de programmation comme le Python, le Go, le Java etc…
+Mais pour vous ouvrir d'autres possibilités et vous débarasser d'un DSL, il existe un outil bien pratique nommé Pulumi qui permet de faire les mêmes choses que Terraform depuis un réel langage de programmation comme le Python, le Go, le Java etc…
 
 :::
 

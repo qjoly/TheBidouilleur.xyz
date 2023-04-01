@@ -1,15 +1,14 @@
 ﻿---
-slug: sops 
+slug: sops
 title: Stocker des secrets dans un dépôt Git
-tags:
-  - gitops
-  - sops
-description: Sops est un utilitaire créé par Mozilla permettant de chiffrer ses secrets. Nous allons voir comment mettre en place SOPS et le coupler à pre-commit pour ne jamais commit sans chiffrer vos secrets.
+tags: [gitops, sops]
+description: Sops est un utilitaire créé par Mozilla permettant de chiffrer ses secrets. Nous allons voir comment mettre en place SOPS et le coupler à pre-commit pour ne jamais commit sans chiffrer vos secrets
 ---
 
-Éviter d’envoyer ses secrets sur Git, nous devons toujours être vigileant avant un quelconque Push. Et c’est justement le but de  **Sops** *(Secrets OPerationS)* qui va nous aider à stocker nos informations sur le dépôt.. mais en les chiffrant.
+Éviter d'envoyer ses secrets sur Git, nous devons toujours être vigileant avant un quelconque Push. Et c'est justement le but de  **Sops** *(Secrets OPerationS)* qui va nous aider à stocker nos informations sur le dépôt.. mais en les chiffrant.
 
-Celui-ci est compatible avec de nombreux gestionnaires de secret comme : 
+Celui-ci est compatible avec de nombreux gestionnaires de secret comme :
+
 - Hashicorp Vault
 - GCP KMS
 - PGP
@@ -27,23 +26,22 @@ Vous pouvez installer Age en suivant les instructions sur le dépôt officiel [i
 
 :::
 
-
-Nous allons donc créer notre propre clé avec age. 
+Nous allons donc créer notre propre clé avec age.
 
 ```bash
 mkdir -p ~/.keys/
 age-keygen -o ~/.keys/ma-cle
 ```
 
-En inspectant le contenu du fichier `~/.keys/ma-cle`, nous remarquons un schéma que l’on connait bien : une clé publique, et une clé privée. 
+En inspectant le contenu du fichier `~/.keys/ma-cle`, nous remarquons un schéma que l'on connait bien : une clé publique, et une clé privée.
 
-```
+```bash
 # created: 2023-02-15T07:50:20+01:00
 # public key: age1220x7zmnp0j8du3vxk67a4mdkr3gqn9djjn7f7gamjclr3em7g2sxpns35
 AGE-SECRET-KEY-1JY9Q0NWNRK4DCT9J3D2H0Z9D5ZY0XHV8EJ39JKKK2PW6SUH9FTFSN9T6HF
 ```
 
-Et pour que *Sops* utilise cette clé, nous allons créer la variable d’environnement `SOPS_AGE_KEY_FILE` dans notre `~/.bashrc` ou `~/.zshrs`.
+Et pour que *Sops* utilise cette clé, nous allons créer la variable d'environnement `SOPS_AGE_KEY_FILE` dans notre `~/.bashrc` ou `~/.zshrs`.
 
 ```bash
 export SOPS_AGE_KEY_FILE=~/.keys/ma-cle
@@ -55,19 +53,20 @@ Maintenant, nous pouvons passer au niveau supérieur : **créer notre premier fi
 
 :::note Installer Sops
 
-Vous pouvez installer Sops sur un système Amd64 en suivant ces instructions: 
+Vous pouvez installer Sops sur un système Amd64 en suivant ces instructions:
+
 ```bash
 wget https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64 -O /usr/bin/sops
 chmod +x /usr/bin/sops
 ```
+
 :::
 
+Notre système d'authentification est déjà créé : c'est notre couple de clé AGE. Ce que nous allons faire maintenant, c'est créer un secret qui sera déchiffrable uniquement par notre clé privée.
 
-Notre système d’authentification est déjà créé : c’est notre couple de clé AGE. Ce que nous allons faire maintenant, c’est créer un secret qui sera déchiffrable uniquement par notre clé privée.
+Première chose que nous allons faire, c'est créer notre fichier `.sops.yaml`.
 
-Première chose que nous allons faire, c’est créer notre fichier `.sops.yaml`.
-
-Ce fichier permet de définir quels fichiers devront être manoeuvrés par SOPS et surtout : quels clés ont accès à ces fichiers. 
+Ce fichier permet de définir quels fichiers devront être manoeuvrés par SOPS et surtout : quels clés ont accès à ces fichiers.
 
 ```yml
 # .sops.yaml
@@ -79,7 +78,8 @@ creation_rules:
         - age1220x7zmnp0j8du3vxk67a4mdkr3gqn9djjn7f7gamjclr3em7g2sxpns35
 ```
 
-Créons maintenant un fichier `secret.dev.yml`: 
+Créons maintenant un fichier `secret.dev.yml`:
+
 ```yaml
 username: "thebidouilleur"
 password: jadorelabidouille
@@ -87,7 +87,8 @@ url: "https://thebidouilleur.xyz"
 QI: 7.2
 ```
 
-et affichons ce même fichier en le chiffrant avec sops via l’argument `-e` *(encrypt)*.
+et affichons ce même fichier en le chiffrant avec sops via l'argument `-e` *(encrypt)*.
+
 ```bash
 ➜  sops -e secret.dev.yml
 username: ENC[AES256_GCM,data:8KUxRrhWLWsbxzJqxRQ=,iv:qJQYUgCQ6wv9fmn+scJ3ui7tFD6lpoRH0qpC+n58sF8=,tag:RJdluEfMdnXy6Zhpxn2AyQ==,type:str]
@@ -116,14 +117,15 @@ sops:
     version: 3.7.3
 ```
 
-Ni l’URL, ni mon QI n’ont été chiffrés. Gardez également en *tête* que la commande **ne fait qu’afficher un output du même fichier chiffré, le fichier n’a pas été modifié**. 
+Ni l'URL, ni mon QI n'ont été chiffrés. Gardez également en *tête* que la commande **ne fait qu'afficher un output du même fichier chiffré, le fichier n'a pas été modifié**.
 
-Si on souhaite ré-écrire le fichier, il faut rajouter l’argument `-i` : `sops -e -i secret.dev.yml`
+Si on souhaite ré-écrire le fichier, il faut rajouter l'argument `-i` : `sops -e -i secret.dev.yml`
 
 Pour déchiffrer le fichier, il suffit de faire la même commande en changeant `-e` par `-d` *(decrypt)*.
 
-Si jamais je chiffre mon fichier `secret.dev.yml` et que je change de clé, nous serons dans l’incapacité de le chiffrer : 
-```
+Si jamais je chiffre mon fichier `secret.dev.yml` et que je change de clé, nous serons dans l'incapacité de le chiffrer :
+
+```bash
 ➜ sops -d -i secret.dev.yml
 Failed to get the data key required to decrypt the SOPS file.
 
@@ -141,16 +143,15 @@ Pour ajouter une clé pouvant déchiffrer les fichiers, rajoutez-là dans votre 
 
 En déchiffrant puis rechiffrant les fichiers, la nouvelle clé y aura accès.
 
-
 ## Chiffrer avant de commiter
 
-Mais comme Skynet *(ou ChatGPT)* n’a pas encore remplacé les informaticiens : nous restons humains. Il est donc obligatoire de trouver un moyen pour ne **jamais** oublier de chiffrer nos secrets avant de commit. Et la solution est simple : [pre-commit](https://pre-commit.com)
+Mais comme Skynet *(ou ChatGPT)* n'a pas encore remplacé les informaticiens : nous restons humains. Il est donc obligatoire de trouver un moyen pour ne **jamais** oublier de chiffrer nos secrets avant de commit. Et la solution est simple : [pre-commit](https://pre-commit.com)
 
 :::note Pre-Commit
-Pre-Commit est un utilitaire en Python permettant d’automatiser certaines taches avant de commit votre code. Il est ainsi possible de faire votre propre *CI* en testant vos fichiers ou … en chiffrant vos secrets.
+Pre-Commit est un utilitaire en Python permettant d'automatiser certaines taches avant de commit votre code. Il est ainsi possible de faire votre propre *CI* en testant vos fichiers ou … en chiffrant vos secrets.
 :::
 
-L’installation de pre-commit se fait avec `pip` *(Si vous n’êtes pas à l’aise avec Python, je vous invite à suivre [cette documentation](https://pip.pypa.io/en/stable/installation/) pour l’installer.)*.
+L'installation de pre-commit se fait avec `pip` *(Si vous n'êtes pas à l'aise avec Python, je vous invite à suivre [cette documentation](https://pip.pypa.io/en/stable/installation/) pour l'installer.)*.
 
 ```bash
 pip install pre-commit
@@ -158,14 +159,16 @@ pip install pre-commit
 
 :::tip
 
-Si vous avez installé `pip` mais que vous n’arrivez pas à le lancer car `commande introuvable`, c’est surement car celui-ci ne s’est pas mis dans votre `$PATH`. 
+Si vous avez installé `pip` mais que vous n'arrivez pas à le lancer car `commande introuvable`, c'est surement car celui-ci ne s'est pas mis dans votre `$PATH`.
 Il faudra ajouter le dossier `~/.local/bin` dans votre fichier `.bashrc` ou `.zshrc`.
+
 ```bash
 export PATH="$PATH:$HOME/.local/bin
 ```
+
 :::
 
-Une fois pre-commit installé, il faudra l’activer dans un dossier gérer par *Git*:
+Une fois pre-commit installé, il faudra l'activer dans un dossier gérer par *Git*:
 
 ```bash
 ➜  pre-commit install
@@ -185,7 +188,7 @@ repos:
       pass_filenames: true
 ```
 
-Cette configuration permet à **pre-commit** d’exécuter le script `.pre-commit-sops.sh` avant chaque commit. Et voici le contenu de ce fichier : 
+Cette configuration permet à **pre-commit** d'exécuter le script `.pre-commit-sops.sh` avant chaque commit. Et voici le contenu de ce fichier :
 
 ```bash
 #!/bin/bash
@@ -202,11 +205,13 @@ else
 fi
 done
 ```
+
 *Donc si le fichier correspond au pattern identifiant les fichiers contenants les secrets, nous le chiffrons, et nous actualisons son contenu avant de commit.*
 
 Pensez également à rendre votre fichier exécutable.
 
-On teste ça, le fichier `secret.dev.yml` devrait être chiffré après mon commit. 
+On teste ça, le fichier `secret.dev.yml` devrait être chiffré après mon commit.
+
 ```bash
 TheBidouilleur:~/Documents/GitOps$ cat secret.dev.yaml 
 username: bigusername
@@ -244,4 +249,4 @@ sops:
     version: 3.7.3
 ```
 
-Et maintenant.. aucun risque d’oublier de chiffrer !
+Et maintenant.. aucun risque d'oublier de chiffrer !

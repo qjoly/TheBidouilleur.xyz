@@ -61,7 +61,7 @@ Il ne nécessite aucune permission particulière, manier cette commande avec vot
 
 ## Récupérer le kube/config
 
-En vous connectant via ssh sur un des nœuds masters, vous pourrez visionner le fichier suivant **/root/.kube/config** qui contient les accès pour administrer le cluster complet. 
+En vous connectant via ssh sur un des nœuds masters, vous pourrez visionner le fichier suivant **/root/.kube/config** qui contient les accès pour administrer le cluster complet.
 En voici un exemple :
 
 ```yaml

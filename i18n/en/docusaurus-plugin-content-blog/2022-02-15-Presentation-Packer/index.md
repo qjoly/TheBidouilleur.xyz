@@ -4,17 +4,16 @@ title: Quick Presentation of Packer
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
-  url: https://git.thoughtless.eu
-  image_url: https://avatars.githubusercontent.com/u/82603435?v=4
+  url: 'https://github.com/qjoly/'
+  image_url: "https://avatars.githubusercontent.com/u/82603435?v=4"
 tags: [proxmox, packer, devops]
 ---
 
 [ This article is from my old-blog, it will also be available in the "Documentation" section of the site ]
 
-
 ## Introduction
-Soon 7 years since my main infrastructure is on Proxmox. It's the hypervisor I trust most, which is also free and open-source. As soon as I have to deploy more than 2 virtual machines and can choose the environment: Proxmox will be my first choice. It offers a complete and efficient webui, without forgetting the advantage of command line tools. I don't rule out that someday, I may change my environment. And today, I have new needs in my hypervisor: Automate a complete deployment of my infrastructure, and since I will not reinstall each machine individually, I must start from a "base" that will serve as a template for the machine system to be pre-configured as I wish. And this famous template, I can make by hand.... or I can deploy it automatically with Packer!
 
+Soon 7 years since my main infrastructure is on Proxmox. It's the hypervisor I trust most, which is also free and open-source. As soon as I have to deploy more than 2 virtual machines and can choose the environment: Proxmox will be my first choice. It offers a complete and efficient webui, without forgetting the advantage of command line tools. I don't rule out that someday, I may change my environment. And today, I have new needs in my hypervisor: Automate a complete deployment of my infrastructure, and since I will not reinstall each machine individually, I must start from a "base" that will serve as a template for the machine system to be pre-configured as I wish. And this famous template, I can make by hand.... or I can deploy it automatically with Packer!
 
 ## What is Packer?
 
@@ -29,7 +28,7 @@ Packer has few dependencies, it needs a public hypervisor/cloud, access to the "
 
 ### A little vocabulary
 
-The place where Packer deploys the VM is called Builder, in my case: It's Proxmox! And the term "provisioning" refers to the tool that will finish configuring the VM (Ex: Ansible). 
+The place where Packer deploys the VM is called Builder, in my case: It's Proxmox! And the term "provisioning" refers to the tool that will finish configuring the VM (Ex: Ansible).
 
 ## Create our first template
 
@@ -37,9 +36,7 @@ Before we tackle a big fish like debian, we'll start with a simpler system to in
 
 As I cannot use an answer file: we will answer questions manually (*by sending keystrokes*).
 
-
-/!\ In the rest of this article, I will base myself on this deposit that is hosted on my gitea: [packer-alpine-proxmox](https://git.thoughtless.eu/Cinabre/packer-alpine-proxmox).
-
+/!\ In the rest of this article, I will base myself on this deposit that is hosted on my gitea: [packer-alpine-proxmox](https://github.com/qjoly/'/Cinabre/packer-alpine-proxmox).
 
 ```json
 {
@@ -156,10 +153,12 @@ As I cannot use an answer file: we will answer questions manually (*by sending k
         }
     ]
 }
-``` 
+```
+
 We'll quickly go through the structure of this Packer file:
-- the part "*Variable*" relates to static variables and/or environment variables *(We'll see later)* 
-- *Provision* designates the command to be launched **after** the creation of the template 
+
+- the part "*Variable*" relates to static variables and/or environment variables *(We'll see later)*
+- *Provision* designates the command to be launched **after** the creation of the template
 - and what concerns the template itself (parameters, hypervisors...) is in the *builder*  part
 
 and the *boot_command* part in *Builder* is the list of **all** keyboard entries that Packer will type, It often places the download of Packer's Preseed to the VM.
@@ -194,13 +193,12 @@ export storage_name="local"
 rm http/authorized_keys || true
 for f in ssh/*.pub; do
         name_of_key=$(echo $f | cut -d "/" -f2 )
-	echo -e "#$name_of_key" >> http/authorized_keys 
-	key=$(cat $f)
-	echo -e "$key" >> http/authorized_keys
+ echo -e "#$name_of_key" >> http/authorized_keys 
+ key=$(cat $f)
+ echo -e "$key" >> http/authorized_keys
 done
 packer build alpine-3-amd64-proxmox.json
 ```
 
 This file will provide some parameters to Packer such as variables containing passwords. I use Vault to retrieve sensitive information from a remote server.
 You can choose to *not* use Vault by placing passwords directly in clear text.
-

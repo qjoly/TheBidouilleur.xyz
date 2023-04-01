@@ -4,8 +4,8 @@ title: Kubernetes in HCL
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
-  url: https://github.com/qjoly/
-  image_url: https://avatars.githubusercontent.com/u/82603435?v=4
+  url: "https://github.com/qjoly/"
+  image_url: "https://avatars.githubusercontent.com/u/82603435?v=4"
 tags: [terraform, kubernetes]
 ---
 
@@ -4150,6 +4150,7 @@ Easy, isn't it?
   }]
 }
 ```
+
 </details>
 This is obviously not impossible, but it makes for a rather **unreadable** and difficult to maintain.
 

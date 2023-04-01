@@ -27,4 +27,4 @@ K9S permet de :
 - Éditer les configmaps
 - Faire du café
 
-K9S fonctionne avec des raccourcis similaires à ceux de **VIM**. Le binaire ne pèse que quelques mégaoctets. Et aucune dépendance n'est requise *(en dehors du fait de bien posséder le kubeconfig)*. 
+K9S fonctionne avec des raccourcis similaires à ceux de **VIM**. Le binaire ne pèse que quelques mégaoctets. Et aucune dépendance n'est requise *(en dehors du fait de bien posséder le kubeconfig)*.

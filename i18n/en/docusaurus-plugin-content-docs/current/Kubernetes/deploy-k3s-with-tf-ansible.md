@@ -3,7 +3,8 @@ slug: k3s-terraform
 title: Deploy a full k3s cluster with terraform and ansible
 ---
 
-# Introduction
+## Introduction
+
 Kubernetes is one of my main learning subjects, being very inexperienced in the field, I need a test environment allowing me to practice without fear of breaking something in production, a reproducible environment to always start from the same base.
 
 And the solution for this reproducible environment: It's the Terraform-Ansible duo!
@@ -11,6 +12,7 @@ And the solution for this reproducible environment: It's the Terraform-Ansible d
 :::note What is Terraform?
 Terraform is an Iaas tool (Infrastructure As A Code) allowing to file a virtual machine configuration, a network configuration, or the elements around the machines (Ansible, Puppet). This will connect to your Hypervisor (AWS, ESXI, Proxmox, OpenStack..)
 Example:
+
 ```terraform
 resource "proxmox_vm_qemu" "pxe-minimal-example" {
     name = "pxe-minimal-example"
@@ -26,17 +28,20 @@ resource "proxmox_vm_qemu" "pxe-minimal-example" {
     }
 }
 ```
+
 :::
 
-# Start the project
+## Start the project
 
-[We will base ourselves on this project (hosted on my Gitea)](https://git.thoughtless.eu/Cinabre/terraform-k3s-proxmox)
+[We will base ourselves on this project (hosted on my Gitea)](https://github.com/qjoly/'/Cinabre/terraform-k3s-proxmox)
 
 To clone it:
+
 ```bash
-  git clone --recursive https://git.thoughtless.eu/Cinabre/terraform-k3s-proxmox
+  git clone --recursive 'https://github.com/qjoly/'/Cinabre/terraform-k3s-proxmox
 ```
-::: caution beware
+
+:::danger beware
 The `--recursive` is essential for the project. The Git repository will fetch files from a **second repository**!
 Without this parameter, you will only recover the main repository.
 :::

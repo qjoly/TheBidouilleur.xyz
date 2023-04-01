@@ -4,7 +4,8 @@ slug: longhorn-fsck
 ---
 
 En relançant un de mes pods, je suis tombé sur une sale erreur :
-```
+
+```none
  Events:                                                                                                                                                               │
 │   Type     Reason                  Age                   From                     Message                                                                             │
 │   ----     ------                  ----                  ----                     -------                                                                             │
@@ -27,7 +28,7 @@ En relançant un de mes pods, je suis tombé sur une sale erreur :
 Ce volume *(géré par longhorn)* montre des traces de corruption et il ne semble pas réussir à lancer fsck.
 Dans les étapes à faire :
 
-- Se connecter sur le node hébergeant l’application
+- Se connecter sur le node hébergeant l'application
 - Lancer la commande suivante :
 
 ```bash
