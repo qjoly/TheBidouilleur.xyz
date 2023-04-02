@@ -1,21 +1,7 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "docs/**"
-      - "blog/**"
-      - "i18n/**"
-      - "Dockerfile"
-      - "package.json"
-      - "package-lock.json"
-      - "yarn.lock"
-      - "docusaurus.config.js"
-      - "src/**"
-      - "static/**"
-      - ".github/workflows/**"
+  workflow_dispatch:
 
 jobs:
   build:
