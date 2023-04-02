@@ -29,8 +29,8 @@ async def docker_image_build():
         )
       variants.append(build)
     
-    await client.container().publish("qjoly/thebidouilleur:dagger", platform_variants=variants)
-    print("All tasks have finished")
+    await client.container().publish("qjoly/thebidouilleurxyz:latest", platform_variants=variants)
+    print("All build have finished")
 
 def run_test(event):
     """Build docker image"""
