@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[2061],{5255:e=>{e.exports=JSON.parse('{"label":"ci","permalink":"/TheBidouilleur.xyz/blog/tags/ci","allTagsPath":"/TheBidouilleur.xyz/blog/tags","count":1}')}}]);
