@@ -2,7 +2,20 @@ name: Push to Github registry
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - "blog/**"
+      - "i18n/**"
+      - "Dockerfile"
+      - "package.json"
+      - "package-lock.json"
+      - "yarn.lock"
+      - "docusaurus.config.js"
+      - "src/**"
+      - "static/**"
+      - ".github/workflows/**"
 
 jobs:
   build:
