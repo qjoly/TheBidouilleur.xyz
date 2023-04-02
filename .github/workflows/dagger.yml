@@ -2,6 +2,8 @@ name: Dagger Pipeline
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   setup:
