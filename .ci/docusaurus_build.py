@@ -8,15 +8,14 @@ import threading
 
 async def docusaurus_build():
 
-    package_json_contents = Path("./package.json").read_text()
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
         src = client.host().directory("./")
 
         build = (
-            client.container().from_("node:alpine").with_workdir("/data")
-            .with_new_file("package.json", package_json_contents)
-            .with_exec("npm install".split(" "))
+            client.container().from_("node:16.20.0-alpine").with_workdir("/data")
             .with_mounted_directory("/data", src)
+            .with_workdir("/data")
+            .with_exec("npm install".split(" "))
             .with_exec("npm run build".split(" "))
         )
 
