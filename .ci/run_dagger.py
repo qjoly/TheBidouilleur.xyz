@@ -5,7 +5,7 @@ import markdown_lint
 import docusaurus_build 
 import multi_arch_build as docker_build
 
-multithreaded = False
+multithreaded = True
 if __name__ == "__main__":
 
     if multithreaded:
