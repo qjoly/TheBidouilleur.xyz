@@ -7,7 +7,7 @@ authors:
   url: 'https://github.com/qjoly/'
   image_url: 'https://avatars.githubusercontent.com/u/82603435?v=4'
 tags: [dagger, ci, docker]
-description: Dagger.IO est un outil maintenu par Solomon Hykes, celui-ci permet de créer un CI local (ou distant) n'étant pas dépendant du Yaml ou d'un DSL.
+description: Dagger.IO est un outil maintenu par Solomon Hykes, celui-ci permet de créer un CI local (ou distant) n'étant pas dépendant du Yaml ou d'un DSL
 ---
 
 Dagger.io est un projet qui a été annoncé il y a quelque temps par Solomon Hykes, la philosophie de Dagger a attiré mon attention.
