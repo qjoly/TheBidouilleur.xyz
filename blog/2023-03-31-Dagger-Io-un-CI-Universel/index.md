@@ -321,8 +321,7 @@ if __name__ == "__main__":
         print("Running tests in parallel using anyio")
         anyio.run(markdown_lint.markdown_lint)
         anyio.run(docusaurus_build.docusaurus_build)
-        anyio.run(docusaurus_build.docusaurus_build)
-        anyio.
+        anyio.run(docker_build.docker_build)
 ```
 
 Ce lanceur va importer les méthodes des fonctions `markdown_lint`, `docusaurus_build` et `docker_build` des fichiers `markdown_lint.py`, `docusaurus_build.py` et `multi_arch_build.py` avant d'exécuter chacune de ces fonctions.
