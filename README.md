@@ -6,7 +6,7 @@
 
 ![](https://img.shields.io/docker/pulls/qjoly/thebidouilleur.xyz?style=flat-square)
 ![](https://img.shields.io/docker/stars/qjoly/thebidouilleur.xyz?style=flat-square)
-[![Docker Image CI](https://github.com/QJoly/TheBidouilleur.xyz/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/QJoly/TheBidouilleur.xyz/actions/workflows/docker-image.yml)
+[![Docker Image CI](https://github.com/QJoly/TheBidouilleur.xyz/actions/workflows/dagger.yml/badge.svg?branch=main)](https://github.com/QJoly/TheBidouilleur.xyz/actions/workflows/dagger.yml)
 ![Nombre de visites](https://visitor-badge.deta.dev/badge?page_id=qjoly.thebidouilleur)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz?ref=badge_shield)
 
