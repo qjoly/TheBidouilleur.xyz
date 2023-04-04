@@ -100,10 +100,10 @@ if __name__ == "__main__":
 
 Il s'agit d'un simple job qui va lancer un conteneur Docker avec l'image `python:3.11-slim-buster` et exécuter la commande `python -V`.
 
-Pour lancer le job, il suffit de lancer avec python : `python3 hello-world.yml`.
+Pour lancer le job, il suffit de lancer avec python : `python3 hello-world.py`.
 
 ```bash
-➜  python3 hello-world.yml    
+➜  python3 hello-world.py    
 #1 resolve image config for docker.io/library/python:3.11-slim-buster
 #1 DONE 1.7s
 #2 importing cache manifest from dagger:10686922502337221602
