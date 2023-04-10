@@ -15,13 +15,29 @@ Et comme je n'ai pas envie de casser *volontairement* mes clusters pour m'entrai
 
 Mon Proxmox en cloud n'a pas suffisamment de performances pour héberger **2** clusters dans des machines virtuelles, mon *petit* DS57U3 n'a également pas de puissance à accorder à un cluster.
 
-Au début, je souhaitais ré-utiliser Infomaniak ou Scaleway pour me monter un cluster en quelques minutes via Terraform.
+Alors, cherchons un cloud peu cher qui nous permet de monter un cluster Kubernetes facilement !
 
-Ainsi, je fais mon *apply* pour que mon cluster soit monté, je m'entraine et lorsque j'ai terminé : je *destroy* mes machines.
+:::note Prérequis
 
-Mais ça, c'était parce que j'avais oublié que j'étais radin !
+Les machines maitresses demandent 1 CPU et 2 Go de RAM, les machines esclaves 1 CPU et 1 Go de RAM. Je souhaite rester dans ces limites pour ne pas avoir à payer plus cher.
 
+:::
+
+Chez Infomaniak, un cluster 5 *nœuds* (3 masters, 2 workers) coûte 0.02885€/heure, soit 21€/mois. Et chez Scaleway, un cluster 5 *nœuds* (3 masters, 2 workers) coûte 0.044€/heure, soit 30€/mois.
+
+C'est un cout raisonnable pour un cluster de test *(d'autant plus que je peux peut-être automatiser la construction du cluster avec Ansible/Terraform pour ne pas payer les machines les jours où je ne m'entraine pas)*.
+
+Mais un problème que j'avais oublié de mentionner, c'est que je suis radin !
 ![Picsou](https://media.giphy.com/media/4GRj3pwoAJSwg/giphy.gif)
+
+Alors, nous allons chercher une autre solution me permettant de payer moins cher, mais qui reste simple à mettre en place.
+
+## Oracle Free-Tier
+
+Oracle Free-Tier offre un tenant sur leur cloud. Nous avons alors 24Go de RAM et 4 CPU à répartir sur une ou plusieurs machines ARM ainsi que 2 machines virtuelles AMD64 avec chacune 1 CPU et 1 Go de RAM.
+
+Génial, non ? Nous avons ainsi nos 4 nœuds pour un coût de 0€/mois !
+
 ```
 fatal: [node5]: FAILED! => {
     "assertion": "ansible_memtotal_mb >= minimal_node_memory_mb",
