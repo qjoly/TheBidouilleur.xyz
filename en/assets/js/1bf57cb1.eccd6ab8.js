@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[991],{9142:e=>{e.exports=JSON.parse('{"label":"Debian","permalink":"/TheBidouilleur.xyz/en/blog/tags/debian","allTagsPath":"/TheBidouilleur.xyz/en/blog/tags","count":1}')}}]);
