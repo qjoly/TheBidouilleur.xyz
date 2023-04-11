@@ -62,6 +62,12 @@ echo -e '#!/bin/bash\necho "bar"' > usr/bin/foo
 chmod +x usr/bin/foo
 ```
 
+:::tip
+
+Il est possible de placer des fichiers `.deb` dans `repo-list/stable` si vous voulez importer des paquets déjà packagés.
+
+:::
+
 ## Customisation
 
 *N'étant vraiment pas très bon en programmation web, j'ai utilisé le code de [Flexdinesh](https://github.com/flexdinesh/dev-landing-page) pour la page d'accueil.*
@@ -104,6 +110,7 @@ Vous n'avez qu'à dé-commenter la ligne correspondant au thème de votre choix.
 ![Page d'accueil](./theme.png)
 
 *Note si vous doutez de mon choix de couleur par défaut : je suis daltonien.* ;)
+
 Tout comme le thème, les différents liens disponibles sur la page d'accueil doivent être modifiés dans le fichier `index.html`.
 
 ## Conclusion
