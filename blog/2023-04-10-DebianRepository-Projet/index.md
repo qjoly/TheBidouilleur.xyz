@@ -24,9 +24,7 @@ Le projet est *plug and play*, il suffit de lancer le Docker pour lancer la cré
 
 Exemple de lancement à partir d'un dossier vide :
 
-<script async id="asciicast-N9JL3ih6jwoLJX4r58Y51NHlf" src="https://asciinema.org/a/N9JL3ih6jwoLJX4r58Y51NHlf.js"></script>
-
-*Si le lecteur ne s'affiche pas, cliquez [ici](https://asciinema.org/a/N9JL3ih6jwoLJX4r58Y51NHlf).*
+[![asciicast](https://asciinema.org/a/N9JL3ih6jwoLJX4r58Y51NHlf.svg)](https://asciinema.org/a/N9JL3ih6jwoLJX4r58Y51NHlf)
 
 Par défaut, 2 programmes 'exemples' seront installés dans le dépôt : `hello-world` et `goodbye-world`. Vous pourrez les supprimer en effaçant les dossiers et `.deb` dans `src` et `repo-list`.
 
