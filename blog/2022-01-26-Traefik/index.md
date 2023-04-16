@@ -61,7 +61,7 @@ Traefik, ce n'est pas pour tout le monde. Mais il y a de nombreux cas, et de nom
 
 ## Comment fonctionne Traefik ?
 
-Traefik se base sur un système de **Provider**. Un Provider est un moyen de récupérer les fameuses règles "domaine -> IP" de manière *automatique* (ou presque). 
+Traefik se base sur un système de **Provider**. Un Provider est un moyen de récupérer les fameuses règles "domaine -> IP" de manière *automatique* (ou presque).
 Par exemple, sur Caddy, notre provider (la manière dont on récupère notre configuration) est un simple fichier.
 Notre seule manière d'automatiser Caddy se repose donc sur notre gestion de ce fichier. (le **Caddyfile**)
 
