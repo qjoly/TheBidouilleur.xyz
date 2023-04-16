@@ -111,6 +111,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
                 label: 'Flux RSS',
                 href: 'https://thebidouilleur.xyz/blog/rss.xml',
               },
+              {
+                label: 'Me soutenir',
+                href: 'https://ko-fi.com/thebidouilleur',
+              },
             ],
           },
           {
