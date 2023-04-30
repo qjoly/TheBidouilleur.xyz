@@ -1,0 +1,5 @@
+sites:
+  - name: Blog
+    url: https://thebidouilleur.xyz
+  - name: "Github Pages"
+    url: https://qjoly.github.io/TheBidouilleur.xyz/
