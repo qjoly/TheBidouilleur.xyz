@@ -10,10 +10,14 @@
 ![Nombre de visites](https://visitor-badge.deta.dev/badge?page_id=qjoly.thebidouilleur)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FQJoly%2FTheBidouilleur.xyz?ref=badge_shield)
 
-# TheBidouilleur
+## Status
+
+| Website                 | Status                |
+| ----------------------- | --------------------- |
+| [Blog](https://thebidouilleur.xyz) | :green_square: |
+| [Github Pages](https://qjoly.github.io/TheBidouilleur.xyz/) | :green_square: |# TheBidouilleur
 
 Un blog simple basé sur [Docusaurus](https://docusaurus.io/) dans lequel je vais partager mes découvertes informatiques.
-
 
 ## Installation
 
