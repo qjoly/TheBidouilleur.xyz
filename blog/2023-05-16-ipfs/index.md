@@ -1,3 +1,13 @@
+---
+slug: ipfs
+title: IPFS - Une blockchain permettant d'archive et transférer
+authors:
+  name: TheBidouilleur
+  title: Adorateur de trucs merdiques
+  url: 'https://github.com/qjoly/'
+  image_url: 'https://avatars.githubusercontent.com/u/82603435?v=4'
+tags: [IPFS, Stockage]
+---
 
 ## Introduction
 
@@ -38,10 +48,10 @@ added QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11 hello.txt
 Error: block was not found locally (offline): ipld: could not find QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11
 ```
 
-La raison ? C'est simple : **Aucune des machines n'est reliée au réseau IPFS.** ! 
+La raison ? C'est simple : **Aucune des machines n'est reliée au réseau IPFS.** !
 
 Pour cela, il faut lancer le daemon via la commande `ipfs daemon` sur les deux machines.
-Une fois la commande lancée, on peut re-essayer de lire le fichier sur la machine 2 : 
+Une fois la commande lancée, on peut re-essayer de lire le fichier sur la machine 2 :
 
 ```bash
 # machine 2
@@ -70,7 +80,7 @@ Le fichier est toujours accessible ! Cela s'explique par l'existence d'un cache 
 ...
 ```
 
-Nous avons un cache maximum de 10GB. Le *garbage collector* supprimera ce cache dès lors que nous utilisons plus de 90% du `StorageMax`.
+Nous avons un cache maximum de 10 Go. Le *garbage collector* supprimera ce cache dès lors que nous utilisons plus de 90% du `StorageMax`.
 
 En dehors de permettre à la machine 2 de lire ce fichier, ce cache a également une autre utilité.
 
@@ -96,11 +106,11 @@ En résumé : Il faut toujours une machine stockant ce fichier sur le réseau IP
 
 Mais le cache est éphémère ! Ne comptez pas dessus pour relayer votre fichier.
 
-Il faut donc que l'on **PIN** le fichier.
+Pour demander à une machine de garder le fichier et de le partager, il est nécéssaire que l'on **PIN** le fichier.
 
 Revenons au stade initial : `hello.txt` sur *machine 1*, et rien sur machine 2 et 3.
 
-Nous allons demander à la machine 2 de pin notre donnée pour que celle-ci soit stockée en dehors du cache et devienne persistante sur *machine 2*.
+Nous allons demander à la machine 2 de pin notre CID pour que celui-ci soit stockée en dehors du cache et devienne persistant sur *machine 2*.
 
 ```bash
 # machine 2
@@ -116,7 +126,7 @@ pinned QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11 recursively
 Bonjour !
 ```
 
-Le fichier est accessible !
+Le fichier est maintenant tant que machine 1 **ou** machine 2 sont sur le réseau IPFS.
 
 ## Récupérer un fichier sur le réseau IPFS sans client
 
@@ -144,7 +154,8 @@ J'obtiens le CID `QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` et j'accède �
 
 :::note Pin un dossier
 
-À noter qu'il n'est pas nécessaire de PIN chaque élément du dossier. Il suffit uniquement de le faire sur le dossier racine du site (`QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` dans mon cas).
+À noter qu'il n'est pas nécessaire de PIN chaque élément du dossier. Il suffit uniquement de le faire sur le dossier racine du site (`QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` dans mon cas). Les fichiers à l'intérieur du répertoire auront un 'pin indirect'.
+
 ```bash
 ➜ ipfs pin add QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
 pinned QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x recursively
@@ -157,46 +168,56 @@ QmednJCZK9SnxAy12rreveUqsMyP7Jfw2Aij1hFGWc3BJu indirect
 
 :::
 
-Maintenant, le problème d'héberger un site sur l'IPFS est que chaque fichier est immuable ! *(puisque chaque fichier est accessible via son hash unique)*
+Maintenant, le problème d'héberger un site sur l'IPFS est que chaque fichier est immuable *(chaque entité se lit à l'aide son hash unique)*. Il n'est alors pas possible de modifier vos fichiers en gardant le même **CID** (et en conséquent:  en changeant l'URL d'accès), vos utilisateur devront alors utiliser le nouveau CID pour voir la dernière version de votre site.
 
-C'est pour cela qu'il existe une solution : InterPlanetary Name System *(IPNS)*.
+C'est pour cela qu'il existe une solution : **InterPlanetary Name System** *(IPNS)*.
 
-L'**IPNS** permet de faire pointer une URL vers un CID, nous pouvons mettre à jour vers quel CID l'URL nous redirige.
+L'**IPNS** permet de faire pointer une URL vers un CID, nous pouvons mettre à jour à tout moment vers quel CID notre IPNS redirige.
 
-Cette URL se forme à partir d'une clé *(qui permet de vous identifier sur le réseau IPFS)*, dès lors que vous communiquez sur le réseau : vous avec une clé ed25519 (`ipfs key list`).
-Il est possible d'en générer plusieurs (et donc d'obtenir plusieurs 'domaines') :     
+Cette URL se forme à partir d'une clé *(qui permet de vous identifier sur le réseau IPFS)*. Dès lors que vous communiquez sur le réseau : vous utilisez une clé ed25519 (`ipfs key list`) nommée `self`.
+
+Si vous souhaitez utiliser plusieurs IPNS, il est disponible d'en gérer plusieurs *(et donc d'obtenir plusieurs 'domaines')*, exemple:
 
 ```bash
 ➜ ipfs key gen --type=rsa --size=2048 mykey
 ```
 
-Pour rediriger notre IPNS vers un CID, il faut utiliser l'argument `publish` :
+Pour rediriger notre IPNS *(à partir de la clé `self`)* vers un CID, il faut utiliser l'argument `publish` :
 
 ```bash
-➜ ipfs pin add /ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
+➜ ipfs name publish /ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
 Published to k51qzi5uqu5dl8idfkamiq22x12pr1rlha4i1izbi2hq5nlv3vuqt7nztq4krf: /ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
+```
+
+ou en spécifiant la clé :
+
+```bash
+➜ ipfs name publish --key=mykey /ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
+Published to k2k4r8jfpj0rsylz08ahbkar950da3a77wfcreiwh85hnp9op504l0e0: /ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
 ```
 
 :::danger
 Attention, la syntaxe du CID est bien **/ipfs/<CID>**.
 :::
 
-Pour vérifier, je peux faire un équivalent de `nslookup` via `ipns name resolv` :
+Pour vérifier vers quoi un IPNS pointe, je peux faire un équivalent de `nslookup` via `ipns name resolv` :
 
 ```bash
 ➜ ipfs name resolve k51qzi5uqu5dl8idfkamiq22x12pr1rlha4i1izbi2hq5nlv3vuqt7nztq4krf
 /ipfs/QmfEyL1zeaL7fWb6ugfzzh7zzdyyP7zSkb5smAyhttuQKS
 ```
 
-![IPNS Dans mon firefox à partide IPFS Companion](./ipns.png)
+![IPNS Dans mon firefox à partir de IPFS Companion](./ipns.png)
 
-:::note
+:::warn
 
-J'ai eu de nombreux problèmes pour accéder à un site IPNS depuis mon navigateur *(Hors extension navigateur IPFS)*, j'ignore si ça vient de ma configuration.
+Durant l'écriture de cette article, **aucune gateway publique** n'a réussi à m'afficher mon blog en utilisant mon **IPNS**.
+J'ai dû moi même héberger ma propre gateway *(Nous verrons la démarche plus bas)*
 
+[Liste des gateways publiques](https://ipfs.github.io/public-gateway-checker/)
 :::
 
-Mais retenir par cœur une clé IPFS est (légèrement) compliqué, il est alors possible d'utiliser votre propre nom de domaine. Pour cela, il suffit d'ajouter une entrée **TXT** dans votre DNS :
+Mais retenir par cœur une clé est *(légèrement)* compliqué, il est alors possible d'utiliser votre propre nom de domaine en tant qu'IPNS. Pour cela, il suffit d'ajouter une entrée **TXT** à votre nom de domaine:
 
 ```conf
 ipfs.thebidouilleur.xyz.	60	IN	TXT	"dnslink=/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x"
@@ -209,14 +230,19 @@ ipfs.thebidouilleur.xyz.	60	IN	TXT	"dnslink=/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmt
 
 :::note
 
-Au lieu de mapper votre domaine vers un CID, il est possible d'utiliser une clé IPNS :
+Au lieu de mapper votre domaine vers un CID, il est également possible d'utiliser une clé IPNS :
 
-```bash
+```conf
 ipfs.thebidouilleur.xyz.	60	IN	TXT	"dnslink=/ipns/k51qzi5uqu5di2e4jfi570at4g7qnoqx1vwsd2wc0pit1bxgxn22xwsaj5ppfr"
 ```
 
-Il vous suffira donc de mettre à jour vers quel CID cet IPNS pointe.
+Il vous suffira donc de mettre à jour vers quel CID cet IPNS pointe via `ipfs name publish`.
 :::
 
-Une instance de mon blog est ainsi joignable directement à cette URL : `https://ipfs.thebidouilleur.xyz/`.
+Une instance de mon blog est ainsi joignable depuis IPFS :
+- Extension IPFS: `ipfs.thebidouilleur.xyz`
+- Depuis une gateway : `ipfs.io/ipns/ipfs.thebidouilleur.xyz` *(Non-fonctionnel pour moi)*
 
+## Héberger une gateway IPFS
+
+Comme expliqué un peu plus haut, je ne parviens pas à utiliser les IPNS via les passerelles publiques. 
