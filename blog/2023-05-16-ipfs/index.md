@@ -7,15 +7,31 @@ authors:
   url: 'https://github.com/qjoly/'
   image_url: 'https://avatars.githubusercontent.com/u/82603435?v=4'
 tags: [IPFS, Stockage]
+description: Via cette page, vous découvrirez ce qu'est l'IPFS et comment partager vos fichiers pour qu'ils deviennent incensurables et décentralisés !
 ---
 
-## Introduction
+L'IPFS *(InterPlanetary File System)* est un protocole **P2P** *(Peer to Peer)* permettant de diffuser des fichiers de manière décentralisée. La mention "InterPlanetary" nous donne l'objectif premier de l'IPFS : surmonter les difficultés techniques et les contraintes de la communication entre planètes.
+
+<!--more-->
+
+Car le jour où Mars sera colonisé, le web devra s'adapter pour permettre à tous de pouvoir accéder au même internet. Car si nous arrivons à afficher Wikipedia en quelques millisecondes sur nos ordinateurs, **4min** seront nécessaires depuis Mars *dans les meilleures conditions* et **48min** *si vous êtes malchanceux*.
+
+Imaginez 48 minutes pour vous rappeler que Georges Lucas a eu un caméo dans *Le Flic de Beverly Hills 3*.
+
+Et c'est à ce moment précis que l'IPFS entre en scène. Comme c'est un système de partage de fichiers entre ordinateurs qui fonctionne **sans serveurs centraux**, il n'est pas nécessaire de communiquer avec un serveur terrien.
+
+Ce protocole est un mélange entre le World Wide Web et BitTorrent, un même fichier peut être partagé par plusieurs ordinateurs. Le réseau IPFS est donc une carte sur laquelle nous allons demander un fichier (site) et le télécharger depuis un serveur proche.
+
+[![Explication Réseau IPFS décentralisation](ipfs-decentralisation.png)](https://www.reddit.com/r/ipfs/comments/q76uil/what_is_ipfs_what_does_it_mean_for_the_internet/)
 
 
-## La base
+## Comment accéder à un fichier ?
 
- https://www.reddit.com/r/ipfs/comments/q76uil/what_is_ipfs_what_does_it_mean_for_the_internet/
-![](https://preview.redd.it/sqshr2wui6t71.jpg?width=701&format=pjpg&auto=webp&v=enabled&s=fa3e6e6d80bec5030ba1f3be9268e2a1ed8f8a28)
+En Web classique, nous demandons à un serveur un fichier spécifique via une URL
+
+![Demande de fichier sur le web classique](./Web-trad.png)
+
+En IPFS, nous n'allons pas 
 
 ## Explication fonctionnement
 
@@ -51,7 +67,7 @@ Error: block was not found locally (offline): ipld: could not find QmNURZjTooDCU
 La raison ? C'est simple : **Aucune des machines n'est reliée au réseau IPFS.** !
 
 Pour cela, il faut lancer le daemon via la commande `ipfs daemon` sur les deux machines.
-Une fois la commande lancée, on peut re-essayer de lire le fichier sur la machine 2 :
+Une fois la commande lancée, on peut lire le fichier sur la machine 2 :
 
 ```bash
 # machine 2
@@ -106,7 +122,7 @@ En résumé : Il faut toujours une machine stockant ce fichier sur le réseau IP
 
 Mais le cache est éphémère ! Ne comptez pas dessus pour relayer votre fichier.
 
-Pour demander à une machine de garder le fichier et de le partager, il est nécéssaire que l'on **PIN** le fichier.
+Pour demander à une machine de garder le fichier et de le partager, il est nécessaire que l'on **PIN** le fichier.
 
 Revenons au stade initial : `hello.txt` sur *machine 1*, et rien sur machine 2 et 3.
 
@@ -126,7 +142,7 @@ pinned QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11 recursively
 Bonjour !
 ```
 
-Le fichier est maintenant tant que machine 1 **ou** machine 2 sont sur le réseau IPFS.
+Le fichier est maintenant lisible tant que machine 1 **ou** machine 2 sont sur le réseau IPFS.
 
 ## Récupérer un fichier sur le réseau IPFS sans client
 
@@ -197,7 +213,7 @@ Published to k2k4r8jfpj0rsylz08ahbkar950da3a77wfcreiwh85hnp9op504l0e0: /ipfs/QmX
 ```
 
 :::danger
-Attention, la syntaxe du CID est bien **/ipfs/<CID>**.
+Attention, la syntaxe du CID est bien **/ipfs/CID**.
 :::
 
 Pour vérifier vers quoi un IPNS pointe, je peux faire un équivalent de `nslookup` via `ipns name resolv` :
@@ -245,4 +261,8 @@ Une instance de mon blog est ainsi joignable depuis IPFS :
 
 ## Héberger une gateway IPFS
 
-Comme expliqué un peu plus haut, je ne parviens pas à utiliser les IPNS via les passerelles publiques. 
+Comme expliqué un peu plus haut, je ne parviens pas à utiliser les IPNS via les passerelles publiques.
+  43 ipfs config --bool Swarm.RelayService.Enabled true
+  44 ipfs config --bool Swarm.RelayClient.Enabled true
+  45 ipfs config AutoNAT.ServiceMode '"enabled"' --json
+  59 ipfs config Addresses.Gateway "/ip4/0.0.0.0/tcp/8080"
