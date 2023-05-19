@@ -7,7 +7,7 @@ authors:
   url: 'https://github.com/qjoly/'
   image_url: 'https://avatars.githubusercontent.com/u/82603435?v=4'
 tags: [IPFS, Stockage]
-description: Via cette page, vous découvrirez ce qu'est l'IPFS et comment partager vos fichiers pour qu'ils deviennent incensurables et décentralisés !
+description: Via cette page, vous découvrirez ce qu'est l'IPFS et comment partager vos fichiers pour qu'ils deviennent incensurables et décentralisés
 ---
 
 L'IPFS *(InterPlanetary File System)* est un protocole **P2P** *(Peer to Peer)* permettant de diffuser des fichiers de manière décentralisée.
@@ -36,7 +36,17 @@ En IPFS, nous allons directement demander un fichier à partir d'un identifiant 
 
 ![Demander de fichier en IPFS](./ipfs-transfert.png)
 
-Dès lors que nous envoyons un fichier dans le réseau IPFS, nous obtenons un CID qui pointe vers celui-ci.
+Dès lors que nous envoyons un fichier dans le réseau IPFS, nous obtenons un CID qui pointe vers celui-ci. Ce CID est calculé en fonction de l'empreinte unique du fichier, et le CID est altéré si le fichier est modifié.
+
+En lisant un fichier depuis le réseau IPFS, nous avons la preuve qu'il n'est pas **censuré** et qu'il est immuable.
+
+## Cas d'usages
+
+- Archiver des données publiques sur le long terme : L'IPFS est un moyen fiable de transmettre des données aux générations futures en la décentralisant et en donnant l'opportunité aux utilisateurs lisant vos données de les repartager.
+- Héberger un site sans serveur : Depuis votre laptop, vous pouvez héberger un site qui sera hébergé (/repartagé) par le nombre de lecteur qui accède à votre site.
+- Partager de gros fichiers : Les fichiers IPFS sont séparés en blocs, vous pouvez alors partager de grands volumes via l'IPFS.
+- Rendre votre contenu incensurable : Comme chaque fichier s'accède via un Hash unique, vous avez constamment la preuve que le fichier n'est pas altéré par un hackeur ou une organisation.
+- Partager du contenu Offline sur votre réseau : Le partage peut se faire sans accès à Internet, les clients IPFS se découvrent sur un réseau local et peuvent continuer à relayer les fichiers en cache.
 
 ## Cycle de vie d'un fichier
 
@@ -204,10 +214,9 @@ Si vous utilisez l'utilitaire et que vous avez installé l'extension `IPFS Compa
 
 ![Extension Firefox](ipfs-compagnion.png)
 
-
 Et puisque nous utilisons notre navigateur… rien ne nous empêche de lire du HTML !
 
-Mon blog étant sous [Docusaurus](https://docusaurus.io/), je vais alors build le site et l'ajouter à mon nœud IPFS: 
+Mon blog étant sous [Docusaurus](https://docusaurus.io/), je vais alors build le site et l'ajouter à mon nœud IPFS:
 
 ```bash
 git clone https://github.com/QJoly/TheBidouilleur.xyz
@@ -218,7 +227,6 @@ ipfs add -r ./build
 ```
 
 J'obtiens le CID `QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` et j'accède à mon site via cette URL : `http://localhost:8080/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` ou `https://ipfs.io/ipfs/https://ipfs.io/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x/` *(Attention aux erreurs de CSS. Mon Docusaurus n'aime pas ne pas être à la racine du site)*.
-
 
 :::note Pin un dossier
 
@@ -235,7 +243,6 @@ QmednJCZK9SnxAy12rreveUqsMyP7Jfw2Aij1hFGWc3BJu indirect
 ```
 
 :::
-
 
 **ipfs.io** est une passerelle, c'est un accès *depuis le web* permettant de lire un fichier sur le réseau IPFS. Il en existe de nombreuses, et nous verrons plus bas comment créer la nôtre.
 
@@ -291,7 +298,7 @@ J'ai dû moi même héberger ma propre gateway *(Nous verrons la démarche plus 
 Mais retenir par cœur une clé est *(légèrement)* compliqué, il est alors possible d'utiliser votre propre nom de domaine en tant qu'IPNS. Pour cela, il suffit d'ajouter une entrée **TXT** à votre nom de domaine:
 
 ```conf
-ipfs.thebidouilleur.xyz.	60	IN	TXT	"dnslink=/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x"
+ipfs.thebidouilleur.xyz. 60 IN TXT "dnslink=/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x"
 ```
 
 ```bash
@@ -304,7 +311,7 @@ ipfs.thebidouilleur.xyz.	60	IN	TXT	"dnslink=/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmt
 Au lieu de mapper votre domaine vers un CID, il est également possible d'utiliser une clé IPNS :
 
 ```conf
-ipfs.thebidouilleur.xyz.	60	IN	TXT	"dnslink=/ipns/k51qzi5uqu5di2e4jfi570at4g7qnoqx1vwsd2wc0pit1bxgxn22xwsaj5ppfr"
+ipfs.thebidouilleur.xyz. 60 IN TXT "dnslink=/ipns/k51qzi5uqu5di2e4jfi570at4g7qnoqx1vwsd2wc0pit1bxgxn22xwsaj5ppfr"
 ```
 
 Il vous suffira donc de mettre à jour vers quel CID cet IPNS pointe via `ipfs name publish`.
@@ -397,3 +404,5 @@ git clone https://ipfs.io/ipfs/QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5/
 ```
 
 ## Conclusion
+
+En découvrant l'IPFS, je n'ai pas directement découvert quels étaient ses cas d'usages.
