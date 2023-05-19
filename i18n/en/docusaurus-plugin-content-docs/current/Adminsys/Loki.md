@@ -1,5 +1,7 @@
 ---
-title: Installing the Loki stack
+title: Loki - Monitor logs
+slug: loki
+tags: [infra]
 ---
 
 ## Introduction
