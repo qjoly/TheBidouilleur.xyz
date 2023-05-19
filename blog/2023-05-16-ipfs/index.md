@@ -10,39 +10,91 @@ tags: [IPFS, Stockage]
 description: Via cette page, vous découvrirez ce qu'est l'IPFS et comment partager vos fichiers pour qu'ils deviennent incensurables et décentralisés !
 ---
 
-L'IPFS *(InterPlanetary File System)* est un protocole **P2P** *(Peer to Peer)* permettant de diffuser des fichiers de manière décentralisée. La mention "InterPlanetary" nous donne l'objectif premier de l'IPFS : surmonter les difficultés techniques et les contraintes de la communication entre planètes.
+L'IPFS *(InterPlanetary File System)* est un protocole **P2P** *(Peer to Peer)* permettant de diffuser des fichiers de manière décentralisée.
+
+La mention "InterPlanetary" nous donne l'objectif premier de l'IPFS : surmonter les difficultés techniques et les contraintes de la communication entre planètes.
 
 <!--more-->
 
-Car le jour où Mars sera colonisé, le web devra s'adapter pour permettre à tous de pouvoir accéder au même internet. Car si nous arrivons à afficher Wikipedia en quelques millisecondes sur nos ordinateurs, **4min** seront nécessaires depuis Mars *dans les meilleures conditions* et **48min** *si vous êtes malchanceux*.
+En effet, le jour où Mars sera colonisé, le web devra s'adapter pour permettre à tous de pouvoir accéder au même internet. Car si nous arrivons à afficher Wikipédia en quelques millisecondes sur nos ordinateurs, **4min** seront nécessaires depuis Mars *dans les meilleures conditions* et **48 min** *si vous êtes malchanceux*.
 
 Imaginez 48 minutes pour vous rappeler que Georges Lucas a eu un caméo dans *Le Flic de Beverly Hills 3*.
 
-Et c'est à ce moment précis que l'IPFS entre en scène. Comme c'est un système de partage de fichiers entre ordinateurs qui fonctionne **sans serveurs centraux**, il n'est pas nécessaire de communiquer avec un serveur terrien.
+Et c'est à ce moment précis que l'IPFS entre en scène. Comme c'est un système de partage de fichiers entre ordinateurs qui fonctionne **sans serveurs centraux**, il ne sera pas toujours nécessaire de communiquer avec un serveur terrien pour lire une page web.
 
-Ce protocole est un mélange entre le World Wide Web et BitTorrent, un même fichier peut être partagé par plusieurs ordinateurs. Le réseau IPFS est donc une carte sur laquelle nous allons demander un fichier (site) et le télécharger depuis un serveur proche.
+Ce protocole est un mélange entre le *World Wide Web* et Bit Torrent avec lequel un même fichier peut être partagé par plusieurs ordinateurs. Le réseau IPFS est donc une carte sur laquelle nous allons demander un fichier (site) et le télécharger depuis un serveur proche qui n'est pas forcément le serveur dont provient la donnée.
 
 [![Explication Réseau IPFS décentralisation](ipfs-decentralisation.png)](https://www.reddit.com/r/ipfs/comments/q76uil/what_is_ipfs_what_does_it_mean_for_the_internet/)
 
-
 ## Comment accéder à un fichier ?
 
-En Web classique, nous demandons à un serveur un fichier spécifique via une URL
+En Web classique, nous demandons à un serveur un fichier spécifique via une URL qui renvoie vers un fichier spécifique. Si jamais nous revenons plus tard : le fichier ne sera pas forcément le même.
 
 ![Demande de fichier sur le web classique](./Web-trad.png)
 
-En IPFS, nous n'allons pas 
+En IPFS, nous allons directement demander un fichier à partir d'un identifiant qui se base sur son contenu : un **CID** *(Content Identifier)*, c'est un Hash unique permettant d'identifier votre donnée.
 
-## Explication fonctionnement
+![Demander de fichier en IPFS](./ipfs-transfert.png)
 
-## Les PINs
+Dès lors que nous envoyons un fichier dans le réseau IPFS, nous obtenons un CID qui pointe vers celui-ci.
 
-## Avantages / Défauts
+## Cycle de vie d'un fichier
 
-## La pratique
+Si je souhaite envoyer mon image de profil dans le réseau IPFS, celle-ci va être séparée en plusieurs parties de (maximum) 256 ko. Nous calculons ensuite un Hash unique pour chaque morceau, et nous les combinons pour créer le **CID** du fichier complet.
 
-### 
+![Envoi d'un fichier vers IPFS](./fichier-vers-ipfs.png)
 
+Le CID est alors une entité qui contient les différents Hash des morceaux de ~256 ko permettant de reconstituer le fichier d'origine.
+
+Le fait de séparer un fichier en plusieurs blocs permet de faire de la **déduplication**. Si je stocke de nouveau mon image en ayant modifié que le haut du png : je peux réutiliser les blocs identiques et n'ajouter que la différence en IPFS. Le CID sera quand même différent *(le hash des premiers blocs seront modifiés)*.
+
+Il est donc possible de reconstituer un fichier complet en utilisant les parties présentes dans le réseau IPFS.
+
+![Récupérer un fichier IPFS à partir du CID](./RecupIPFSFichier.png)
+
+## Installer un client IPFS
+
+![Kubo Logo](https://ipfs.io/ipfs/bafykbzacecaesuqmivkauix25v6i6xxxsvsrtxknhgb5zak3xxsg2nb4dhs2u/ipfs.go.png)
+
+[Kubo](https://github.com/ipfs/kubo) est l'utilitaire le plus connu et le plus utilisé pour communiquer en IPFS. Il est écrit en **Golang** et peut s'utiliser en ligne de commande, ou via une interface web.
+
+Il s'installe de manière assez simple :
+
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="Alpine" label="Alpine" default>
+
+    apk add kubo
+
+  </TabItem>
+  <TabItem value="Build à partir du code" label="Debian/Ubuntu" default>
+
+    git clone https://github.com/ipfs/kubo.git
+    cd kubo
+    make install
+
+  </TabItem>
+  <TabItem value="Nix" label="Nix">
+
+    nix-env -i kubo -v
+
+  </TabItem>
+  <TabItem value="Télécharger Binaire" label="Binaire">
+
+    wget https://dist.ipfs.tech/kubo/v0.20.0/kubo_v0.20.0_linux-amd64.tar.gz
+    tar xvfz kubo_v0.20.0_linux-amd64.tar.gz
+    ./install.sh
+  
+  </TabItem>
+</Tabs>
+```
+
+N'appréciant pas l'usage d'interfaces webs, je vais uniquement présenter l'utilitaire en ligne de commande et non l'interface web.
+
+## L'IPFS en pratique
 
 Je dispose de 2 machines virtuelles sur lesquelles j'ai installé IPFS.
 
@@ -184,7 +236,10 @@ QmednJCZK9SnxAy12rreveUqsMyP7Jfw2Aij1hFGWc3BJu indirect
 
 :::
 
-Maintenant, le problème d'héberger un site sur l'IPFS est que chaque fichier est immuable *(chaque entité se lit à l'aide son hash unique)*. Il n'est alors pas possible de modifier vos fichiers en gardant le même **CID** (et en conséquent:  en changeant l'URL d'accès), vos utilisateur devront alors utiliser le nouveau CID pour voir la dernière version de votre site.
+
+**ipfs.io** est une passerelle, c'est un accès *depuis le web* permettant de lire un fichier sur le réseau IPFS. Il en existe de nombreuses, et nous verrons plus bas comment créer la nôtre.
+
+Maintenant, le problème d'héberger un site sur l'IPFS est que chaque fichier est immuable *(chaque entité se lit à l'aide son hash unique)*. Il n'est alors pas possible de modifier vos fichiers en gardant le même **CID** (et en conséquent : en changeant l'URL d'accès), vos utilisateurs devront donc utiliser le nouveau CID pour voir la dernière version de votre site.
 
 C'est pour cela qu'il existe une solution : **InterPlanetary Name System** *(IPNS)*.
 
@@ -227,7 +282,7 @@ Pour vérifier vers quoi un IPNS pointe, je peux faire un équivalent de `nslook
 
 :::warn
 
-Durant l'écriture de cette article, **aucune gateway publique** n'a réussi à m'afficher mon blog en utilisant mon **IPNS**.
+Durant l'écriture de cette article, **aucune passerelle publique** n'a réussi à m'afficher mon blog en utilisant mon **IPNS**.
 J'ai dû moi même héberger ma propre gateway *(Nous verrons la démarche plus bas)*
 
 [Liste des gateways publiques](https://ipfs.github.io/public-gateway-checker/)
@@ -256,13 +311,89 @@ Il vous suffira donc de mettre à jour vers quel CID cet IPNS pointe via `ipfs n
 :::
 
 Une instance de mon blog est ainsi joignable depuis IPFS :
+
 - Extension IPFS: `ipfs.thebidouilleur.xyz`
 - Depuis une gateway : `ipfs.io/ipns/ipfs.thebidouilleur.xyz` *(Non-fonctionnel pour moi)*
 
 ## Héberger une gateway IPFS
 
-Comme expliqué un peu plus haut, je ne parviens pas à utiliser les IPNS via les passerelles publiques.
-  43 ipfs config --bool Swarm.RelayService.Enabled true
-  44 ipfs config --bool Swarm.RelayClient.Enabled true
-  45 ipfs config AutoNAT.ServiceMode '"enabled"' --json
-  59 ipfs config Addresses.Gateway "/ip4/0.0.0.0/tcp/8080"
+Comme expliqué un peu plus haut, je ne parviens pas à résoudre les IPNS via les passerelles publiques.
+
+J'ai dû alors me tourner vers la création de ma propre passerelle :
+
+Il suffira d'initier votre configuration comme ci-dessus et de modifier votre configuration comme cela :
+
+```bash
+➜ ipfs config --bool Swarm.RelayService.Enabled true 
+➜ ipfs config --bool Swarm.RelayClient.Enabled true
+➜ ipfs config AutoNAT.ServiceMode '"enabled"' --json
+➜ ipfs config Addresses.Gateway "/ip4/0.0.0.0/tcp/8080"
+```
+
+Une fois ces commandes lancées, vous pourrez directement récupérer des objets IPFS dans votre navigateur via la même syntaxe que les autres passerelles. Ex: `http://192.168.128.10:8080/ipns/k51qzi5uqu5di2e4jfi570at4g7qnoqx1vwsd2wc0pit1bxgxn22xwsaj5ppfr`.
+
+## Dépôt Git en IPFS
+
+En scrutant [la documentation](https://docs.ipfs.tech/how-to/host-git-repo/), j'ai trouvé cette page qui présente une procédure simple permettant de stocker un dépôt Git en *ReadOnly*.
+
+Nous récupérons alors un dépôt avec l'argument `--mirror` permettant de récupérer le dépôt sous forme d'objets compressés. *(l'équivalent du dossier `.git` d'un dépôt)
+
+```bash
+git clone --mirror https://github.com/qjoly/helm-charts
+```
+
+Si (comme je viens de le faire) vous avez cloné votre dépôt en HTTPS *(et non SSH)*, il vous faudra générer des fichiers auxiliaires via la commande `git update-server-info`. Ces fichiers générés ou mis à jour par `git update-server-info` sont nécessaires pour que les clients Git puissent récupérer les objets et les références du dépôt.
+
+```bash
+git update-server-info
+```
+
+Nous ajoutons maintenant le dossier cloné à notre nœud IPFS :
+
+```bash
+ipfs add -r ./helm-charts.git
+added QmbRUdVtdtxcpdqyJE3iZwTJq7FPcXR1ErQRFB76sQCg9H helm-charts.git/HEAD
+added QmWadTGKYEjYf5Y7wKS66fLrTQm3ViH34QFoxbu88CbkG1 helm-charts.git/config
+added Qmdy135ZFG4kUALkaMhr6Cy3VhhkxyAh264kyg3725x8be helm-charts.git/description
+added QmUJ43sv5NVRBmfPHBwEitpz6D46xh4E79ponctVXEeMSH helm-charts.git/hooks/applypatch-msg.sample
+added QmeuAksU8iLW2YeirL69ibjGxkNUjWkKq5iEvWhSdeRRXF helm-charts.git/hooks/commit-msg.sample
+added QmV1Jv4eQcHrYtf97nofmUjzaaa6hmVXVt4LsqeG3hQKx8 helm-charts.git/hooks/fsmonitor-watchman.sample
+added QmWkzb9d617XFnahXuorAQPxRMGA8TeZB7Vyq2oBMmW52d helm-charts.git/hooks/post-update.sample
+added QmdgKBitxhbQ3APZt3CFAnfJUMCNC5uoGLkwjgbHciKPA8 helm-charts.git/hooks/pre-applypatch.sample
+added QmVpNrG3G8aMcdScqwAkiKan2ACx6bfR35Dn9XJ2mw3LCC helm-charts.git/hooks/pre-commit.sample
+added QmPep4RB3J5ERq3wrwEKFLznjnJeeFPqHZUjqcT3mCHej6 helm-charts.git/hooks/pre-merge-commit.sample
+added QmQ52euRcb4YZf8PYfajNPQAuaW8WoBgzAksUqHLLttqjk helm-charts.git/hooks/pre-push.sample
+added QmaTMXXEbvRSmpDTKqXf6kH3yeb7TNbiu3jttyYCbFpobD helm-charts.git/hooks/pre-rebase.sample
+added QmNgDPe6oFz5jqqqdh9YhuqReBWkuPo6gsy45nHB6mSr2j helm-charts.git/hooks/pre-receive.sample
+added QmPgMWyjZR1FzFaB1bYAWKkYLTtC5b6DGFVKroQp5eT7Ee helm-charts.git/hooks/prepare-commit-msg.sample
+added QmW7VnBMgFcJNVCKfSNZRL5apU8X19mp7bsL8px6zjbmGn helm-charts.git/hooks/push-to-checkout.sample
+added QmdBgUSUM2gmuHYMsk8Xy8AkWU5orkGKeBdK9JjfSCM2tC helm-charts.git/hooks/update.sample
+added QmcfzxUpw36y8fu2GR3s7Vgq7RBgooKtc6BgsqFnadsDLc helm-charts.git/info/exclude
+added QmW2BhLpMEmyhmvVi5xfRcym54NQEH5RfsqAyaL47NKzr1 helm-charts.git/info/refs
+added QmYFqkUdpTZ2TwbpRwnyo7K4zMu8Ep9wWTpKELxHS33qiQ helm-charts.git/objects/info/packs
+added QmPd9zs6bXigRrxEfLgpdV7nRmGF6UDgGLBiU4jz1zyfm8 helm-charts.git/objects/pack/pack-7d12aca4cae291e85bdb043dcbc34cc5ecf55d2d.idx
+added QmX7zrvm2e2cAkLiakS4r8bqWTW7u8onxLuS4BXNUrBzSz helm-charts.git/objects/pack/pack-7d12aca4cae291e85bdb043dcbc34cc5ecf55d2d.pack
+added QmZ9Es1CLRGWzasb4w3QRfvUi7NowtA78QKVuZahrMF1ix helm-charts.git/packed-refs
+added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn helm-charts.git/branches
+added QmUDWwEzg33DPr6NNxeBDKgHKaTcDfbVfJrog6HpzLXTvg helm-charts.git/hooks
+added QmXpvGWuzK8rPGrC7sDGsy7USx6v5mWgm1zfD2FGek5mwT helm-charts.git/info
+added QmPmEe7i3mFqU1DfkENkkH1to3QrWJD5UGSNJ7tmQ3cCUy helm-charts.git/objects/info
+added QmaodTHHrn5BZY8zaq4Lpj5Af4CmnQKbYract1aadwP8Aq helm-charts.git/objects/pack
+added QmfBTRmFNY3t5UP4s2bRFtmNAi4jiffcHBiokxxLeVEjzE helm-charts.git/objects
+added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn helm-charts.git/refs/heads
+added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn helm-charts.git/refs/tags
+added QmWYtSEta2Fzgy4u4ttdwwiKMUikwZrFHxa5quWXMVyBhy helm-charts.git/refs
+added QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5 helm-charts.git
+ 491.68 KiB / 491.68 KiB [========================================================================================================================================================]
+```
+
+Nous pouvons maintenant cloner notre dépôt via notre nœud local :
+
+```bash
+# via notre passerelle locale
+git clone http://QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5.ipfs.localhost:8080 helm-charts
+# via une passerelle publique
+git clone https://ipfs.io/ipfs/QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5/
+```
+
+## Conclusion
