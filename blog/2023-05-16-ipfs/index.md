@@ -1,12 +1,12 @@
 ---
 slug: ipfs
-title: IPFS - Une blockchain permettant d'archive et transférer
+title: IPFS - un protocole pour archiver et partager des fichiers
 authors:
   name: TheBidouilleur
   title: Adorateur de trucs merdiques
   url: 'https://github.com/qjoly/'
   image_url: 'https://avatars.githubusercontent.com/u/82603435?v=4'
-tags: [IPFS, Stockage]
+tags: [Stockage]
 description: Via cette page, vous découvrirez ce qu'est l'IPFS et comment partager vos fichiers pour qu'ils deviennent incensurables et décentralisés
 ---
 
@@ -18,11 +18,11 @@ La mention "InterPlanetary" nous donne l'objectif premier de l'IPFS : surmonter 
 
 En effet, le jour où Mars sera colonisé, le web devra s'adapter pour permettre à tous de pouvoir accéder au même internet. Car si nous arrivons à afficher Wikipédia en quelques millisecondes sur nos ordinateurs, **4min** seront nécessaires depuis Mars *dans les meilleures conditions* et **48 min** *si vous êtes malchanceux*.
 
-Imaginez 48 minutes pour vous rappeler que Georges Lucas a eu un caméo dans *Le Flic de Beverly Hills 3*.
+Et ces 48 minutes serviront uniquement à afficher **une seule page**, imaginez alors pour une vidéo YouTube ou une série.
 
-Et c'est à ce moment précis que l'IPFS entre en scène. Comme c'est un système de partage de fichiers entre ordinateurs qui fonctionne **sans serveurs centraux**, il ne sera pas toujours nécessaire de communiquer avec un serveur terrien pour lire une page web.
+Et c'est à ce moment précis que l'IPFS entre en scène. Comme c'est un système de partage de fichiers entre ordinateurs qui fonctionne **sans serveurs centraux**, il ne sera pas toujours nécessaire de communiquer avec un serveur terrien pour lire une page web. Il suffira de demander à un ordinateur proche de nous d'envoyer le fichier.
 
-Ce protocole est un mélange entre le *World Wide Web* et Bit Torrent avec lequel un même fichier peut être partagé par plusieurs ordinateurs. Le réseau IPFS est donc une carte sur laquelle nous allons demander un fichier (site) et le télécharger depuis un serveur proche qui n'est pas forcément le serveur dont provient la donnée.
+Ce protocole est un mélange entre le *World Wide Web* et Bit Torrent avec lequel un même fichier peut être partagé par plusieurs ordinateurs. Le réseau IPFS est donc une carte depuis laquelle nous allons demander un fichier (ou site) et le télécharger depuis un serveur qui n'est pas forcément le serveur dont provient la donnée.
 
 [![Explication Réseau IPFS décentralisation](ipfs-decentralisation.png)](https://www.reddit.com/r/ipfs/comments/q76uil/what_is_ipfs_what_does_it_mean_for_the_internet/)
 
@@ -42,9 +42,11 @@ En lisant un fichier depuis le réseau IPFS, nous avons la preuve qu'il n'est pa
 
 ## Cas d'usages
 
+J'ai découvert l'IPFS via le site *Libgen*, un moteur de recherche d'articles scientifiques. Le site officiel détaille un peu plus les différentes raisons d'utiliser ce réseau:
+
 - Archiver des données publiques sur le long terme : L'IPFS est un moyen fiable de transmettre des données aux générations futures en la décentralisant et en donnant l'opportunité aux utilisateurs lisant vos données de les repartager.
 - Héberger un site sans serveur : Depuis votre laptop, vous pouvez héberger un site qui sera hébergé (/repartagé) par le nombre de lecteur qui accède à votre site.
-- Partager de gros fichiers : Les fichiers IPFS sont séparés en blocs, vous pouvez alors partager de grands volumes via l'IPFS.
+- Partager de gros fichiers : Les fichiers IPFS sont séparés en blocs, vous pouvez alors partager de grands volumes via l'IPFS et télécharger les blocs en parallèle depuis différents serveurs. *(comme BitTorrent)*
 - Rendre votre contenu incensurable : Comme chaque fichier s'accède via un Hash unique, vous avez constamment la preuve que le fichier n'est pas altéré par un hackeur ou une organisation.
 - Partager du contenu Offline sur votre réseau : Le partage peut se faire sans accès à Internet, les clients IPFS se découvrent sur un réseau local et peuvent continuer à relayer les fichiers en cache.
 
@@ -75,12 +77,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-  <TabItem value="Alpine" label="Alpine" default>
+  <TabItem value="Alpine" label="Alpine" >
 
     apk add kubo
 
   </TabItem>
-  <TabItem value="Build à partir du code" label="Debian/Ubuntu" default>
+  <TabItem value="Build à partir du code" label="Build à partir du code" default>
 
     git clone https://github.com/ipfs/kubo.git
     cd kubo
@@ -102,15 +104,17 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 ```
 
-N'appréciant pas l'usage d'interfaces webs, je vais uniquement présenter l'utilitaire en ligne de commande et non l'interface web.
+N'appréciant pas l'usage d'interfaces webs, je vais uniquement présenter l'utilitaire en ligne de commande. L'interface web est disponible sur le port 5001 de votre machine et n'apporte pas de fonctionnalités supplémentaires.
+
+![Interface web de Kubo](./kubo-web.png)
 
 ## L'IPFS en pratique
 
-Je dispose de 2 machines virtuelles sur lesquelles j'ai installé IPFS.
+Je dispose de 2 machines virtuelles sur lesquelles j'ai installé Kubo.
 
-Première chose que nous pouvons faire, c'est de stocker un fichier sur le réseau IPFS. La commande est simple : `ipfs add <fichier>`. Cela va nous retourner un hash qui correspond à notre fichier. Ce hash est unique et permet de retrouver notre fichier sur le réseau IPFS.
+Première chose que nous pouvons faire, c'est de stocker un fichier sur le réseau IPFS. La commande est simple : `ipfs add <fichier>`. Cette commande va nous retourner un CID qui correspond à notre fichier. Ce CID est unique et permet de retrouver notre fichier sur le réseau IPFS.
 
-Avant tout, chacune des machines aura initialisé son client IPFS avec la commande `ipfs init`.
+Avant tout, chacune des machines aura initialisé son client IPFS avec la commande `ipfs init`. Cela permet de créer un dossier `.ipfs` dans le dossier utilisateur de la machine.
 
 Je crée un fichier `hello.txt` avec le contenu *"Bonjour !"*. L'utilitaire `ipfs add` ajoute ce fichier sur notre nœud IPFS.
 
@@ -158,6 +162,12 @@ Le fichier est toujours accessible ! Cela s'explique par l'existence d'un cache 
 ...
 ```
 
+Ou en ligne de commande : 
+
+```bash
+ipfs config Datastore.StorageMax '"5GB"' --json
+```
+
 Nous avons un cache maximum de 10 Go. Le *garbage collector* supprimera ce cache dès lors que nous utilisons plus de 90% du `StorageMax`.
 
 En dehors de permettre à la machine 2 de lire ce fichier, ce cache a également une autre utilité.
@@ -180,9 +190,11 @@ Le cache permet ainsi de participer à la diffusion de ce fichier *(sans être l
 (Pas de réponse)
 ```
 
+![Pas de réponse](./machine3-pas-de-reponse.png)
+
 En résumé : Il faut toujours une machine stockant ce fichier sur le réseau IPFS pour pouvoir accéder aux données.
 
-Mais le cache est éphémère ! Ne comptez pas dessus pour relayer votre fichier.
+Mais le cache est éphémère et sera supprimé un jour ! Ne comptez pas dessus pour relayer votre fichier.
 
 Pour demander à une machine de garder le fichier et de le partager, il est nécessaire que l'on **PIN** le fichier.
 
@@ -206,11 +218,13 @@ Bonjour !
 
 Le fichier est maintenant lisible tant que machine 1 **ou** machine 2 sont sur le réseau IPFS.
 
+![Machine 2 vers machine 3](./machine2-vers-machine3.png)
+
 ## Récupérer un fichier sur le réseau IPFS sans client
 
 Il existe de nombreuses passerelles publiques permettant d'accéder à un fichier du réseau IPFS sans se connecter à un client. Le CID de mon fichier étant `QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11`, je peux lire le fichier depuis Firefox via cette URL : `https://ipfs.io/ipfs/QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11`.
 
-Si vous utilisez l'utilitaire et que vous avez installé l'extension `IPFS Companion` (disponible [ici](https://docs.ipfs.tech/install/ipfs-companion/)), vous pouvez utiliser une passerelle locale via cette URL : `localhost:8080/ipfs/QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11`
+Si vous utilisez Kubo et que vous avez installé l'extension `IPFS Companion` (disponible [ici](https://docs.ipfs.tech/install/ipfs-companion/)), vous serez automatiquement redirigé vers votre passerelle locale : `http://localhost:8080/ipfs/QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11`
 
 ![Extension Firefox](ipfs-compagnion.png)
 
@@ -226,7 +240,7 @@ npm run build
 ipfs add -r ./build
 ```
 
-J'obtiens le CID `QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` et j'accède à mon site via cette URL : `http://localhost:8080/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` ou `https://ipfs.io/ipfs/https://ipfs.io/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x/` *(Attention aux erreurs de CSS. Mon Docusaurus n'aime pas ne pas être à la racine du site)*.
+J'obtiens le CID `QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` et j'accède à mon site via cette URL : `http://localhost:8080/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x` ou `https://ipfs.io/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x/` *(Attention aux erreurs de CSS. Mon Docusaurus n'aime pas ne pas être à la racine du site)*.
 
 :::note Pin un dossier
 
@@ -254,7 +268,7 @@ L'**IPNS** permet de faire pointer une URL vers un CID, nous pouvons mettre à j
 
 Cette URL se forme à partir d'une clé *(qui permet de vous identifier sur le réseau IPFS)*. Dès lors que vous communiquez sur le réseau : vous utilisez une clé ed25519 (`ipfs key list`) nommée `self`.
 
-Si vous souhaitez utiliser plusieurs IPNS, il est disponible d'en gérer plusieurs *(et donc d'obtenir plusieurs 'domaines')*, exemple:
+Si vous souhaitez utiliser plusieurs IPNS, il est possible d'en posséder plusieurs *(et donc d'obtenir plusieurs 'domaines')*, exemple:
 
 ```bash
 ➜ ipfs key gen --type=rsa --size=2048 mykey
@@ -287,10 +301,9 @@ Pour vérifier vers quoi un IPNS pointe, je peux faire un équivalent de `nslook
 
 ![IPNS Dans mon firefox à partir de IPFS Companion](./ipns.png)
 
-:::warn
+:::caution Passerelles publiques
 
-Durant l'écriture de cette article, **aucune passerelle publique** n'a réussi à m'afficher mon blog en utilisant mon **IPNS**.
-J'ai dû moi même héberger ma propre gateway *(Nous verrons la démarche plus bas)*
+Durant l'écriture de cet article, **aucune passerelle publique** n'a réussi à m'afficher mon blog en utilisant mon **IPNS**. J'ai alors dû utiliser ma passerelle locale *(localhost:8080)* sur mon poste et héberger ma propre passerelle pour les machines n'ayant pas Kubo installée. *Nous verrons comment créer notre passerelle plus bas.*
 
 [Liste des gateways publiques](https://ipfs.github.io/public-gateway-checker/)
 :::
@@ -308,7 +321,7 @@ ipfs.thebidouilleur.xyz. 60 IN TXT "dnslink=/ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmt
 
 :::note
 
-Au lieu de mapper votre domaine vers un CID, il est également possible d'utiliser une clé IPNS :
+Au lieu de régulièrement éditer votre entrée DNS pour changer le CID, il est également possible d'utiliser une clé IPNS :
 
 ```conf
 ipfs.thebidouilleur.xyz. 60 IN TXT "dnslink=/ipns/k51qzi5uqu5di2e4jfi570at4g7qnoqx1vwsd2wc0pit1bxgxn22xwsaj5ppfr"
@@ -319,10 +332,11 @@ Il vous suffira donc de mettre à jour vers quel CID cet IPNS pointe via `ipfs n
 
 Une instance de mon blog est ainsi joignable depuis IPFS :
 
-- Extension IPFS: `ipfs.thebidouilleur.xyz`
-- Depuis une gateway : `ipfs.io/ipns/ipfs.thebidouilleur.xyz` *(Non-fonctionnel pour moi)*
+- Avec l'extension navigateur IPFS: `ipfs.thebidouilleur.xyz`
+- Depuis une passerelle locale : `localhost:8080/ipns/ipfs.thebidouilleur.xyz`
+- Depuis une passerelle publique : `ipfs.io/ipns/ipfs.thebidouilleur.xyz` *(Non-fonctionnel pour moi)*
 
-## Héberger une gateway IPFS
+## Héberger une passerelle IPFS
 
 Comme expliqué un peu plus haut, je ne parviens pas à résoudre les IPNS via les passerelles publiques.
 
@@ -408,3 +422,13 @@ git clone https://ipfs.io/ipfs/QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5/
 J'ai découvert l'IPFS en lisant un article sur la censure de Wikipédia en Turquie. Je n'ai pas de réel cas d'usage en dehors de rendre mes articles accessibles le jour où je décide de fermer mon site. Je vous laisse vous faire votre propre avis et trouver une utilité.
 
 En attendant, je pense archiver quelques projets dans le réseau et d'essayer de toujours garder au moins un nœud actif.
+
+### Liens en vrac
+
+- [youtube2ipfs](https://pypi.org/project/youtube2ipfs/)
+- [ipfs-deploy](https://github.com/ipfs-shipyard/ipfs-deploy)
+- [Github Action IPFS](https://github.com/marketplace/actions/ipfs-setup-action)
+- [TiddlyWiki IPFS](https://github.com/xmaysonnave/tiddlywiki-ipfs)
+- [Clusters IPFS](https://cluster.ipfs.io/)
+- [Clusters Collaboratifs](https://collab.ipfscluster.io/)
+- [Javascript IPFS](https://js.ipfs.tech/)
