@@ -16,11 +16,11 @@ La mention "InterPlanetary" nous donne l'objectif premier de l'IPFS : surmonter 
 
 <!--more-->
 
-En effet, le jour où Mars sera colonisé, le web devra s'adapter pour permettre à tous de pouvoir accéder au même internet. Car si nous arrivons à afficher Wikipédia en quelques millisecondes sur nos ordinateurs, **4min** seront nécessaires depuis Mars *dans les meilleures conditions* et **48 min** *si vous êtes malchanceux*.
+En effet, le jour où Mars sera colonisée, le web devra s'adapter pour permettre à tous de pouvoir accéder au même internet. Car si nous arrivons à afficher Wikipédia en quelques millisecondes sur nos ordinateurs, **4min** seront nécessaires depuis Mars *dans les meilleures conditions* et **48 min** *si vous êtes malchanceux*.
 
-Et ces 48 minutes serviront uniquement à afficher **une seule page**, imaginez alors pour une vidéo YouTube ou une série.
+Ces 48 minutes serviront uniquement à afficher **une seule page**, imaginez alors pour une vidéo YouTube ou une série.
 
-Et c'est à ce moment précis que l'IPFS entre en scène. Comme c'est un système de partage de fichiers entre ordinateurs qui fonctionne **sans serveurs centraux**, il ne sera pas toujours nécessaire de communiquer avec un serveur terrien pour lire une page web. Il suffira de demander à un ordinateur proche de nous d'envoyer le fichier.
+C'est à ce moment précis que l'IPFS entre en scène. Comme c'est un système de partage de fichiers entre ordinateurs qui fonctionne **sans serveurs centraux**, il ne sera pas toujours nécessaire de communiquer avec un serveur terrien pour lire une page web. Il suffira de demander à un ordinateur proche de nous d'envoyer le fichier.
 
 Ce protocole est un mélange entre le *World Wide Web* et Bit Torrent avec lequel un même fichier peut être partagé par plusieurs ordinateurs. Le réseau IPFS est donc une carte depuis laquelle nous allons demander un fichier (ou site) et le télécharger depuis un serveur qui n'est pas forcément le serveur dont provient la donnée.
 
@@ -28,7 +28,7 @@ Ce protocole est un mélange entre le *World Wide Web* et Bit Torrent avec leque
 
 ## Comment accéder à un fichier ?
 
-En Web classique, nous demandons à un serveur un fichier spécifique via une URL qui renvoie vers un fichier spécifique. Si jamais nous revenons plus tard : le fichier ne sera pas forcément le même.
+En Web classique, nous demandons à un serveur un fichier spécifique via une URL qui renvoie vers un fichier spécifique. Si nous revenons plus tard : le fichier ne sera pas forcément le même.
 
 ![Demande de fichier sur le web classique](./Web-trad.png)
 
@@ -45,10 +45,10 @@ En lisant un fichier depuis le réseau IPFS, nous avons la preuve qu'il n'est pa
 J'ai découvert l'IPFS via le site *Libgen*, un moteur de recherche d'articles scientifiques. Le site officiel détaille un peu plus les différentes raisons d'utiliser ce réseau:
 
 - Archiver des données publiques sur le long terme : L'IPFS est un moyen fiable de transmettre des données aux générations futures en la décentralisant et en donnant l'opportunité aux utilisateurs lisant vos données de les repartager.
-- Héberger un site sans serveur : Depuis votre laptop, vous pouvez héberger un site qui sera hébergé (/repartagé) par le nombre de lecteur qui accède à votre site.
+- Héberger un site sans serveur : Depuis votre laptop, vous pouvez héberger un site qui sera  lui-même hébergé (/repartagé) par les lecteurs qui accèdent à votre site.
 - Partager de gros fichiers : Les fichiers IPFS sont séparés en blocs, vous pouvez alors partager de grands volumes via l'IPFS et télécharger les blocs en parallèle depuis différents serveurs. *(comme BitTorrent)*
 - Rendre votre contenu incensurable : Comme chaque fichier s'accède via un Hash unique, vous avez constamment la preuve que le fichier n'est pas altéré par un hackeur ou une organisation.
-- Partager du contenu Offline sur votre réseau : Le partage peut se faire sans accès à Internet, les clients IPFS se découvrent sur un réseau local et peuvent continuer à relayer les fichiers en cache.
+- Partager du contenu Offline sur votre réseau : Le partage peut se faire sans accès à Internet, les clients IPFS se découvrent*(autodiscovery)* sur un réseau local et peuvent continuer à relayer les fichiers en cache.
 
 ## Cycle de vie d'un fichier
 
@@ -58,7 +58,7 @@ Si je souhaite envoyer mon image de profil dans le réseau IPFS, celle-ci va êt
 
 Le CID est alors une entité qui contient les différents Hash des morceaux de ~256 ko permettant de reconstituer le fichier d'origine.
 
-Le fait de séparer un fichier en plusieurs blocs permet de faire de la **déduplication**. Si je stocke de nouveau mon image en ayant modifié que le haut du png : je peux réutiliser les blocs identiques et n'ajouter que la différence en IPFS. Le CID sera quand même différent *(le hash des premiers blocs seront modifiés)*.
+Le fait de séparer un fichier en plusieurs blocs permet de faire de la **déduplication**. Si je stocke de nouveau mon image en ayant modifié que le haut du png : je peux réutiliser les blocs identiques et n'ajouter que la différence en IPFS. Le CID sera quand même différent *(le hash des premiers blocs sera modifié)*.
 
 Il est donc possible de reconstituer un fichier complet en utilisant les parties présentes dans le réseau IPFS.
 
@@ -104,15 +104,15 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 ```
 
-N'appréciant pas l'usage d'interfaces webs, je vais uniquement présenter l'utilitaire en ligne de commande. L'interface web est disponible sur le port 5001 de votre machine et n'apporte pas de fonctionnalités supplémentaires.
+N'appréciant pas l'usage d'interfaces web, je vais uniquement présenter l'utilitaire en ligne de commande. L'interface web est disponible sur le port 5001 de votre machine et n'apporte pas de fonctionnalités supplémentaires.
 
 ![Interface web de Kubo](./kubo-web.png)
 
 ## L'IPFS en pratique
 
-Je dispose de 2 machines virtuelles sur lesquelles j'ai installé Kubo.
+Je dispose de deux machines virtuelles sur lesquelles j'ai installé Kubo.
 
-Première chose que nous pouvons faire, c'est de stocker un fichier sur le réseau IPFS. La commande est simple : `ipfs add <fichier>`. Cette commande va nous retourner un CID qui correspond à notre fichier. Ce CID est unique et permet de retrouver notre fichier sur le réseau IPFS.
+Première chose que nous pouvons faire, c'est stocker un fichier sur le réseau IPFS. La commande est simple : `ipfs add <fichier>`. Cette commande va nous retourner un CID qui correspond à notre fichier. Ce CID est unique et permet de retrouver notre fichier sur le réseau IPFS.
 
 Avant tout, chacune des machines aura initialisé son client IPFS avec la commande `ipfs init`. Cela permet de créer un dossier `.ipfs` dans le dossier utilisateur de la machine.
 
@@ -130,9 +130,9 @@ added QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11 hello.txt
 Error: block was not found locally (offline): ipld: could not find QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11
 ```
 
-La raison ? C'est simple : **Aucune des machines n'est reliée au réseau IPFS.** !
+La raison ? C'est simple : **Aucune des machines n'est reliée au réseau IPFS** !
 
-Pour cela, il faut lancer le daemon via la commande `ipfs daemon` sur les deux machines.
+Pour cela, il faut lancer le *daemon* via la commande `ipfs daemon` sur les deux machines.
 Une fois la commande lancée, on peut lire le fichier sur la machine 2 :
 
 ```bash
@@ -170,7 +170,7 @@ ipfs config Datastore.StorageMax '"5GB"' --json
 
 Nous avons un cache maximum de 10 Go. Le *garbage collector* supprimera ce cache dès lors que nous utilisons plus de 90% du `StorageMax`.
 
-En dehors de permettre à la machine 2 de lire ce fichier, ce cache a également une autre utilité.
+En dehors de permettre à la *machine 2* de lire ce fichier, ce cache a également une autre utilité.
 
 Ajoutons une 3ème machine virtuelle et tentons d'accéder au fichier `QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11`. *(Sachant que la machine 1 est toujours éteinte, celle-ci ne pourra pas envoyer le fichier)*
 
@@ -182,7 +182,7 @@ Bonjour !
 
 Le cache permet ainsi de participer à la diffusion de ce fichier *(sans être le nœud de première diffusion)*.
 
-À l'inverse *(en ayant supprimé le cache de machine 3)*, si jamais j'éteins la machine 1 et 2 : le fichier devient **injoignable** :
+À l'inverse *(en ayant supprimé le cache de machine 3)*, si jamais j'éteins la *machine 1 et 2* : le fichier devient **injoignable** :
 
 ```bash
 # machine 3
@@ -196,11 +196,11 @@ En résumé : Il faut toujours une machine stockant ce fichier sur le réseau IP
 
 Mais le cache est éphémère et sera supprimé un jour ! Ne comptez pas dessus pour relayer votre fichier.
 
-Pour demander à une machine de garder le fichier et de le partager, il est nécessaire que l'on **PIN** le fichier.
+Pour demander à une machine de garder le fichier et de le partager, il est nécessaire de **PIN** le fichier.
 
 Revenons au stade initial : `hello.txt` sur *machine 1*, et rien sur machine 2 et 3.
 
-Nous allons demander à la machine 2 de pin notre CID pour que celui-ci soit stockée en dehors du cache et devienne persistant sur *machine 2*.
+Nous allons demander à la *machine 2* de pin notre CID pour que celui-ci soit stocké en dehors du cache et devienne persistant sur *machine 2*.
 
 ```bash
 # machine 2
@@ -208,7 +208,7 @@ Nous allons demander à la machine 2 de pin notre CID pour que celui-ci soit sto
 pinned QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11 recursively
 ```
 
-Éteignons de nouveau *machine 1* et tentons *(encore une fois)* de lire le fichier `hello.txt` sur la machine 3 :
+Éteignons de nouveau *machine 1* et tentons *(encore une fois)* de lire le fichier `hello.txt` sur la *machine 3* :
 
 ```bash
 # machine 3
@@ -216,7 +216,7 @@ pinned QmNURZjTooDCUKjtegXUDF8CeowSN8VLSnPARLGXnxiv11 recursively
 Bonjour !
 ```
 
-Le fichier est maintenant lisible tant que machine 1 **ou** machine 2 sont sur le réseau IPFS.
+Le fichier est maintenant lisible tant que *machine 1 **ou** machine 2* sont sur le réseau IPFS.
 
 ![Machine 2 vers machine 3](./machine2-vers-machine3.png)
 
@@ -260,7 +260,7 @@ QmednJCZK9SnxAy12rreveUqsMyP7Jfw2Aij1hFGWc3BJu indirect
 
 **ipfs.io** est une passerelle, c'est un accès *depuis le web* permettant de lire un fichier sur le réseau IPFS. Il en existe de nombreuses, et nous verrons plus bas comment créer la nôtre.
 
-Maintenant, le problème d'héberger un site sur l'IPFS est que chaque fichier est immuable *(chaque entité se lit à l'aide son hash unique)*. Il n'est alors pas possible de modifier vos fichiers en gardant le même **CID** (et en conséquent : en changeant l'URL d'accès), vos utilisateurs devront donc utiliser le nouveau CID pour voir la dernière version de votre site.
+Maintenant, le problème d'héberger un site sur l'IPFS est que chaque fichier est immuable *(chaque entité se lit à l'aide de son hash unique)*. Il n'est alors pas possible de modifier vos fichiers en gardant le même **CID** (et par conséquent : en changeant l'URL d'accès), vos utilisateurs devront donc utiliser le nouveau CID pour voir la dernière version de votre site.
 
 C'est pour cela qu'il existe une solution : **InterPlanetary Name System** *(IPNS)*.
 
@@ -281,7 +281,7 @@ Pour rediriger notre IPNS *(à partir de la clé `self`)* vers un CID, il faut u
 Published to k51qzi5uqu5dl8idfkamiq22x12pr1rlha4i1izbi2hq5nlv3vuqt7nztq4krf: /ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
 ```
 
-ou en spécifiant la clé :
+Il est également possible de spécifier la clé :
 
 ```bash
 ➜ ipfs name publish --key=mykey /ipfs/QmXqrXHXuKB9tHrxUgNphRx8TyKBmtrisuRB2y9FkFta7x
@@ -303,7 +303,7 @@ Pour vérifier vers quoi un IPNS pointe, je peux faire un équivalent de `nslook
 
 :::caution Passerelles publiques
 
-Durant l'écriture de cet article, **aucune passerelle publique** n'a réussi à m'afficher mon blog en utilisant mon **IPNS**. J'ai alors dû utiliser ma passerelle locale *(localhost:8080)* sur mon poste et héberger ma propre passerelle pour les machines n'ayant pas Kubo installée. *Nous verrons comment créer notre passerelle plus bas.*
+Durant l'écriture de cet article, **aucune passerelle publique** n'a réussi à afficher mon blog en utilisant mon **IPNS**. J'ai dû alors utiliser ma passerelle locale *(localhost:8080)* sur mon poste et héberger ma propre passerelle pour les machines n'ayant pas Kubo installé. *Nous verrons comment créer notre passerelle plus bas.*
 
 [Liste des gateways publiques](https://ipfs.github.io/public-gateway-checker/)
 :::
@@ -342,7 +342,7 @@ Comme expliqué un peu plus haut, je ne parviens pas à résoudre les IPNS via l
 
 J'ai dû alors me tourner vers la création de ma propre passerelle :
 
-Il suffira d'initier votre configuration comme ci-dessus et de modifier votre configuration comme cela :
+Il suffira d'initier votre configuration *(`ipfs init`)* comme ci-dessus et de la modifier comme suit :
 
 ```bash
 ➜ ipfs config --bool Swarm.RelayService.Enabled true 
@@ -357,13 +357,13 @@ Une fois ces commandes lancées, vous pourrez directement récupérer des objets
 
 En scrutant [la documentation](https://docs.ipfs.tech/how-to/host-git-repo/), j'ai trouvé cette page qui présente une procédure simple permettant de stocker un dépôt Git en *ReadOnly*.
 
-Nous récupérons alors un dépôt avec l'argument `--mirror` permettant de récupérer le dépôt sous forme d'objets compressés. *(l'équivalent du dossier `.git` d'un dépôt)
+Nous récupérons alors un dépôt avec l'argument `--mirror` permettant de récupérer le dépôt sous forme d'objets compressés. *(l'équivalent du dossier `.git` d'un dépôt)*
 
 ```bash
 git clone --mirror https://github.com/qjoly/helm-charts
 ```
 
-Si (comme je viens de le faire) vous avez cloné votre dépôt en HTTPS *(et non SSH)*, il vous faudra générer des fichiers auxiliaires via la commande `git update-server-info`. Ces fichiers générés ou mis à jour par `git update-server-info` sont nécessaires pour que les clients Git puissent récupérer les objets et les références du dépôt.
+Si *(comme je viens de le faire)* vous avez cloné votre dépôt en HTTPS *(et non SSH)*, il vous faudra générer des fichiers auxiliaires via la commande `git update-server-info`. Ces fichiers générés ou mis à jour par `git update-server-info` sont nécessaires pour que les clients Git puissent récupérer les objets et les références du dépôt.
 
 ```bash
 git update-server-info
@@ -419,9 +419,9 @@ git clone https://ipfs.io/ipfs/QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5/
 
 ## Conclusion
 
-J'ai découvert l'IPFS en lisant un article sur la censure de Wikipédia en Turquie. Je n'ai pas de réel cas d'usage en dehors de rendre mes articles accessibles le jour où je décide de fermer mon site. Je vous laisse vous faire votre propre avis et trouver une utilité.
+J'ai découvert l'IPFS en lisant un article sur la censure de Wikipédia en Turquie. Je n'ai pas de réel cas d'usage en dehors de rendre mes articles accessibles le jour où je décide de fermer mon site. Je vous laisse vous faire votre propre avis et en trouver votre propre utilité.
 
-En attendant, je pense archiver quelques projets dans le réseau et d'essayer de toujours garder au moins un nœud actif.
+En attendant, je pense archiver quelques projets dans le réseau et essayer de toujours garder au moins un nœud actif.
 
 ### Liens en vrac
 
