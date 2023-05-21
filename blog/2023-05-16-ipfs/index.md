@@ -162,7 +162,7 @@ Le fichier est toujours accessible ! Cela s'explique par l'existence d'un cache 
 ...
 ```
 
-Ou en ligne de commande : 
+Ou en ligne de commande :
 
 ```bash
 ipfs config Datastore.StorageMax '"5GB"' --json
