@@ -398,11 +398,13 @@ Nous pouvons maintenant cloner notre dépôt via notre nœud local :
 
 ```bash
 # via notre passerelle locale
-git clone http://QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5.ipfs.localhost:8080 helm-charts
+git clone http://QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5.ipfs.localhost:8080
 # via une passerelle publique
 git clone https://ipfs.io/ipfs/QmVeBgcRdV5AapyRa8wcfLsk8y4xWxAL93mTmyCdrEynR5/
 ```
 
 ## Conclusion
 
-En découvrant l'IPFS, je n'ai pas directement découvert quels étaient ses cas d'usages.
+J'ai découvert l'IPFS en lisant un article sur la censure de Wikipédia en Turquie. Je n'ai pas de réel cas d'usage en dehors de rendre mes articles accessibles le jour où je décide de fermer mon site. Je vous laisse vous faire votre propre avis et trouver une utilité.
+
+En attendant, je pense archiver quelques projets dans le réseau et d'essayer de toujours garder au moins un nœud actif.
