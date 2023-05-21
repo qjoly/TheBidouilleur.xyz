@@ -1,5 +1,6 @@
 ---
 title: Kubectl sur machine cliente
+slug: kube-client
 ---
 
 Pour administrer votre cluster, vous pouvez vous connecter à une machine *"maitre" (avec le rôle **control-plane**)* et gérer votre cluster via l'utilitaire **kubectl**.

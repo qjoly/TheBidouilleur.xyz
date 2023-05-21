@@ -275,7 +275,7 @@ Maintenant, je souhaite créer un job similaire qui va construire une image Dock
 
 Il faudra déjà mettre au point le build multiarchitecture sur votre machine avant de pouvoir l'intégrer à notre job Dagger.
 
-Si vous souhaitez savoir comment créer une image Docker multiarchitecture, je vous invite à lire ma documentation [Création image Docker](/docs/Adminsys/MultiArch%20Build/) pour en connaitre la procédure.
+Si vous souhaitez savoir comment créer une image Docker multiarchitecture, je vous invite à lire ma documentation [Création image Docker](/docs/Adminsys/MultiArch-Build/) pour en connaitre la procédure.
 
 On va utiliser un objet à mettre en paramètre à Dagger, celui-ci est `dagger.Platform` et permet de spécifier la plateforme sur laquelle on veut construire notre image Docker.
 

@@ -33,7 +33,7 @@ spec:
             path: config.json
 ```
 
-Pour push l’image, vous aurez surement besoin d’identifiants *(Dockerhub, ou registre exposé sur Internet)*, je vous invite à lire [cette page](registre-client) qui vous présentera comment utiliser un registre privé dans Kubernetes.
+Pour push l'image, vous aurez surement besoin d'identifiants *(Dockerhub, ou registre exposé sur Internet)*, je vous invite à lire [cette page](/docs/Kubernetes/registre-prive) qui vous présentera comment utiliser un registre privé dans Kubernetes.
 
 Secret :
 

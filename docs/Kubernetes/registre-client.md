@@ -1,5 +1,6 @@
 ---
 title: Utilisation d'un registre privé
+slug: registre-prive
 ---
 
 Dès qu'on s'amuse avec des conteneurs et qu'on commence à créer les siens, il est nécessaire d'avoir son propre registre. *(Par simplicité, optimisation, efficacité)*

@@ -1,5 +1,5 @@
 ---
-slug: K9S - Interface TUI
+slug: K9S
 title: K9S - Une interface en TUI pour administrer votre cluster
 ---
 

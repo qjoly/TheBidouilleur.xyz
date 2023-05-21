@@ -1,5 +1,6 @@
 ---
 title: Using a Private Registry
+slug: private-registry
 ---
 
 As soon as you play with containers and start creating your own, you need to have your own registry. *(For simplicity, optimization, efficiency)*

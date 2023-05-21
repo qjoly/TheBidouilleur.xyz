@@ -1,5 +1,6 @@
 ---
 title: Tinc - VPN de Mesh
+slug: Tinc
 tags: [reseau, vpn, infra]
 description: Lorsqu'on multiplie les infrastructures (locales, distante etc..), avoir un VPN de Mesh permet de vous faciliter la vie. Nous allons donc installer et configurer Tinc
 ---

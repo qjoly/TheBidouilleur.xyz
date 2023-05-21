@@ -1,6 +1,6 @@
 ---
 title: Build Docker multi-architecture
-slug: MultiArch Build
+slug: MultiArch-Build
 tags: [Docker, ARM, Amd64]
 ---
 
