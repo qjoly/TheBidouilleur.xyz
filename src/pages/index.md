@@ -16,6 +16,15 @@ Bonjour,
 Je suis TheBidouilleur, un informaticien passionné adorant passer la majeure partie de son temps devant un écran ainsi qu'un café.
 Ce site est mon garage d'idées et de découvertes autour de mes passions. *(Principalement informatiques, mais je ne me ferme pas qu'à ça)*
 
+Quelques projets que j'ai réalisé :
+
+| Nom         | Description                                                                               | URL                           | GitHub                      |
+|-------------|-------------------------------------------------------------------------------------------|-------------------------------|-----------------------------|
+| PrezDocker  | Un diaporama en 2 dimensions (x,y) pour présenter un usage simple de Docker aux débutants | [docker.avec.une-tasse-de.cafe](https://docker.avec.une-tasse-de.cafe/) | [github:qjoly/PrezDocker](https://github.com/QJoly/PrezDocker) |
+| Helm Charts | Dépôt Helm avec une intégration continue basée sur [KinD](https://kind.sigs.k8s.io/) testant chaque chart individuellement  | n/a | [github:qjoly/helm-charts](https://github.com/QJoly/helm-charts)                            |
+| GitOps      | Procédure permettant de reconstruire une architecture *(Kubernetes)* via Packer, Terraform, Ansible. Le projet se déploie sur Proxmox ou Libvirt | [qjoly.github.io/GitOps](https://qjoly.github.io/GitOps/) | [github:qjoly/GitOps](https://github.com/QJoly/GitOps) |
+| Aptly-Docker | Support de Aptly sous Docker afin de créer un dépôt de paquets Debian compilant les `.deb` au démarrage du conteneur | n/a | [github:qjoly/DebianRepository](https://github.com/QJoly/DebianRepository) |
+
 Mes technologies du moment sont :
 
 - ![NixOS](https://img.shields.io/badge/NixOS-48B9C7?style=for-the-badge&logo=NixOS&logoColor=white)
