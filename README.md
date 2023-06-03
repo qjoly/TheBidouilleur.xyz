@@ -15,7 +15,7 @@
 | Website                 | Status                |
 | ----------------------- | --------------------- |
 | [Blog](https://thebidouilleur.xyz) | :green_square: |
-| [Github Pages](https://qjoly.github.io/TheBidouilleur.xyz/) | :green_square: |# TheBidouilleur
+| [Github Pages](https://qjoly.github.io/TheBidouilleur.xyz/) | :red_square: |# TheBidouilleur
 
 Un blog simple basé sur [Docusaurus](https://docusaurus.io/) dans lequel je vais partager mes découvertes informatiques.
 
