@@ -18,12 +18,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   projectName: 'TheBidouilleur',
   scripts: [{src: 'https://stats.192168128.xyz/js/script.js', defer: true, 'data-domain': 'thebidouilleur.xyz'}],
   plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
-  themeConfig: {
-    colorMode: {
-      defaultMode: 'dark',
-      disableSwitch: true,
-      respectPrefersColorScheme: false,
-    },
   i18n: 
   {
        defaultLocale: 'fr',
@@ -62,6 +56,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         { name: 'keywords', content: 'blog, thebidouilleur, informatique, devops, the bidouilleur, kubernetes, docker, ansible, infra-as-code'}
       ],
       defaultMode: 'dark',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
       navbar: {
         title: 'TheBidouilleur',
         logo: {
