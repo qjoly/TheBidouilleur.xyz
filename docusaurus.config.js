@@ -15,8 +15,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'QJoly', // Usually your GitHub org/user name.
-  projectName: 'TheBidouilleur', // Usually your repo name.
+  organizationName: 'QJoly',
+  projectName: 'TheBidouilleur',
   scripts: [{src: 'https://stats.192168128.xyz/js/script.js', defer: true, 'data-domain': 'thebidouilleur.xyz'}],
   plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
 
@@ -38,9 +38,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           showReadingTime: true,
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 'ALL',
-          // Please change this to your repo.
           editUrl:
             'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
