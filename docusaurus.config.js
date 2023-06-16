@@ -33,14 +33,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/',
+          showLastUpdateTime: true
         },
         blog: {
           showReadingTime: true,
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 'ALL',
           editUrl:
-            'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/',
-          showLastUpdateTime: true
+            'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
