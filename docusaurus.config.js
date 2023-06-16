@@ -40,7 +40,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           blogSidebarCount: 'ALL',
           editUrl:
             'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/',
-          showLastUpdateAuthor: true,
           showLastUpdateTime: true
         },
         theme: {
