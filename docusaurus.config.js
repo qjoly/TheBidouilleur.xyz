@@ -1,5 +1,4 @@
-const lightCodeTheme = require('prism-react-renderer/themes/dracula');
-// const lightCodeTheme = require('prism-react-renderer/themes/github');
+const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion
@@ -19,7 +18,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   projectName: 'TheBidouilleur',
   scripts: [{src: 'https://stats.192168128.xyz/js/script.js', defer: true, 'data-domain': 'thebidouilleur.xyz'}],
   plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
-
+  themeConfig: {
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
   i18n: 
   {
        defaultLocale: 'fr',
