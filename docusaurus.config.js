@@ -125,7 +125,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
                 to: '/blog',
               },
               {
-                label: 'Archives',
+                label: 'Historique',
                 to: '/blog/archive',
               },
               {
