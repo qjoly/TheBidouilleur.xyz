@@ -138,9 +138,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         ],
         copyright: `Copyright © ${new Date().getFullYear()} TheBidouilleur.`,
       },
-      prism: {
-        theme: lightCodeTheme,
+     /*  prism: {
+        theme: darkCodeTheme, // lightCodeTheme
         darkTheme: darkCodeTheme,
-      },
+      */ },
     }),
 });
