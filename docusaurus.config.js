@@ -35,7 +35,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         },
         blog: {
           showReadingTime: true,
-          blogSidebarTitle: 'All posts',
+          blogSidebarTitle: 'Articles',
           blogSidebarCount: 'ALL',
           editUrl:
             'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/'
@@ -48,7 +48,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: '/img/BMO.png',
       metadata: [
@@ -56,6 +55,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         { name: 'keywords', content: 'blog, thebidouilleur, informatique, devops, the bidouilleur, kubernetes, docker, ansible, infra-as-code'}
       ],
       defaultMode: 'dark',
+      colorMode: {
+        defaultMode: 'dark',
+      },
       disableSwitch: true,
       respectPrefersColorScheme: false,
       navbar: {
