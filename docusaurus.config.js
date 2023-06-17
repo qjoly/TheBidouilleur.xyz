@@ -14,11 +14,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'QJoly', // Usually your GitHub org/user name.
-  projectName: 'TheBidouilleur', // Usually your repo name.
+  organizationName: 'QJoly',
+  projectName: 'TheBidouilleur',
   scripts: [{src: 'https://stats.192168128.xyz/js/script.js', defer: true, 'data-domain': 'thebidouilleur.xyz'}],
   plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
-
   i18n: 
   {
        defaultLocale: 'fr',
@@ -32,14 +31,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/',
+          showLastUpdateTime: true
         },
         blog: {
           showReadingTime: true,
-          blogSidebarTitle: 'All posts',
+          blogSidebarTitle: 'Articles',
           blogSidebarCount: 'ALL',
-          // Please change this to your repo.
           editUrl:
-            'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/',
+            'https://github.com/QJoly/TheBidouilleur.xyz/tree/main/'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -49,7 +48,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: '/img/BMO.png',
       metadata: [
@@ -57,6 +55,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         { name: 'keywords', content: 'blog, thebidouilleur, informatique, devops, the bidouilleur, kubernetes, docker, ansible, infra-as-code'}
       ],
       defaultMode: 'dark',
+      colorMode: {
+        defaultMode: 'dark',
+      },
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
       navbar: {
         title: 'TheBidouilleur',
         logo: {
@@ -137,9 +140,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         ],
         copyright: `Copyright © ${new Date().getFullYear()} TheBidouilleur.`,
       },
-      prism: {
+     /*  prism: {
         theme: darkCodeTheme, // lightCodeTheme
         darkTheme: darkCodeTheme,
-      },
+       },*/ 
     }),
 });

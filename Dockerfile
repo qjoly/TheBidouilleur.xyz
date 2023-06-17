@@ -1,5 +1,8 @@
 FROM node:alpine as builder
 WORKDIR /data
+RUN apk update \
+    && apk add git\
+    && rm -rf /var/cache/apk/*
 COPY . .
 RUN npm install
 RUN npm run build
