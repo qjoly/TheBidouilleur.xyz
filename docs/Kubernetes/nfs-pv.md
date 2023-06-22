@@ -27,6 +27,7 @@ kubectl wait pod --selector app.kubernetes.io/name=csi-driver-nfs --for conditio
 Une fois le Helm déployé, il faut maintenant créer le storageClass *(qui aura pour but de gérer nos PersistentVolumeClaim)*. Celui-ci doit contenir les paramètres du serveur NFS ainsi que le chemin du partage. *(à adapter selon votre configuration, la syntaxe est la même pour un cluster GlusterFS)*
 
 Voici un exemple de storageClass :
+
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
