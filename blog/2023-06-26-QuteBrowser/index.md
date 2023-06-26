@@ -5,7 +5,7 @@ slug: QuteBrowser
 
 Il est tard, je suis fatigué, et dans ces moments, je n'ai qu'une envie : apprendre une bricole de plus qui me servira peut-être un jour *(ou pas)*.
 
-Sur les communautés de Tiling *(i3, tmux, sway …)*, on entend souvent parler de QuteBrowser. C'est un navigateur basé sur Vim, qui permet de naviguer sur le web sans utiliser la souris. Il est très léger et très rapide.
+Sur les communautés de Tiling *(i3, tmux, sway …)*, on entend souvent parler de QuteBrowser. C'est un navigateur basé sur Vim qui permet de naviguer sur le web sans utiliser la souris. Il est très léger et très rapide.
 
 Je n'ai eu qu'une brève démo de ce navigateur, mais il m'a semblé très intéressant. Je me suis donc dit que j'allais l'installer et le tester.
 
@@ -32,13 +32,11 @@ Extension modules: PyQt5.QtCore, PyQt5.QtGui, PyQt5.QtWidgets, markupsafe._speed
 Aborted (core dumped)
 ```
 
-… c'est le drame ! Je vais ouvrir une issue sur le dépôt NixOS pour signaler le problème. Mais je crois que je vais devoir l'installer autrement.
+… c'est le drame ! Je vais ouvrir une issue sur le dépôt NixOS pour signaler le problème. Je crois que je vais devoir l'installer autrement.
 
 Par chance, un paquet QuteBrowser existe sur Debian, Fedora et Arch. *(Des versions pré-compilées pour Windows et Mac sont disponibles sur les Github Releases)*
 
-
 ## Installation
-
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -71,7 +69,7 @@ Quand on lance QuteBrowser pour la première fois, on arrive sur DuckDuckGo. Vou
 
 Pour sélectionner un lien, on utilise la touche `f` qui va afficher des lettres sur les liens. On tape la lettre correspondante pour sélectionner le lien.
 
-![](/img/QuteBrowser/duckduckgo.png)
+![Moteur de recherche](/img/QuteBrowser/duckduckgo.png)
 
 En appuyant sur `g`, je me positionne alors sur le champ de recherche. Je peux alors taper ma recherche et appuyer sur `Entrée` pour lancer la recherche.
 
@@ -83,15 +81,15 @@ Pour revenir sur la page précédente, on utilise la touche `H` et pour retourne
 
 Si vous n'avez pas vu ma présentation de Vim *([Disponible ici](https://vim.avec.une-tasse-de.cafe))*, vous ne savez peut-être pas que Vim est capable de créer des onglets.
 
-Pour créer un onglet, on utilise la touche `O` qui va nous préremplir la barre d'adresse avec `:open -t `. On peut alors taper l'adresse du site ou un mot clé pour lancer une recherche.
+Pour créer un onglet, on utilise la touche `O` qui va nous préremplir la barre d'adresse avec `:open -t`. On peut alors taper l'adresse du site ou un mot clé pour lancer une recherche.
 
-![](/img/QuteBrowser/newtab.png)
+![Nouvel onglet](/img/QuteBrowser/newtab.png)
 
 Une fois que vous avez plusieurs onglets, vous pouvez naviguer entre eux avec les touches `J` et `K`. *(Pas comme dans Vim)*
 
 ### Bookmarks
 
-Comme n'importe quel navigateur, QuteBrowser permet de sauvegarder des favoris. Pour ajouter un favori, on utilise la touche `B` qui va nous préremplir la barre d'adresse avec `:bookmark-add `. On peut alors taper l'adresse du site ou un mot clé pour lancer une recherche.
+Comme n'importe quel navigateur, QuteBrowser permet de sauvegarder des favoris. Pour ajouter un favori, on utilise la touche `B` qui va nous préremplir la barre d'adresse avec `:bookmark-add`. On peut alors taper l'adresse du site ou un mot clé pour lancer une recherche.
 
 Il est possible d'ajouter le site sur lequel on se trouve en utilisant la touche `m` qui va ouvrir un menu pour choisir le nom du favori. Il est possible de l'ajouter rapidement en utilisant `M` qui va prendre le titre comme nom du favori.
 
@@ -101,14 +99,13 @@ Avec la commande `:bookmark-del`, on peut supprimer un favori *(les tabulations 
 
 En reprenant l'exemple de la commande `sQ`, QuteBrowser peut vous proposer les raccourcis possibles en ne tapant que `S`
 
-![](/img/QuteBrowser/completions.png)
+![Complétion Bookmarks](/img/QuteBrowser/completions.png)
 
 Pratique quand on ne se souvient que du début de la combinaison.
 
 Il est aussi possible de retrouver les combinaisons de touches de chaque commande depuis la console.
 
-![](/img/QuteBrowser/liste-touches.png)
-
+![Liste des touches](/img/QuteBrowser/liste-touches.png)
 
 ## Configuration
 
@@ -133,7 +130,6 @@ config.load_autoconfig()
 ```
 
 :::
-
 
 ## Moteur de recherche
 
