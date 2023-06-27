@@ -1,8 +1,9 @@
 ---
 title: QuteBrowser - Un navigateur basé sur Vim
 slug: QuteBrowser
+tags: [QuteBrowser, Vim, Firefox]
+description: QuteBrowser est un navigateur basé sur Vim qui permet de naviguer sur le web sans utiliser la souris (ou presque)
 ---
-
 Il est tard, je suis fatigué, et dans ces moments, je n'ai qu'une envie : apprendre une bricole de plus qui me servira peut-être un jour *(ou pas)*.
 
 Sur les communautés de Tiling *(i3, tmux, sway …)*, on entend souvent parler de QuteBrowser. C'est un navigateur basé sur Vim qui permet de naviguer sur le web sans utiliser la souris. Il est très léger et très rapide.
