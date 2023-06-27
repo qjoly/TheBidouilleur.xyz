@@ -153,9 +153,21 @@ c.url.searchengines = {
 
 Ainsi, en tapant `:open -t !gh NixPkgs`, je vais lancer une recherche sur GitHub avec le mot `NixPkgs`.
 
+## Une réelle alternative ?
+
+Et c'est là le point le plus important. QuteBrowser est-il une réelle alternative à Firefox ou Chrome ?
+
+La réponse est **non**, de nombreux sites auront un comportement étrange ou ne fonctionneront pas du tout. QuteBrowser dispose de toutes les fonctionnalités nécessaires à une navigation quotidienne, mais il ne faut pas s'attendre à pouvoir utiliser QuteBrowser pour tout.
+
+Une alternative à QuteBrowser est [Tridactyl](https://addons.mozilla.org/fr/firefox/addon/tridactyl-vim/), une extension pour Firefox qui permet de naviguer avec Vim. C'est une extension très complète et très bien faite couplant Firefox (et sa compatibilité) avec Vim.
+
+Les raccourcis sont légèrement différents, mais on retrouve la plupart des fonctionnalités de QuteBrowser.
+
+![Tridactyl](https://raw.githubusercontent.com/tridactyl/tridactyl/master/doc/AMO_screenshots/trishowcase.gif)
+
 ## Conclusion
 
 Quand on a l'habitude de naviguer avec Vim, QuteBrowser est un navigateur très agréable à utiliser. Il est très léger et très rapide. Il est aussi très facile à configurer. La documentation est très complète et hyper bien faite.
 Je n'ai pas non-plus parlé des userscripts qui permettent d'ajouter des fonctionnalités à QuteBrowser *(comme des extensions)* et qui sont vraiment simples à créer et à installer.
 
-Je pense continuer à utiliser QuteBrowser pendant un moment en espérant que mes extensions Firefox préférées ne me manquent pas trop.
+Étant constamment sur Firefox *(Perso et travail)*, je ne peux pas utiliser QuteBrowser au quotidien. Tridactyl est alors la meilleure alternative et celle que je vais utiliser pour le moment.
