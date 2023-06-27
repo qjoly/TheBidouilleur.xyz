@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7962],{5741:e=>{e.exports=JSON.parse('{"label":"Vim","permalink":"/TheBidouilleur.xyz/blog/tags/vim","allTagsPath":"/TheBidouilleur.xyz/blog/tags","count":1}')}}]);
