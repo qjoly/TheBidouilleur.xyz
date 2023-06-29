@@ -46,3 +46,7 @@ jobs:
           publish_dir: ./build
           user_name: QJoly
           user_email: 82603435+QJoly@users.noreply.github.com
+          
+      - name: Notify Maintainer
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"build": true}' ${{ secrets.WEBHOOK_URL }}

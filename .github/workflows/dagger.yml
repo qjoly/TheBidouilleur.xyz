@@ -37,3 +37,7 @@ jobs:
       - name: Run Dagger
         run: |
           python .ci/run_dagger.py
+
+      - name: Notify Maintainer
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"build": true}' ${{ secrets.WEBHOOK_URL }}
