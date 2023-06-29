@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[1836],{9852:e=>{e.exports=JSON.parse('{"label":"QuteBrowser","permalink":"/TheBidouilleur.xyz/blog/tags/qute-browser","allTagsPath":"/TheBidouilleur.xyz/blog/tags","count":1}')}}]);
