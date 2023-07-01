@@ -59,7 +59,7 @@ Pour le moment, seul le fournisseur LetsEncrypt nous intéresse. *(Nous verrons 
 #### ACME via challenge HTTP
 
 Le cas le plus courant lorsqu'on génère un certificat est d'utiliser LetsEncrypt avec un challenge HTTP. *(ex, CertBot)*
-Sa configuration est assez rapide, voici le manifest permettant d'ajouter le ACME de LetsEncrypt.
+Sa configuration est assez rapide, voici le manifest permettant d'ajouter le ACME de LetsEncrypt. **(Pensez à remplacer 'istio' par votre Ingress)**
 
 ```yml
 apiVersion: cert-manager.io/v1
@@ -97,7 +97,7 @@ Il vous suffit de remplacer l'url par `https://acme-staging-v02.api.letsencrypt.
 Il vous est possible de vérifier que l'Issuer est bien présent via la commande :
 
 ```bash
-➜  kubectl describe issuers.cert-manager.io letsencrypt`. 
+➜  kubectl describe issuers.cert-manager.io letsencrypt
 
 Status:
   Acme:
