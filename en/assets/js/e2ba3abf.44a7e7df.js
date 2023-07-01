@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[2619],{3619:e=>{e.exports=JSON.parse('{"label":"Firefox","permalink":"/TheBidouilleur.xyz/en/blog/tags/firefox","allTagsPath":"/TheBidouilleur.xyz/en/blog/tags","count":1}')}}]);
