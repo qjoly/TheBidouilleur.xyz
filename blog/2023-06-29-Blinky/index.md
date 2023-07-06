@@ -1,7 +1,7 @@
 ---
 title: Blinky - Un petit girophare connecté
 slug: blinky
-description: Blinky est un petit gyrophare connecté par Enix qui peut vous faciliter la vie durant vos astreintes.
+description: Blinky est un petit gyrophare connecté par Enix qui peut vous faciliter la vie durant vos astreintes
 ---
 
 Grâce à [ZWindler et sa série de threads Twitter à propos du reverse d'un petit appareil connecté](https://blog.zwindler.fr/2023/06/16/reverse-blinky-enix-part1/), j'ai découvert le projet Blinky. Il s'agit d'un petit gyrophare connecté qui peut vous faciliter la vie durant vos astreintes.
