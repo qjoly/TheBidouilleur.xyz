@@ -9,9 +9,7 @@ RUN git config --global user.email "github-actions[bot]@users.noreply.github.com
 RUN npm install
 RUN npm run build
 
-FROM alpine
-RUN apk update \
-    && apk add lighttpd \
-    && rm -rf /var/cache/apk/*
-COPY --from=builder /data/build /var/www/localhost/htdocs
-CMD ["lighttpd","-D","-f","/etc/lighttpd/lighttpd.conf"]
+FROM qjoly/lighttpd:latest
+WORKDIR /var/www/localhost/htdocs
+COPY --from=builder /data/build/ .
+CMD ["start.sh"]
