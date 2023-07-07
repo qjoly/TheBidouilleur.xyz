@@ -21,7 +21,7 @@ Quelques projets que j'ai réalisé :
 | Nom         | Description                                                                               | URL                           | GitHub                      |
 |-------------|-------------------------------------------------------------------------------------------|-------------------------------|-----------------------------|
 | PrezDocker  | Un diaporama en 2 dimensions (x,y) pour présenter un usage simple de Docker aux débutants | [docker.avec.une-tasse-de.cafe](https://docker.avec.une-tasse-de.cafe/) | [github:qjoly/PrezDocker](https://github.com/QJoly/PrezDocker) |
-| PrezVim  | Un guide pour apprendre Vim étape-par-étape | [vim.avec.une-tasse-de.cafe](https://vim.avec.une-tasse-de.cafe/) | [github:qjoly/PrezVim](https://github.com/QJoly/PrezVim) |
+| PrezVim  | Un guide pour apprendre Vim étape-par-étape (avec vidéos) | [vim.avec.une-tasse-de.cafe](https://vim.avec.une-tasse-de.cafe/) | [github:qjoly/PrezVim](https://github.com/QJoly/PrezVim) |
 | Helm Charts | Dépôt Helm avec une intégration continue basée sur [KinD](https://kind.sigs.k8s.io/) testant chaque chart individuellement  | n/a | [github:qjoly/helm-charts](https://github.com/QJoly/helm-charts)                            |
 | GitOps      | Procédure permettant de reconstruire une architecture *(Kubernetes)* via Packer, Terraform, Ansible. Le projet se déploie sur Proxmox ou Libvirt | [qjoly.github.io/GitOps](https://qjoly.github.io/GitOps/) | [github:qjoly/GitOps](https://github.com/QJoly/GitOps) |
 | Aptly-Docker | Support de Aptly sous Docker afin de créer un dépôt de paquets Debian compilant les `.deb` au démarrage du conteneur | n/a | [github:qjoly/DebianRepository](https://github.com/QJoly/DebianRepository) |
