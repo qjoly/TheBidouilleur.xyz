@@ -2,7 +2,6 @@
 title: Débuter avec Tmux
 slug: Tmux
 tags: [Tmux, Vim]
-# Description de Tmux: 
 description: Tmux est un utilitaire permettant de créer des sessions de terminal. Celui-ci est très utile pour lancer des commandes en fond et pouvoir fermer le terminal sans crainte que le processus ne soit stoppé, nous allons voir comment l'utiliser
 ---
 
@@ -106,6 +105,7 @@ Il est, par exemple, possible de modifier le préfixe de Tmux via la ligne suiva
 ```bash
 set-option -g prefix C-Space
 ```
+
 Ainsi, on remplace `ctrl+b` par `ctrl+espace`.
 
 Pour recharger la configuration, il suffit de lancer `tmux source ~/.tmux.conf` directement dans Tmux.
