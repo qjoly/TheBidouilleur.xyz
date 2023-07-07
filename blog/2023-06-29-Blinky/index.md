@@ -1,5 +1,5 @@
 ---
-title: Blinky - Un petit girophare connecté
+title: Blinky - Un petit gyrophare connecté
 slug: blinky
 description: Blinky est un petit gyrophare connecté par Enix qui peut vous faciliter la vie durant vos astreintes
 ---
