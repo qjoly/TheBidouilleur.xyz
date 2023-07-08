@@ -90,10 +90,12 @@ Et, pour finir, l'intégration avec Gitlab *(qui supporte plusieurs animations e
 
 ## Conclusion
 
-Pleins d'améliorations sont prévus pour le Blinky, que ça soit les possibilités d'intégration ou le design de l'appareil. Je suis très content de l'avoir reçu et je suis impatient de voir ce que l'équipe d'Enix va nous proposer. Et je suis très content de voir que le Blinky a trouvé son public, et j'ai hâte de voir le projet murir.
+Pleins d'améliorations sont prévus pour le Blinky, que ça soit les possibilités d'intégration ou le design de l'appareil. Je suis très content de l'avoir reçu et je suis impatient de voir ce que l'équipe d'Enix va nous proposer.
+
+Je suis heureux de voir que le Blinky a trouvé son public, et j'ai hâte de voir le projet murir.
 
 J'ai personnellement vraiment hâte de la sortie du SDK pour pouvoir le bidouiller un peu plus en profondeur et voir de nouvelles intégrations comme Zabbix, Home-assistant, Gotify ou même un petit serveur MQTT.
 
-Merci à l'équipe d'Enix pour ce super projet et pour m'avoir envoyé un Blinky !
+Merci à l'équipe d'Enix pour ce super projet et bravos pour sa réussite !
 
 Vous pouvez retrouver le Blinky sur [getblinky.io](https://getblinky.io) et les réseaux de la société Enix sur [Enix.io](https://enix.io/fr/)
