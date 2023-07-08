@@ -48,7 +48,7 @@ Le Blinky va se connecter à votre Wifi et vous pourrez l'associer à une organi
 
 à retenir que la LED du dessus affiche le statut de connexion au WiFi et que celle du dessous affiche les animations de notification.
 
-*Au démarrage, voici ces différentes animations (attention aux épileptiques) pour vous informer si le Blinky se connecte bien à votre WiFi:*
+*Au démarrage, voici les différentes animations (attention aux épileptiques) pour vous informer si le Blinky se connecte bien à votre WiFi:*
 
 ![Animation au démarrage du Blinky](./start-animation.gif)
 
@@ -72,7 +72,7 @@ La principale intégration est celle du WebHook:
 
 ![WebHook](./webhook-example.png)
 
-Une requète *(POST ou GET, ça revient au même)* est envoyée à l'URL du WebHook et l'animation liée est jouée sur le Blinky.
+Une requête *(POST ou GET, ça revient au même)* est envoyée à l'URL du WebHook et l'animation liée est jouée sur le Blinky.
 
 *Petite idée : Un webhook générique qui permettrait de choisir l'animation à jouer en fonction du JSON envoyé (même idée pour choisir le groupe de Blinky)*.
 
@@ -90,6 +90,10 @@ Et, pour finir, l'intégration avec Gitlab *(qui supporte plusieurs animations e
 
 ## Conclusion
 
-Pleins d'améliorations sont prévus pour le Blinky, que ça soit les possibilités d'intégration ou le design de l'appareil. Je suis très content de l'avoir reçu et je suis impatient de voir ce que l'équipe d'Enix va nous proposer.
+Pleins d'améliorations sont prévus pour le Blinky, que ça soit les possibilités d'intégration ou le design de l'appareil. Je suis très content de l'avoir reçu et je suis impatient de voir ce que l'équipe d'Enix va nous proposer. Et je suis très content de voir que le Blinky a trouvé son public, et j'ai hâte de voir le projet murir.
 
 J'ai personnellement vraiment hâte de la sortie du SDK pour pouvoir le bidouiller un peu plus en profondeur et voir de nouvelles intégrations comme Zabbix, Home-assistant, Gotify ou même un petit serveur MQTT.
+
+Merci à l'équipe d'Enix pour ce super projet et pour m'avoir envoyé un Blinky !
+
+Vous pouvez retrouver le Blinky sur [getblinky.io](https://getblinky.io) et les réseaux de la société Enix sur [Enix.io](https://enix.io/fr/)
